@@ -1,26 +1,133 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --primary-navy: #07345a;
+    --deep-navy: #032743;
+    --ocean-blue: #087ea4;
+    --tropical-teal: #0fa3a3;
+    --warm-gold: #f6a623;
+    --gold-hover: #e59515;
+    --bg-light: #f7fafc;
+    --bg-tinted: #f0f6fa;
+    --text-primary: #102a43;
+    --text-secondary: #486581;
+    --text-muted: #829ab1;
+    --border-subtle: #e2e8f0;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-accent: 'Caveat', cursive;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--bg-light);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom utility classes */
+.font-accent {
+  font-family: var(--font-accent), cursive;
 }
+
+.text-gold {
+  color: #f6a623;
+}
+
+.bg-primary-navy {
+  background-color: #07345a;
+}
+
+.bg-deep-navy {
+  background-color: #032743;
+}
+
+.bg-warm-gold {
+  background-color: #f6a623;
+}
+
+.hover-bg-gold:hover {
+  background-color: #e59515;
+}
+
+.text-primary-navy {
+  color: #07345a;
+}
+
+.text-deep-navy {
+  color: #032743;
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.glass-dark {
+  background: rgba(7, 52, 90, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Subtle smooth transitions */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card hover zoom */
+.card-hover-zoom {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.card-hover-zoom:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 30px -10px rgba(7, 52, 90, 0.12);
+}
+
+/* Pulse animation for WhatsApp badge */
+@keyframes pulse-subtle {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+  }
+}
+
+.animate-whatsapp {
+  animation: pulse-subtle 3s infinite ease-in-out;
+}
+
+/* RTL Layout Enhancements for Arabic */
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', var(--font-sans);
+}
+
+[dir="rtl"] .font-accent {
+  font-family: inherit;
+}
+
+[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+

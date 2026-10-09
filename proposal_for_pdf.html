@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Commercial Proposal: Web Portal & Digital Growth | Infavour Solutions</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap');
+
+    @page {
+      size: A4;
+      margin: 14mm 12mm 14mm 12mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1e293b;
+      background-color: #ffffff;
+      line-height: 1.55;
+      font-size: 11pt;
+    }
+
+    .page {
+      page-break-after: always;
+      position: relative;
+      padding-bottom: 20px;
+    }
+
+    .page:last-child {
+      page-break-after: avoid;
+    }
+
+    /* Cover / Header Banner */
+    .header-banner {
+      background: linear-gradient(135deg, #07345A 0%, #03213B 60%, #087EA4 100%);
+      color: #ffffff;
+      padding: 34px 32px 28px 32px;
+      border-radius: 14px;
+      margin-bottom: 22px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 25px -5px rgba(7, 52, 90, 0.25);
+    }
+
+    .header-banner::after {
+      content: "";
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(246, 166, 35, 0.22) 0%, rgba(255,255,255,0) 70%);
+      pointer-events: none;
+    }
+
+    .agency-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 5px 12px;
+      border-radius: 100px;
+      font-size: 8.5pt;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #F6A623;
+      margin-bottom: 12px;
+    }
+
+    .report-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 23pt;
+      line-height: 1.2;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .report-subtitle {
+      font-size: 11pt;
+      color: #cbd5e1;
+      font-weight: 400;
+      max-width: 90%;
+      margin-bottom: 16px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 8.5pt;
+    }
+
+    .meta-item strong {
+      display: block;
+      color: #94a3b8;
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .meta-item span {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* Headings */
+    h2.section-heading {
+      font-size: 13.5pt;
+      font-weight: 800;
+      color: #07345A;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid #e2e8f0;
+      position: relative;
+    }
+
+    h2.section-heading::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 48px;
+      height: 2px;
+      background: #F6A623;
+    }
+
+    h3.sub-heading {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #087EA4;
+      margin-top: 12px;
+      margin-bottom: 4px;
+    }
+
+    p {
+      margin-bottom: 10px;
+      color: #334155;
+      font-size: 9.3pt;
+      text-align: justify;
+    }
+
+    /* Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .feature-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid #087EA4;
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+
+    .feature-card.gold-border {
+      border-left-color: #F6A623;
+    }
+
+    .feature-card.blue-border {
+      border-left-color: #07345A;
+    }
+
+    .feature-card.green-border {
+      border-left-color: #10b981;
+    }
+
+    .card-title {
+      font-size: 9.8pt;
+      font-weight: 800;
+      color: #07345A;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-body {
+      font-size: 8.5pt;
+      color: #475569;
+      line-height: 1.45;
+    }
+
+    /* Tables */
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 16px 0;
+      font-size: 8.5pt;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+    }
+
+    table.data-table th {
+      background-color: #07345A;
+      color: #ffffff;
+      padding: 8px 10px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 8pt;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    table.data-table td {
+      padding: 7px 10px;
+      border-bottom: 1px solid #f1f5f9;
+      color: #334155;
+      vertical-align: top;
+    }
+
+    table.data-table tr:nth-child(even) td {
+      background-color: #f8fafc;
+    }
+
+    table.data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .highlight-green {
+      color: #059669;
+      font-weight: 700;
+    }
+
+    .highlight-gold {
+      color: #d97706;
+      font-weight: 700;
+    }
+
+    /* Callout Boxes */
+    .callout {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin: 12px 0;
+    }
+
+    .callout-title {
+      font-size: 9.5pt;
+      font-weight: 800;
+      color: #166534;
+      margin-bottom: 4px;
+    }
+
+    .callout p {
+      color: #15803d;
+      font-size: 8.5pt;
+      margin-bottom: 0;
+    }
+
+    .bullet-list {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 10px;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 5px;
+      font-size: 8.7pt;
+      color: #334155;
+    }
+
+    .bullet-list li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #087EA4;
+      font-weight: bold;
+      font-size: 8pt;
+    }
+
+    /* Packages Box */
+    .package-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 14px 0;
+    }
+
+    .package-box {
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 16px;
+      background: #ffffff;
+      position: relative;
+    }
+
+    .package-box.featured {
+      border: 2px solid #087EA4;
+      background: #f8fafc;
+      box-shadow: 0 4px 12px rgba(8, 126, 164, 0.08);
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: -10px;
+      right: 14px;
+      background: #087EA4;
+      color: #ffffff;
+      font-size: 7pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 8px;
+      border-radius: 100px;
+    }
+
+    .package-title {
+      font-size: 11pt;
+      font-weight: 800;
+      color: #07345A;
+      margin-bottom: 4px;
+    }
+
+    .package-tagline {
+      font-size: 8pt;
+      color: #64748b;
+      margin-bottom: 10px;
+    }
+
+    .package-features {
+      list-style: none;
+      padding: 0;
+    }
+
+    .package-features li {
+      position: relative;
+      padding-left: 16px;
+      font-size: 8pt;
+      color: #334155;
+      margin-bottom: 4px;
+    }
+
+    .package-features li::before {
+      content: "•";
+      position: absolute;
+      left: 4px;
+      color: #F6A623;
+      font-weight: bold;
+      font-size: 10pt;
+    }
+
+    .signature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .sign-box {
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 12px 14px;
+      background: #f8fafc;
+    }
+
+    .sign-label {
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #64748b;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .sign-name {
+      font-size: 9pt;
+      font-weight: 800;
+      color: #07345A;
+    }
+
+    .sign-line {
+      border-bottom: 1px solid #94a3b8;
+      margin-top: 24px;
+      margin-bottom: 4px;
+    }
+
+    .sign-date {
+      font-size: 7.5pt;
+      color: #64748b;
+    }
+
+    /* Footer styling */
+    .doc-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 7.5pt;
+      color: #94a3b8;
+    }
+
+    .doc-footer .brand {
+      font-weight: 700;
+      color: #07345A;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== PAGE 1 ==================== -->
+  <div class="page">
+    <div class="header-banner">
+      <div class="agency-tag">★ Commercial Project Proposal • Infavour Solutions</div>
+      <h1 class="report-title">Digital Transformation & Web Portal Proposal</h1>
+      <div class="report-subtitle">Strategic Inbound Tourism Platform for Ravi Tours & Travels</div>
+      
+      <div class="meta-grid">
+        <div class="meta-item">
+          <strong>Client Business</strong>
+          <span>Ravi Tours & Travels</span>
+        </div>
+        <div class="meta-item">
+          <strong>Prepared Exclusively By</strong>
+          <span>Infavour Solutions</span>
+        </div>
+        <div class="meta-item">
+          <strong>Ref Code & Date</strong>
+          <span>IFS-PROP-2026-RTT-001 • Oct 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-heading">1. Project Context & Commercial Opportunity</h2>
+    <p>
+      The international travel market to Sri Lanka is seeing historic surges in high-net-worth travelers from the United Kingdom, Europe, Australia, North America, and the Gulf. However, independent tour operators face two severe commercial barriers:
+    </p>
+    <ul class="bullet-list">
+      <li><strong>Crushing Middleman Fees:</strong> Online Travel Agencies (Viator, GetYourGuide, TripAdvisor, Booking.com) demand <strong>20% to 30% commission</strong> on every excursion booked, eroding operating profit margins.</li>
+      <li><strong>Timezone & Trust Hesitation:</strong> International guests looking to spend $1,500 – $4,000 require immediate booking reassurance and visual transparency before paying advance deposits.</li>
+    </ul>
+
+    <h2 class="section-heading">2. The Strategic Solution</h2>
+    <p>
+      <strong>Infavour Solutions</strong> proposes the official deployment and operational enablement of the custom-engineered <strong>Ravi Tours & Travels</strong> digital platform. This solution transforms your business from an offline driver operation into a <strong>premier Destination Management Company (DMC)</strong> with full ownership of your guest relationships and direct profits.
+    </p>
+
+    <div class="card-grid">
+      <div class="feature-card blue-border">
+        <div class="card-title">💰 100% Commission-Free Direct Bookings</div>
+        <div class="card-body">Every booking captured through your direct web portal yields 100% net revenue to your business—no platform fees or broker cuts.</div>
+      </div>
+      <div class="feature-card gold-border">
+        <div class="card-title">⚡ 24/7 Automated WhatsApp Pipeline</div>
+        <div class="card-body">Captures hot inquiries from travelers in Europe and the Americas across all timezones, delivering pre-filled itineraries straight to your phone.</div>
+      </div>
+      <div class="feature-card green-border">
+        <div class="card-title">📈 Shift to High-Ticket Packages</div>
+        <div class="card-body">High-polish itinerary showcases justify $1,500 - $4,000 multi-day packages instead of low-margin short city transfers.</div>
+      </div>
+      <div class="feature-card blue-border">
+        <div class="card-title">🌐 Organic Google Search Engine Dominance</div>
+        <div class="card-body">Built-in destination knowledge guides attract free organic traffic for high-intent search queries worldwide.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">🎯 Executive ROI Projection</div>
+      <p>
+        By capturing just <strong>2 to 3 direct multi-day private tour bookings</strong>, this platform will completely pay for itself, generating compounding profit returns for years to come.
+      </p>
+    </div>
+
+    <div class="doc-footer">
+      <span class="brand">Infavour Solutions | Digital Innovation</span>
+      <span>Official Commercial Proposal • Page 1 of 3</span>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 2 ==================== -->
+  <div class="page">
+    <h2 class="section-heading" style="margin-top: 0;">3. Detailed Scope of Work & Deliverables</h2>
+
+    <div style="margin-bottom: 12px;">
+      <h3 class="sub-heading">Module A: Custom Web Portal & Modern Design System</h3>
+      <p>
+        Custom-built application utilizing Next.js App Router, React, and Tailwind CSS. Modern luxury branding palette featuring Deep Oceanic Blue (#07345A), Ceylon Gold (#F6A623), and Coastal Cyan (#087EA4). Mobile-first, responsive, and ultra-fast.
+      </p>
+
+      <h3 class="sub-heading">Module B: Interactive Trip Planner & WhatsApp Engine</h3>
+      <p>
+        Bespoke 3-step holiday builder allowing guests to customize travel destinations, duration, and preferences. Integrated direct WhatsApp lead generator with automated itinerary pre-formatting for instant mobile quotation.
+      </p>
+
+      <h3 class="sub-heading">Module C: Tour Catalog & Day-by-Day Itineraries</h3>
+      <p>
+        Multi-tier tour showcase (Cultural, Wildlife, Beaches, Hill Country, Honeymoons) featuring day-by-day morning/evening agendas, vehicle fleet details, transparent Inclusions/Exclusions, and direct inquiry modals.
+      </p>
+
+      <h3 class="sub-heading">Module D: Sri Lanka Destination Knowledge Hub</h3>
+      <p>
+        Comprehensive destination guides (Sigiriya, Ella, Kandy, Nuwara Eliya, Yala, Mirissa, Galle) engineered for organic Google SEO discovery and cross-tour linking.
+      </p>
+
+      <h3 class="sub-heading">Module E: Transport & Fleet Monetization Showcase</h3>
+      <p>
+        Service showcase covering private chauffeur-guides (sedans, luxury KDH vans, SUVs), 24/7 CMB Airport transfers with flight monitoring, safari jeeps, and scenic train ticket reservations.
+      </p>
+
+      <h3 class="sub-heading">Module F: International Social Proof & Trust Hub</h3>
+      <p>
+        Verified international traveler testimonials, government registration badges, 24/7 on-tour safety guarantees, and clear booking transparency.
+      </p>
+    </div>
+
+    <h2 class="section-heading">4. Implementation Timeline & Milestones</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Phase / Milestone</th>
+          <th>Core Deliverables</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Phase 1: Architecture & Brand Alignment</strong></td>
+          <td>Brand palette calibration, typography, content structuring, and wireframing</td>
+          <td class="highlight-green">Week 1</td>
+        </tr>
+        <tr>
+          <td><strong>Phase 2: Core Engineering & Components</strong></td>
+          <td>Next.js App Router development, Trip Planner engine, and interactive forms</td>
+          <td class="highlight-green">Week 2</td>
+        </tr>
+        <tr>
+          <td><strong>Phase 3: Itinerary & Content Integration</strong></td>
+          <td>Tours, destination guides, vehicle fleet specs, customer reviews integration</td>
+          <td class="highlight-green">Week 3</td>
+        </tr>
+        <tr>
+          <td><strong>Phase 4: QA, Mobile Testing & Deployment</strong></td>
+          <td>Cross-device testing, Google SEO indexing, Cloudflare/Vercel production launch</td>
+          <td class="highlight-green">Week 4</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="doc-footer">
+      <span class="brand">Infavour Solutions | Digital Innovation</span>
+      <span>Official Commercial Proposal • Page 2 of 3</span>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 3 ==================== -->
+  <div class="page">
+    <h2 class="section-heading" style="margin-top: 0;">5. Commercial Investment & Engagement Options</h2>
+
+    <div class="package-container">
+      <!-- Option A -->
+      <div class="package-box featured">
+        <div class="featured-badge">Recommended Choice</div>
+        <div class="package-title">Option A: Complete Turnkey Portal</div>
+        <div class="package-tagline">Everything needed to launch and start capturing direct bookings.</div>
+        <ul class="package-features">
+          <li>Full Next.js Custom Production Web Platform</li>
+          <li>Interactive Trip Planner & Direct WhatsApp Engine</li>
+          <li>Comprehensive Tour & Destination Guide Catalog</li>
+          <li>Service & Fleet Showcase (Airport CMB Transfers)</li>
+          <li>Complete Technical SEO (Sitemaps, Robots, OG Tags)</li>
+          <li>Production Cloud Hosting & Domain DNS Setup</li>
+          <li><strong>30-Day Zero-Defect Post-Launch Warranty</strong></li>
+          <li>1-on-1 Staff Training on Managing Incoming Leads</li>
+        </ul>
+      </div>
+
+      <!-- Option B -->
+      <div class="package-box">
+        <div class="package-title">Option B: Enterprise Growth Suite</div>
+        <div class="package-tagline">Turnkey Portal plus ongoing quarterly marketing & technical management.</div>
+        <ul class="package-features">
+          <li><strong>Includes All Features from Option A</strong></li>
+          <li>Quarterly Tour Itinerary & Pricing Updates</li>
+          <li>Seasonal Promotional Banner & Campaign Management</li>
+          <li>Quarterly Google SEO Health & Ranking Audits</li>
+          <li>Monthly Cloud Uptime & Database Security Backups</li>
+          <li>Priority WhatsApp Technical Support Channel</li>
+          <li>Quarterly Traffic & Lead Conversion Analytics</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="section-heading">6. Warranty, Intellectual Property & SLA</h2>
+    <ul class="bullet-list">
+      <li><strong>100% Code Ownership:</strong> Ravi Tours & Travels receives full, unencumbered ownership of all custom source code, assets, and design files upon completion. No recurring licensing fees.</li>
+      <li><strong>30-Day Defect Warranty:</strong> Infavour Solutions guarantees resolution of any technical defects or layout adjustments at zero additional charge for 30 days post-launch.</li>
+      <li><strong>Enterprise Performance Guarantee:</strong> Sub-second page loads engineered specifically to accommodate international tourist connections.</li>
+    </ul>
+
+    <h2 class="section-heading">7. Proposal Acceptance & Authorization</h2>
+    <p>
+      By signing below, the parties agree to the scope and terms described in this proposal. Infavour Solutions will proceed with final staging, domain linking, and public launch.
+    </p>
+
+    <div class="signature-grid">
+      <div class="sign-box">
+        <div class="sign-label">Prepared & Authorized by:</div>
+        <div class="sign-name">Infavour Solutions</div>
+        <div class="sign-date" style="margin-top: 2px;">Solutions Architecture & Digital Engineering</div>
+        <div class="sign-line"></div>
+        <div class="sign-date">Date: October 2026 • Colombo, Sri Lanka</div>
+      </div>
+
+      <div class="sign-box">
+        <div class="sign-label">Accepted & Approved by:</div>
+        <div class="sign-name">Ravi Tours & Travels (Pvt) Ltd</div>
+        <div class="sign-date" style="margin-top: 2px;">Managing Director / Authorized Signatory</div>
+        <div class="sign-line"></div>
+        <div class="sign-date">Signature & Official Stamp / Date</div>
+      </div>
+    </div>
+
+    <div class="doc-footer">
+      <span class="brand">Infavour Solutions | Digital Innovation</span>
+      <span>Official Commercial Proposal • Page 3 of 3</span>
+    </div>
+  </div>
+
+</body>
+</html>
