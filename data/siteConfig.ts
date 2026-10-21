@@ -29,7 +29,7 @@ export const siteConfig: SiteConfig = {
   tagline: "Discover Sri Lanka Your Way",
   description:
     "Sri Lankan travel agency and tour operator offering private tours, airport transfers, hotel bookings, excursions, and tailor-made holidays across Sri Lanka.",
-  url: "https://ravitours.com",
+  url: "https://ravitoursandtravels.com",
   contact: {
     // Configurable contact details with clear placeholder labels until verified
     phone: "+94 76 884 6228",
