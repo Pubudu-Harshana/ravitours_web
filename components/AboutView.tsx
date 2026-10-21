@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import CTASection from "@/components/CTASection";
+import TravelerGallery from "@/components/TravelerGallery";
 import {
   ShieldCheck,
   Award,
@@ -115,22 +116,23 @@ export default function AboutView() {
 
           {/* Photo Collage */}
           <div className="lg:col-span-6 grid grid-cols-2 gap-4">
-            <div className="relative h-64 sm:h-80 rounded-3xl overflow-hidden shadow-lg">
+            <div className="relative h-64 sm:h-80 rounded-3xl overflow-hidden shadow-lg border border-slate-100">
               <Image
-                src="https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=800&q=80"
-                alt="Ella mountain gap in Sri Lanka"
+                src="/images/about/private-chauffeur-guide.jpg"
+                alt="Professional private chauffeur guide and touring vehicle with Ravi Tours in Sri Lanka"
                 fill
-                sizes="(max-width: 768px) 50vw, 300px"
+                sizes="(max-width: 768px) 50vw, 400px"
                 className="object-cover"
+                priority
               />
             </div>
 
-            <div className="relative h-64 sm:h-80 rounded-3xl overflow-hidden shadow-lg mt-8">
+            <div className="relative h-64 sm:h-80 rounded-3xl overflow-hidden shadow-lg mt-8 border border-slate-100">
               <Image
-                src="https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?auto=format&fit=crop&w=800&q=80"
-                alt="Wild elephant in Sri Lanka national park"
+                src="/images/about/happy-travelers-sri-lanka.jpg"
+                alt="Travelers enjoying a personalized private scenic journey across Sri Lanka"
                 fill
-                sizes="(max-width: 768px) 50vw, 300px"
+                sizes="(max-width: 768px) 50vw, 400px"
                 className="object-cover"
               />
             </div>
@@ -176,6 +178,9 @@ export default function AboutView() {
           </div>
         </div>
       </section>
+
+      {/* Real Traveler Moments Gallery */}
+      <TravelerGallery className="bg-white border-b border-slate-200/60" initialCount={8} />
 
       {/* Bottom CTA */}
       <CTASection />

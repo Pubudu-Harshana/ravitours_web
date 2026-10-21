@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import SmoothScroll from "@/components/SmoothScroll";
+import PageLoader from "@/components/PageLoader";
 import { siteConfig } from "@/data/siteConfig";
 
 export const metadata: Metadata = {
@@ -49,6 +52,13 @@ export const metadata: Metadata = {
     description: "Discover Sri Lanka Your Way with local travel experts.",
     images: ["https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1200&q=80"],
   },
+  icons: {
+    icon: [
+      { url: "/ravilogo.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/ravilogo.svg",
+    apple: "/ravilogo.svg",
+  },
   robots: {
     index: true,
     follow: true,
@@ -65,6 +75,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        <link rel="icon" href="/ravilogo.svg" type="image/svg+xml" />
+        <link rel="shortcut icon" href="/ravilogo.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/ravilogo.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
@@ -74,6 +87,8 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col bg-[#F7FAFC] text-[#102A43] antialiased selection:bg-[#F6A623] selection:text-white">
         <LanguageProvider>
+          <PageLoader />
+          <SmoothScroll />
           <Navbar />
           <main className="flex-grow">{children}</main>
           <Footer />

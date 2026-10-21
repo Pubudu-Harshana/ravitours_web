@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Hero from "@/components/Hero";
 import DestinationCard from "@/components/DestinationCard";
@@ -12,6 +13,7 @@ import TestimonialCard from "@/components/TestimonialCard";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
 import TripPlanner from "@/components/TripPlanner";
 import CTASection from "@/components/CTASection";
+import TravelerGallery from "@/components/TravelerGallery";
 
 import { destinations } from "@/data/destinations";
 import { tours, specialOffers } from "@/data/tours";
@@ -156,16 +158,27 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. Experience Section (Cinematic Dark Navy) */}
-      <section className="bg-[#032743] py-20 lg:py-24 text-white relative overflow-hidden">
-        {/* Subtle background texture */}
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#087EA4_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+      {/* 5. Experience Section (Cinematic Scenic Backdrop: Ella Nine Arch Bridge) */}
+      <section className="relative py-20 lg:py-24 text-white overflow-hidden">
+        {/* Scenic Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/destinations/ella-nine-arch-bridge.jpg"
+            alt="Scenic Ella Nine Arch Bridge amidst misty mountain rainforest — Sri Lanka"
+            fill
+            sizes="100vw"
+            className="object-cover object-center scale-105"
+          />
+          {/* Deep Navy/Oceanic Gradient for high contrast */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#020F1F]/92 via-[#032743]/88 to-[#020F1F]/95" />
+        </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mb-12">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#0FA3A3] block mb-1">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[11px] font-bold uppercase tracking-widest text-[#0FA3A3] mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0FA3A3] animate-pulse" />
               {t.experience.badge}
-            </span>
+            </div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
               {t.experience.title}
             </h2>
@@ -214,9 +227,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. Testimonials Section */}
-      <section className="py-20 bg-slate-50/70 border-t border-slate-200/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 7. Testimonials Section (Scenic Coastal Sunset Backdrop: Mirissa Coconut Tree Hill) */}
+      <section className="relative py-20 border-t border-slate-200/60 overflow-hidden">
+        {/* Scenic Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/destinations/mirissa-coconut-tree-hill.jpg"
+            alt="Mirissa Coconut Tree Hill and coastal sunset — Sri Lanka"
+            fill
+            sizes="100vw"
+            className="object-cover object-center opacity-25"
+          />
+          {/* Soft frosted glass tint for maximum readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-50/95 via-white/85 to-slate-50/95 backdrop-blur-[2px]" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
             <div>
               <span className="text-xs font-bold uppercase tracking-widest text-[#087EA4] block mb-1">
@@ -225,7 +251,7 @@ export default function HomePage() {
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#07345A] tracking-tight">
                 {t.testimonials.title}
               </h2>
-              <p className="text-slate-500 text-sm sm:text-base mt-1.5 font-light">
+              <p className="text-slate-600 text-sm sm:text-base mt-1.5 font-light">
                 {t.testimonials.subtitle}
               </p>
             </div>
@@ -243,7 +269,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. Trip Planner Form Section */}
+      {/* 8. Real Traveler Moments Gallery Section */}
+      <TravelerGallery className="bg-slate-50/70 border-t border-slate-200/60" initialCount={8} />
+
+      {/* 9. Trip Planner Form Section */}
       <TripPlanner />
 
       {/* 9. Final CTA Section */}

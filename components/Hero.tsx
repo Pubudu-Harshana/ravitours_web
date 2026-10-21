@@ -14,8 +14,8 @@ export default function Hero() {
       {/* Background Image — cinematic Sri Lanka: Sigiriya at blue hour, mist, tea terraces & ocean */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero-bg.jpg"
-          alt="Cinematic aerial view of Sigiriya Lion Rock Fortress glowing at blue hour above misty tropical jungle — Sri Lanka"
+          src="/images/landing page image.png"
+          alt="Cinematic view of Sri Lanka — Ravi Tours & Travels"
           fill
           priority
           sizes="100vw"

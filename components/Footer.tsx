@@ -237,7 +237,17 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <p>© {currentYear} Ravi Tours &amp; Travels. {t.footer.rightsReserved}</p>
+          <p>
+            © {currentYear} Ravi Tours &amp; Travels. {t.footer.rightsReserved} | Developed by{" "}
+            <a
+              href="https://www.infavour.tech"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-300 hover:text-[#F6A623] underline decoration-slate-600 underline-offset-2 hover:decoration-[#F6A623] transition-colors font-medium"
+            >
+              Infavour Solutions
+            </a>
+          </p>
           <div className="font-accent text-lg text-slate-300 tracking-wider">
             {t.footer.tagline}
           </div>
