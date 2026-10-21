@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { siteConfig } from "@/data/siteConfig";
 import {
-  Palmtree,
   Phone,
   Mail,
   MapPin,
@@ -22,8 +21,15 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="lg:col-span-4 space-y-4">
             <Link href="/" className="inline-flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center border border-white/20">
-                <Palmtree className="w-5 h-5 text-[#F6A623]" />
+              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center border border-white/20 overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/ravilogo.svg"
+                  alt="Ravi Tours logo"
+                  className="w-full h-full object-cover"
+                  width={40}
+                  height={40}
+                />
               </div>
               <div className="flex flex-col">
                 <span className="font-extrabold tracking-wider text-lg text-white">

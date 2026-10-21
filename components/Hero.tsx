@@ -11,19 +11,20 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center pt-24 pb-16 lg:py-28 overflow-hidden">
-      {/* Background Image with optimized Next/Image */}
+      {/* Background Image — cinematic Sri Lanka: Sigiriya at blue hour, mist, tea terraces & ocean */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=2000&q=85"
-          alt="Sri Lanka tropical coastline with azure waters and palm trees"
+          src="/images/hero-bg.jpg"
+          alt="Cinematic aerial view of Sigiriya Lion Rock Fortress glowing at blue hour above misty tropical jungle — Sri Lanka"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center scale-105 transition-transform duration-1000 ease-out"
+          className="object-cover object-[center_40%] scale-105 transition-transform duration-[1500ms] ease-out"
         />
-        {/* Subtle gradient overlay to ensure contrast and protect image beauty */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#032743]/85 via-[#07345A]/60 to-black/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#032743]/60 via-transparent to-black/30" />
+        {/* Left-side dark gradient for text legibility, preserves right-side image beauty */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#020f1f]/90 via-[#032743]/60 to-transparent" />
+        {/* Subtle bottom vignette for depth */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#020f1f]/70 via-transparent to-[#020f1f]/20" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">

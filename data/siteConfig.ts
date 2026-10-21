@@ -36,7 +36,7 @@ export const siteConfig: SiteConfig = {
     phoneDisplay: "+94 76 884 6228",
     whatsapp: "+94768846228",
     whatsappDisplay: "+94 76 884 6228",
-    email: "info@ravitours.lk",
+    email: "info@ravitoursandtravels.com",
     address: "Colombo, Sri Lanka",
     officeHours: "24/7 Customer Support & Travel Assistance",
   },

@@ -290,7 +290,7 @@ export const translations: Record<Language, TranslationDictionary> = {
     },
     testimonials: {
       badge: "TESTIMONIALS",
-      title: "What Our Travelers Say",
+      title: "What Our Clients Say",
       subtitle: "Real experiences. Real stories.",
       viewAll: "View All Reviews",
       demoBadge: "Demo Review",

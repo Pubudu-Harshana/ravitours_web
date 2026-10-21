@@ -9,6 +9,7 @@ import TourCard from "@/components/TourCard";
 import ExperienceCard, { ExperienceItem } from "@/components/ExperienceCard";
 import OfferCard from "@/components/OfferCard";
 import TestimonialCard from "@/components/TestimonialCard";
+import TestimonialCarousel from "@/components/TestimonialCarousel";
 import TripPlanner from "@/components/TripPlanner";
 import CTASection from "@/components/CTASection";
 
@@ -35,7 +36,7 @@ export default function HomePage() {
       title: "BEACHES",
       subtitle: "Sun, surf and endless blue.",
       iconName: "Waves",
-      image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=800&q=80",
+      image: "/images/destinations/mirissa.jpg",
       link: "/destinations/mirissa",
     },
     {
@@ -43,7 +44,7 @@ export default function HomePage() {
       title: "MOUNTAINS",
       subtitle: "Cool air and breathtaking views.",
       iconName: "Mountain",
-      image: "https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=800&q=80",
+      image: "/images/destinations/ella.jpg",
       link: "/destinations/ella",
     },
     {
@@ -51,7 +52,7 @@ export default function HomePage() {
       title: "WILDLIFE",
       subtitle: "Meet Sri Lanka's incredible wildlife.",
       iconName: "Compass",
-      image: "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?auto=format&fit=crop&w=800&q=80",
+      image: "/images/destinations/yala.jpg",
       link: "/destinations/yala",
     },
     {
@@ -59,7 +60,7 @@ export default function HomePage() {
       title: "CULTURE",
       subtitle: "Ancient cities and timeless heritage.",
       iconName: "Landmark",
-      image: "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80",
+      image: "/images/destinations/sigiriya.jpg",
       link: "/destinations/sigiriya",
     },
   ];
@@ -238,11 +239,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {testimonials.map((testim) => (
-              <TestimonialCard key={testim.id} testimonial={testim} />
-            ))}
-          </div>
+          <TestimonialCarousel testimonials={testimonials} />
         </div>
       </section>
 

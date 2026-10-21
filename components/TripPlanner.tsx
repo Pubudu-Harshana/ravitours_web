@@ -65,16 +65,17 @@ Name: ${contactInfo.name || "Traveler"}`;
 
   return (
     <section className="relative py-20 lg:py-28 overflow-hidden">
-      {/* Background Image: Scenic tea plantations & mountains explorer */}
+      {/* Background Image: Panoramic Sri Lanka scenic — tea terraces & Sigiriya at golden hour */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=2000&q=85"
-          alt="Sri Lanka tea plantation hills explorer"
+          src="/images/trip-planner-bg.jpg"
+          alt="Panoramic Sri Lanka scenic landscape — lush tea terraces and Sigiriya rock fortress at golden hour sunset"
           fill
           sizes="100vw"
           className="object-cover object-center"
+          priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#032743]/90 via-[#07345A]/80 to-[#032743]/85" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#032743]/88 via-[#07345A]/75 to-[#032743]/80" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

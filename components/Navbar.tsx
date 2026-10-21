@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/data/siteConfig";
-import { Menu, X, ArrowRight, Palmtree } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import LanguageSelector from "@/components/LanguageSelector";
 import { useLanguage } from "@/context/LanguageContext";
@@ -54,13 +54,20 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 group">
             <div
-              className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
+              className={`w-10 h-10 rounded-full flex items-center justify-center overflow-hidden transition-all ${
                 showSolidNav
-                  ? "bg-[#07345A] text-white"
-                  : "bg-white/20 backdrop-blur-sm text-white border border-white/30"
+                  ? "bg-[#07345A]"
+                  : "bg-white/20 backdrop-blur-sm border border-white/30"
               }`}
             >
-              <Palmtree className="w-5 h-5 text-[#F6A623]" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/ravilogo.svg"
+                alt="Ravi Tours logo"
+                className="w-full h-full object-cover"
+                width={40}
+                height={40}
+              />
             </div>
             <div className="flex flex-col">
               <span
@@ -75,7 +82,7 @@ export default function Navbar() {
                   showSolidNav ? "text-slate-500" : "text-slate-200"
                 }`}
               >
-                TOURS & TRAVELS
+                TOURS &amp; TRAVELS
               </span>
             </div>
           </Link>

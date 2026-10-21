@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { MapPin, Calendar, Users, ArrowRight } from "lucide-react";
 import { destinations } from "@/data/destinations";
@@ -16,6 +16,13 @@ export default function SearchPanel({ className = "" }: SearchPanelProps) {
   const [destination, setDestination] = useState("");
   const [travelDate, setTravelDate] = useState("");
   const [travelers, setTravelers] = useState("2 adults");
+  const [minDate, setMinDate] = useState("");
+
+  useEffect(() => {
+    // Prevent selecting past dates (formatted YYYY-MM-DD in local time)
+    const today = new Date().toLocaleDateString("en-CA");
+    setMinDate(today);
+  }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -106,8 +113,15 @@ export default function SearchPanel({ className = "" }: SearchPanelProps) {
               <input
                 id="search-date"
                 type="date"
+                min={minDate}
                 value={travelDate}
-                onChange={(e) => setTravelDate(e.target.value)}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (minDate && val && val < minDate) {
+                    return;
+                  }
+                  setTravelDate(val);
+                }}
                 className="w-full pl-10 pr-3 py-3 bg-slate-50 hover:bg-slate-100/70 border border-slate-200 rounded-xl text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#07345A] focus:bg-white transition-all cursor-pointer"
               />
             </div>

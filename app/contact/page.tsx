@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { siteConfig } from "@/data/siteConfig";
 import {
   Phone,
@@ -24,6 +24,14 @@ export default function ContactPage() {
     interestedTour: "",
     message: "",
   });
+
+  const [minDate, setMinDate] = useState("");
+
+  useEffect(() => {
+    // Prevent selecting past dates (formatted YYYY-MM-DD in local time)
+    const today = new Date().toLocaleDateString("en-CA");
+    setMinDate(today);
+  }, []);
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -286,10 +294,15 @@ export default function ContactPage() {
                       </label>
                       <input
                         type="date"
+                        min={minDate}
                         value={formData.travelDate}
-                        onChange={(e) =>
-                          setFormData({ ...formData, travelDate: e.target.value })
-                        }
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          if (minDate && val && val < minDate) {
+                            return;
+                          }
+                          setFormData({ ...formData, travelDate: val });
+                        }}
                         className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A]"
                       />
                     </div>
