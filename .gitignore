@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local documents, reports & design references
+*.docx
+reference-*.png
+*_for_pdf.html
+INFAVOUR_SOLUTIONS_*
