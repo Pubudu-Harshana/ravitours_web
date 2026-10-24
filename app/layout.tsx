@@ -66,6 +66,7 @@ export const metadata: Metadata = {
 };
 
 import { LanguageProvider } from "@/context/LanguageContext";
+import { Analytics } from "@vercel/analytics/next";
 
 export default function RootLayout({
   children,
@@ -94,6 +95,7 @@ export default function RootLayout({
           <Footer />
           <WhatsAppButton />
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
