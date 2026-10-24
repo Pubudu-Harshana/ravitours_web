@@ -131,3 +131,64 @@
   transform: scaleX(-1);
 }
 
+/* Floating animation for 3D Sri Lanka travel map */
+@keyframes float-island {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float-island {
+  animation: float-island 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-island {
+    animation: none;
+  }
+}
+
+/* Premium animated gradient text effect for "Discover Sri Lanka" hero heading */
+.hero-gradient-text {
+  background-image: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #38bdf8 20%,
+    #2dd4bf 40%,
+    #34d399 60%,
+    #0ea5e9 80%,
+    #2dd4bf 92%,
+    #ffffff 100%
+  );
+  background-size: 240% 240%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  display: inline;
+  animation: hero-gradient-flow 10s ease-in-out infinite alternate;
+  will-change: background-position;
+}
+
+@keyframes hero-gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-gradient-text {
+    animation: none;
+    background-position: 50% 50%;
+  }
+}
+

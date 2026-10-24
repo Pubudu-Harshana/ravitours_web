@@ -50,44 +50,6 @@ export const tourTranslations: Record<
         "Unwind along Sri Lanka's south coast with oceanfront sunsets, private whale safari cruises, coastal seafood dining, and historic Galle Fort walks.",
     },
   },
-  si: {
-    "classic-sri-lanka-heritage": {
-      title: "සම්භාව්‍ය ශ්‍රී ලංකා උරුමය",
-      tag: "ජනප්‍රියම සංචාරය",
-      description:
-        "සීගිරිය පර්වත බලකොටුව, මහනුවර දළදා මාලිගාව, ගාලු කොටුව සහ මනරම් තේ වතු පෞද්ගලික රියදුරු මඟපෙන්වීම යටතේ ගවේෂණය කරන්න.",
-    },
-    "scenic-hill-country-tea-trails": {
-      title: "සුන්දර කඳුකරය සහ තේ වතු චාරිකාව",
-      tag: "දර්ශනීය ගමන්මඟ",
-      description:
-        "ලෝක ප්‍රකට නිල් දුම්රිය චාරිකාව, ඇල්ල පුංචි සිරිපාදය සහ නුවරඑළියේ නැවුම් සිසිලස සහ තේ වතු අත්දැකීම විඳගන්න.",
-    },
-    "wildlife-safari-southern-coast": {
-      title: "වනජීවී සෆාරි සහ දකුණු වෙරළ තීරය",
-      tag: "සොබාදහම සහ සතුන්",
-      description:
-        "යාල ජාතික වනෝද්‍යානයේ දිවියන් සහ වන අලින් නැරඹීම, මිරිස්ස රන්වන් වෙරළේ විවේකය සහ නිල් තල්මසුන් නැරඹීමේ අත්දැකීම.",
-    },
-    "grand-island-odyssey": {
-      title: "සම්පූර්ණ දිවයින පුරා මහා චාරිකාව",
-      tag: "සම්පූර්ණ සංචාරය",
-      description:
-        "පුරාණ අගනගර, සිසිල් කඳුකරය, වනජීවී වනෝද්‍යාන සහ සුන්දර වෙරළ තීරයන් ආවරණය වන දින 14ක අසමසම සංචාරක අත්දැකීම.",
-    },
-    "cultural-triangle-ancient-wonders": {
-      title: "සංස්කෘතික ත්‍රිකෝණය සහ පුරාණ විස්මයන්",
-      tag: "යුනෙස්කෝ ලෝක උරුම",
-      description:
-        "අනුරාධපුරය, පොළොන්නරුව, දඹුල්ල රජමහා විහාරය සහ අභිමානවත් සීගිරිය ඇතුළු වසර 2,500ක පෞරාණික උරුමය විඳගන්න.",
-    },
-    "tropical-beach-escape-whale-watching": {
-      title: "නිවර්තන වෙරළ විවේකය සහ තල්මසුන් නැරඹීම",
-      tag: "වෙරළ සහ විවේකය",
-      description:
-        "දකුණු මුහුදු තීරයේ හිරු බැසයන දසුන්, පෞද්ගලික තල්මසුන් නැරඹීමේ යාත්‍රා, රසවත් මුහුදු ආහාර සහ ගාලු කොටුවේ ඇවිද යාම.",
-    },
-  },
   ar: {
     "classic-sri-lanka-heritage": {
       title: "تراث سريلانكا الكلاسيكي",
@@ -217,16 +179,6 @@ export const destinationTranslations: Record<
     yala: { name: "Yala", tag: "Leopard Safari" },
     galle: { name: "Galle", tag: "Dutch Heritage Fort" },
     "arugam-bay": { name: "Arugam Bay", tag: "World Surfing Bay" },
-  },
-  si: {
-    sigiriya: { name: "සීගිරිය", tag: "පුරාණ පර්වත බලකොටුව" },
-    ella: { name: "ඇල්ල", tag: "මීදුම් කඳුකරය සහ දුම්රිය" },
-    kandy: { name: "මහනුවර", tag: "ඓතිහාසික අගනගරය" },
-    "nuwara-eliya": { name: "නුවරඑළිය", tag: "පුංචි එංගලන්තය සහ තේ වතු" },
-    mirissa: { name: "මිරිස්ස", tag: "රන්වන් වෙරළ සහ තල්මසුන්" },
-    yala: { name: "යාල", tag: "දිවි සහ වන අලි සෆාරි" },
-    galle: { name: "ගාල්ල", tag: "ලන්දේසි බලකොටුව" },
-    "arugam-bay": { name: "ආරුගම් බේ", tag: "ලෝක ප්‍රකට රළපදින්නන්ගේ පාරාදීසය" },
   },
   ar: {
     sigiriya: { name: "سيغيريا", tag: "قلعة الصخرة القديمة" },

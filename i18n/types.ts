@@ -1,4 +1,4 @@
-export type Language = "en" | "si" | "ar" | "de" | "fr";
+export type Language = "en" | "ar" | "de" | "fr";
 
 export interface LanguageOption {
   code: Language;
@@ -16,14 +16,6 @@ export const SUPPORTED_LANGUAGES: LanguageOption[] = [
     name: "English",
     nativeName: "English",
     flagEmoji: "🇬🇧",
-    dir: "ltr",
-  },
-  {
-    code: "si",
-    shortLabel: "සිං",
-    name: "Sinhala",
-    nativeName: "සිංහල",
-    flagEmoji: "🇱🇰",
     dir: "ltr",
   },
   {

@@ -117,9 +117,7 @@ export default function TravelerGallery({
   // Multilingual translations
   const labels = {
     badge:
-      language === "si"
-        ? "අපගේ සැබෑ සංචාරක මතකයන්"
-        : language === "ar"
+      language === "ar"
         ? "لقطات حقيقية من رحلات ضيوفنا"
         : language === "de"
         ? "Echte Reiseerlebnisse unserer Gäste"
@@ -127,9 +125,7 @@ export default function TravelerGallery({
         ? "Moments Authentiques de nos Voyageurs"
         : "Authentic Guest Experiences",
     titleMain:
-      language === "si"
-        ? "සැබෑ ගමන් බිමන්."
-        : language === "ar"
+      language === "ar"
         ? "رحلات حقيقية."
         : language === "de"
         ? "Echte Reisen."
@@ -137,9 +133,7 @@ export default function TravelerGallery({
         ? "Voyages Authentiques."
         : "Real Journeys.",
     titleHighlight:
-      language === "si"
-        ? "ජීවිත කාලයටම මතකයන්."
-        : language === "ar"
+      language === "ar"
         ? "ذكريات تدوم مدى الحياة."
         : language === "de"
         ? "Lebenslange Erinnerungen."
@@ -147,9 +141,7 @@ export default function TravelerGallery({
         ? "Des Souvenirs Inoubliables."
         : "Lifetime Memories.",
     subtitle:
-      language === "si"
-        ? "ශ්‍රී ලංකාව පුරා අපගේ පුද්ගලික රියදුරු සේවාව සමඟ සුන්දර නිවාඩු ගත කළ විදේශීය සංචාරකයින්ගේ සැබෑ ඡායාරූප."
-        : language === "ar"
+      language === "ar"
         ? "لقطات حية من رحلات زوارنا من أنحاء العالم مع سائقينا ومرشدينا الخصوصيين عبر أرجاء سريلانكا الساحرة."
         : language === "de"
         ? "Ungefilterte Momentaufnahmen unserer Gäste, die Sri Lanka mit unseren privaten Chauffeuren und maßgeschneiderten Rundreisen entdeckt haben."
@@ -157,9 +149,7 @@ export default function TravelerGallery({
         ? "Des clichés authentiques de nos voyageurs explorant le Sri Lanka avec nos chauffeurs privés et nos circuits sur mesure."
         : "Unfiltered, heartfelt snapshots of couples, families, and solo travelers discovering the magic of Sri Lanka with our private chauffeurs.",
     verifiedBadge:
-      language === "si"
-        ? "100% සත්‍ය ඡායාරූප"
-        : language === "ar"
+      language === "ar"
         ? "صور حقيقية 100%"
         : language === "de"
         ? "100% Echte Fotos"
@@ -168,9 +158,7 @@ export default function TravelerGallery({
         : "100% Verified Guests",
     categories: {
       all:
-        language === "si"
-          ? "සියල්ල"
-          : language === "ar"
+        language === "ar"
           ? "جميع اللحظات"
           : language === "de"
           ? "Alle Momente"
@@ -178,9 +166,7 @@ export default function TravelerGallery({
           ? "Tous les moments"
           : "All Moments",
       welcomes:
-        language === "si"
-          ? "පිළිගැනීම් සහ රියදුරු"
-          : language === "ar"
+        language === "ar"
           ? "استقبال المطار والسائقين"
           : language === "de"
           ? "Empfang & Chauffeure"
@@ -188,9 +174,7 @@ export default function TravelerGallery({
           ? "Accueil & Chauffeurs"
           : "Welcomes & Guides",
       heritage:
-        language === "si"
-          ? "පෞරාණික උරුමයන්"
-          : language === "ar"
+        language === "ar"
           ? "التراث والمعالم التاريخية"
           : language === "de"
           ? "Kulturerbe & Tempel"
@@ -198,9 +182,7 @@ export default function TravelerGallery({
           ? "Patrimoine & Temples"
           : "Ancient Heritage",
       highlands:
-        language === "si"
-          ? "කඳුකරය සහ දියඇලි"
-          : language === "ar"
+        language === "ar"
           ? "المرتفعات والشلالات"
           : language === "de"
           ? "Hochland & Wasserfälle"
@@ -208,9 +190,7 @@ export default function TravelerGallery({
           ? "Hautes Terres & Cascades"
           : "Highlands & Waterfalls",
       coastal:
-        language === "si"
-          ? "වෙරළ සහ මුහුදු තීර"
-          : language === "ar"
+        language === "ar"
           ? "السواحل والشواطئ"
           : language === "de"
           ? "Küste & Strände"
@@ -219,9 +199,7 @@ export default function TravelerGallery({
           : "Coast & Beaches",
     },
     showAllBtn:
-      language === "si"
-        ? `සියලුම ඡායාරූප (${filteredPhotos.length}) බලන්න`
-        : language === "ar"
+      language === "ar"
         ? `استكشف جميع الصور (${filteredPhotos.length})`
         : language === "de"
         ? `Alle ${filteredPhotos.length} Momente entdecken`
@@ -229,9 +207,7 @@ export default function TravelerGallery({
         ? `Voir toutes les ${filteredPhotos.length} photos`
         : `Explore All ${filteredPhotos.length} Moments`,
     showLessBtn:
-      language === "si"
-        ? "අඩුවෙන් පෙන්වන්න"
-        : language === "ar"
+      language === "ar"
         ? "عرض أقل"
         : language === "de"
         ? "Weniger anzeigen"
@@ -239,9 +215,7 @@ export default function TravelerGallery({
         ? "Voir moins"
         : "Show Featured Only",
     inquireBtn:
-      language === "si"
-        ? "මෙම ගමනාන්තය ගැන විමසන්න"
-        : language === "ar"
+      language === "ar"
         ? "استفسر عن هذه الوجهة عبر واتساب"
         : language === "de"
         ? "Reise hierher anfragen"
@@ -249,9 +223,7 @@ export default function TravelerGallery({
         ? "Se renseigner sur cette étape"
         : "Plan a Journey Here",
     ctaHeading:
-      language === "si"
-        ? "ඔබත් මෙවැනි අමතක නොවන මතකයන් සාදා ගැනීමට කැමතිද?"
-        : language === "ar"
+      language === "ar"
         ? "هل تود صناعة ذكرياتك الخاصة في سريلانكا؟"
         : language === "de"
         ? "Möchten Sie Ihre eigenen unvergesslichen Momente schaffen?"
@@ -259,9 +231,7 @@ export default function TravelerGallery({
         ? "Prêt à créer vos propres souvenirs au Sri Lanka ?"
         : "Ready to Create Your Own Unforgettable Sri Lanka Memories?",
     ctaSub:
-      language === "si"
-        ? "අපගේ පළපුරුදු පුද්ගලික රියදුරු මඟපෙන්වන්නන් සමඟ ඔබේම සංචාරක සැලැස්ම සකසා ගන්න."
-        : language === "ar"
+      language === "ar"
         ? "صمم جدول رحلتك الخاص برفقة سائقين محترفين ومركبات حديثة ومريحة."
         : language === "de"
         ? "Gestalten Sie Ihre private Traumreise mit erstklassigen Chauffeuren und flexiblen Routen."
@@ -269,9 +239,7 @@ export default function TravelerGallery({
         ? "Concevons ensemble votre itinéraire sur mesure avec nos chauffeurs privés experts."
         : "Travel at your own pace with trusted private chauffeurs, sanitized vehicles, and 24/7 dedicated assistance.",
     planTripBtn:
-      language === "si"
-        ? "ඔබේ සංචාරය සැලසුම් කරන්න"
-        : language === "ar"
+      language === "ar"
         ? "خطط لرحلتك المخصصة"
         : language === "de"
         ? "Reise individuell planen"

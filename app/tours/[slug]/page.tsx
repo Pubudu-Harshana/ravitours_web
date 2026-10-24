@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { tours } from "@/data/tours";
 import { siteConfig } from "@/data/siteConfig";
+import TourRouteMap from "@/components/TourRouteMap";
 import {
   Clock,
   MapPin,
@@ -21,15 +22,22 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+function getTour(slug: string) {
+  const normalized = slug === "sri-lanka-highlight" ? "sri-lanka-highlights" : slug;
+  return tours.find((t) => t.slug === normalized || t.slug === slug);
+}
+
 export async function generateStaticParams() {
-  return tours.map((tour) => ({
+  const params = tours.map((tour) => ({
     slug: tour.slug,
   }));
+  params.push({ slug: "sri-lanka-highlight" });
+  return params;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const tour = tours.find((t) => t.slug === slug);
+  const tour = getTour(slug);
   if (!tour) return { title: "Tour Not Found" };
 
   return {
@@ -45,7 +53,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function TourDetailPage({ params }: Props) {
   const { slug } = await params;
-  const tour = tours.find((t) => t.slug === slug);
+  const tour = getTour(slug);
 
   if (!tour) {
     notFound();
@@ -157,6 +165,9 @@ export default async function TourDetailPage({ params }: Props) {
               </div>
             </section>
 
+            {/* Interactive Tour Map Visualizer */}
+            <TourRouteMap slug={tour.slug} tourTitle={tour.title} />
+
             {/* Day-by-Day Itinerary */}
             <section className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 space-y-6">
               <div className="flex items-center justify-between">
@@ -170,7 +181,7 @@ export default async function TourDetailPage({ params }: Props) {
 
               <div className="space-y-6 relative before:absolute before:inset-0 before:left-4 before:w-0.5 before:bg-slate-200">
                 {tour.itinerary.map((day) => (
-                  <div key={day.day} className="relative pl-10">
+                  <div key={day.day} id={`itinerary-day-${day.day}`} className="relative pl-10 transition-all duration-300 rounded-2xl">
                     {/* Day Number Dot */}
                     <div className="absolute left-0 top-1 w-8 h-8 rounded-full bg-[#07345A] text-white flex items-center justify-center text-xs font-extrabold shadow">
                       {day.day}
@@ -245,24 +256,81 @@ export default async function TourDetailPage({ params }: Props) {
             {/* Photo Gallery */}
             {tour.gallery.length > 0 && (
               <section className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-100 space-y-4">
-                <h2 className="text-xl sm:text-2xl font-bold text-[#07345A]">
-                  Tour Gallery
-                </h2>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2">
-                  {tour.gallery.map((imgUrl, idx) => (
-                    <div
-                      key={idx}
-                      className="relative h-44 rounded-2xl overflow-hidden shadow-sm group"
-                    >
-                      <Image
-                        src={imgUrl}
-                        alt={`${tour.title} photo ${idx + 1}`}
-                        fill
-                        sizes="(max-width: 768px) 50vw, 33vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                  ))}
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#087EA4] block">
+                      Tour Highlights & Sightseeing
+                    </span>
+                    <h2 className="text-xl sm:text-2xl font-bold text-[#07345A] mt-0.5">
+                      Tour Gallery
+                    </h2>
+                  </div>
+                  <span className="text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
+                    {tour.gallery.length} Photos
+                  </span>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
+                  {tour.gallery.map((imgUrl, idx) => {
+                    const captionsMap: Record<string, string[]> = {
+                      "sri-lanka-highlights": [
+                        "Sigiriya Lion Rock Fortress",
+                        "Temple of the Tooth, Kandy",
+                        "Nine Arch Bridge, Ella",
+                        "Galle Fort Lighthouse",
+                      ],
+                      "cultural-sri-lanka": [
+                        "Temple of the Sacred Tooth",
+                        "Sigiriya Lion Paws",
+                        "Bahirawakanda Buddha",
+                        "Sigiriya Water Gardens",
+                      ],
+                      "hill-country-escape": [
+                        "Nine Arch Bridge, Ella",
+                        "Ceylon Tea Estate",
+                        "Little Adam's Peak",
+                        "Ravana Falls Cascade",
+                      ],
+                      "southern-coast-escape": [
+                        "Mirissa Coconut Tree Hill",
+                        "Galle Fort Lighthouse",
+                        "Mirissa Golden Beach",
+                        "Historic Galle Ramparts",
+                      ],
+                      "wildlife-adventure": [
+                        "Wild Leopard, Yala",
+                        "Elephant Safari, Yala",
+                        "Safari Wildlife",
+                        "Ravana Falls Cascade",
+                      ],
+                      "complete-sri-lanka": [
+                        "Pidurangala & Sigiriya",
+                        "Ella Nine Arch Bridge",
+                        "Yala Wildlife Safari",
+                        "Mirissa Coconut Tree Hill",
+                      ],
+                    };
+                    const caption = captionsMap[tour.slug]?.[idx] || `${tour.title} photo ${idx + 1}`;
+
+                    return (
+                      <div
+                        key={idx}
+                        className="relative h-44 sm:h-52 rounded-2xl overflow-hidden shadow-sm group bg-slate-100"
+                      >
+                        <Image
+                          src={imgUrl}
+                          alt={`${tour.title} photo ${idx + 1}`}
+                          fill
+                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 320px"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#020F1F]/80 via-transparent to-transparent opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity flex items-end p-3">
+                          <span className="text-[11px] sm:text-xs font-semibold text-white drop-shadow leading-snug">
+                            {caption}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </section>
             )}

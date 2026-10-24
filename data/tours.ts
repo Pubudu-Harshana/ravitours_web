@@ -133,10 +133,10 @@ export const tours: TourPackage[] = [
       },
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1588598198321-9735fd52455f?auto=format&fit=crop&w=800&q=80",
+      "/images/destinations/sigiriya-lion-paws.jpg",
+      "/images/destinations/kandy-temple-of-tooth.jpg",
+      "/images/destinations/ella-nine-arch-bridge.jpg",
+      "/images/destinations/galle-lighthouse.jpg",
     ],
   },
   {
@@ -218,8 +218,10 @@ export const tours: TourPackage[] = [
       },
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1588598198321-9735fd52455f?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80",
+      "/images/destinations/kandy-temple-of-tooth.jpg",
+      "/images/destinations/sigiriya-lion-paws.jpg",
+      "/images/destinations/kandy-bahirawakanda-buddha.jpg",
+      "/images/destinations/sigiriya-water-gardens.jpg",
     ],
   },
   {
@@ -293,8 +295,10 @@ export const tours: TourPackage[] = [
       },
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80",
+      "/images/destinations/ella-nine-arch-bridge.jpg",
+      "/images/destinations/nuwara-eliya-tea-estate.jpg",
+      "/images/destinations/ella-little-adams-peak.jpg",
+      "/images/destinations/ella-ravana-falls.jpg",
     ],
   },
   {
@@ -375,8 +379,10 @@ export const tours: TourPackage[] = [
       },
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=800&q=80",
+      "/images/destinations/mirissa-coconut-tree-hill.jpg",
+      "/images/destinations/galle-lighthouse.jpg",
+      "/images/destinations/mirissa-beach.jpg",
+      "/images/destinations/galle-fort-ramparts.jpg",
     ],
   },
   {
@@ -463,8 +469,10 @@ export const tours: TourPackage[] = [
       },
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=800&q=80",
+      "/images/destinations/yala-leopard.jpg",
+      "/images/destinations/yala-elephants.jpg",
+      "/images/destinations/yala-leopard-male.jpg",
+      "/images/destinations/ella-ravana-falls.jpg",
     ],
   },
   {
@@ -583,10 +591,10 @@ export const tours: TourPackage[] = [
       },
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?auto=format&fit=crop&w=800&q=80",
+      "/images/destinations/sigiriya-pidurangala-view.jpg",
+      "/images/destinations/ella-nine-arch-bridge.jpg",
+      "/images/destinations/yala-leopard.jpg",
+      "/images/destinations/mirissa-coconut-tree-hill.jpg",
     ],
   },
 ];

@@ -34,35 +34,6 @@ export default function FlagIcon({ language, className = "w-5 h-3.5" }: FlagIcon
         </svg>
       );
 
-    case "si":
-      // Sri Lanka (Golden border, green & orange stripes, maroon field with stylized lion)
-      return (
-        <svg
-          viewBox="0 0 60 30"
-          className={`inline-block rounded-xs overflow-hidden shadow-2xs shrink-0 ${className}`}
-          aria-hidden="true"
-        >
-          {/* Yellow border */}
-          <rect width="60" height="30" fill="#FFBE29" />
-          {/* Orange stripe */}
-          <rect x="6" y="3" width="7" height="24" fill="#EB7400" />
-          {/* Green stripe */}
-          <rect x="14" y="3" width="7" height="24" fill="#005A36" />
-          {/* Maroon field */}
-          <rect x="23" y="3" width="33" height="24" fill="#8D153A" />
-          {/* Golden Lion stylized silhouette & sword */}
-          <path
-            d="M40 9c-2 0-3.5 1-4 2.5-.5-1-1.5-1.5-2.5-1-1 .5-1.5 2-1 3.5 0 1 .5 2 1.5 2.5v4c0 1.5 1 2.5 2.5 2.5h7c1.5 0 2.5-1 2.5-2.5v-3c0-1.5-.5-2.5-1.5-3.5 0-1 .5-2 0-3-.5-1-2-2-4.5-2zm-6 2l-3-4m3 4v-3m13 1c-1 0-1.5.5-1.5 1.5s.5 1.5 1.5 1.5 1.5-.5 1.5-1.5-.5-1.5-1.5-1.5z"
-            fill="#FFBE29"
-          />
-          {/* 4 Bo leaves corners */}
-          <circle cx="26" cy="6" r="1.5" fill="#FFBE29" />
-          <circle cx="53" cy="6" r="1.5" fill="#FFBE29" />
-          <circle cx="26" cy="24" r="1.5" fill="#FFBE29" />
-          <circle cx="53" cy="24" r="1.5" fill="#FFBE29" />
-        </svg>
-      );
-
     case "ar":
       // Saudi Arabia / Arabic Flag (Green with white emblem & sword)
       return (

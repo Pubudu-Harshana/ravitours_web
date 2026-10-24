@@ -42,6 +42,8 @@ next-env.d.ts
 
 # local documents, reports & design references
 *.docx
+*.pdf
+project-report/
 reference-*.png
 *_for_pdf.html
 INFAVOUR_SOLUTIONS_*

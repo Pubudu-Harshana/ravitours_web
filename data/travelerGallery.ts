@@ -20,7 +20,7 @@ export interface TravelerPhoto {
 export const travelerPhotos: TravelerPhoto[] = [
   {
     id: "traveler-1",
-    src: "/images/travelers/traveler-1.jpeg",
+    src: "/images/travelers/traveler-1.webp",
     alt: "Travelers experiencing traditional stilt fishermen along the Southern Coast with Ravi Tours",
     isLandscape: true,
     title: "Stilt Fishermen Tradition",
@@ -31,7 +31,7 @@ export const travelerPhotos: TravelerPhoto[] = [
   },
   {
     id: "traveler-2",
-    src: "/images/travelers/traveler-2.jpeg",
+    src: "/images/travelers/traveler-2.webp",
     alt: "Warm airport welcome at Colombo Bandaranaike International Airport with seashell garlands",
     isLandscape: false,
     title: "VIP Airport Meet & Greet",
@@ -42,7 +42,7 @@ export const travelerPhotos: TravelerPhoto[] = [
   },
   {
     id: "traveler-3",
-    src: "/images/travelers/traveler-3.jpeg",
+    src: "/images/travelers/traveler-3.webp",
     alt: "Couple enjoying a scenic stop at Ravana Falls in Ella during their private tour",
     isLandscape: false,
     title: "Ravana Falls Cascade",
@@ -53,7 +53,7 @@ export const travelerPhotos: TravelerPhoto[] = [
   },
   {
     id: "traveler-4",
-    src: "/images/travelers/traveler-4.jpeg",
+    src: "/images/travelers/traveler-4.webp",
     alt: "Travelers exploring the golden sands of Mirissa and meeting friendly local fishermen",
     isLandscape: true,
     title: "Mirissa Golden Coastline",
@@ -64,7 +64,7 @@ export const travelerPhotos: TravelerPhoto[] = [
   },
   {
     id: "traveler-5",
-    src: "/images/travelers/traveler-5.jpeg",
+    src: "/images/travelers/traveler-5.webp",
     alt: "Couple presenting white lotus flowers before the sacred ancient stupa",
     isLandscape: false,
     title: "Sacred Stupa & Lotus Blessings",
@@ -75,7 +75,7 @@ export const travelerPhotos: TravelerPhoto[] = [
   },
   {
     id: "traveler-6",
-    src: "/images/travelers/traveler-6.jpeg",
+    src: "/images/travelers/traveler-6.webp",
     alt: "Couple marveling at colossal 10th-century Buduruwagala rock carvings in Wellawaya",
     isLandscape: false,
     title: "Buduruwagala Rock Sculptures",
@@ -86,7 +86,7 @@ export const travelerPhotos: TravelerPhoto[] = [
   },
   {
     id: "traveler-7",
-    src: "/images/travelers/traveler-7.jpeg",
+    src: "/images/travelers/traveler-7.webp",
     alt: "Adventurous travelers celebrating their visit in front of Sigiriya Lion Rock fortress",
     isLandscape: false,
     title: "Sigiriya Lion Rock Citadel",
@@ -97,7 +97,7 @@ export const travelerPhotos: TravelerPhoto[] = [
   },
   {
     id: "traveler-8",
-    src: "/images/travelers/traveler-8.jpeg",
+    src: "/images/travelers/traveler-8.webp",
     alt: "Evening visit and floral offerings at the Temple of the Sacred Tooth Relic in Kandy",
     isLandscape: false,
     title: "Temple of the Tooth Relic",
@@ -108,7 +108,7 @@ export const travelerPhotos: TravelerPhoto[] = [
   },
   {
     id: "traveler-9",
-    src: "/images/travelers/traveler-9.jpeg",
+    src: "/images/travelers/traveler-9.webp",
     alt: "Guests smiling with chauffeur guide Ravi at the panoramic Kandy Lake Viewpoint",
     isLandscape: true,
     title: "Kandy Lake Panoramas",
@@ -119,7 +119,7 @@ export const travelerPhotos: TravelerPhoto[] = [
   },
   {
     id: "traveler-10",
-    src: "/images/travelers/traveler-10.jpeg",
+    src: "/images/travelers/traveler-10.webp",
     alt: "Highland railway walk through Demodara tunnel in Ella with chauffeur Ravi",
     isLandscape: true,
     title: "Nine Arch Railway Tunnel",
@@ -130,7 +130,7 @@ export const travelerPhotos: TravelerPhoto[] = [
   },
   {
     id: "traveler-11",
-    src: "/images/travelers/traveler-11.jpeg",
+    src: "/images/travelers/traveler-11.webp",
     alt: "Couple standing beside the famous Nine Arch Bridge in Ella amidst lush tea hills",
     isLandscape: false,
     title: "Nine Arch Bridge in the Sky",
@@ -141,7 +141,7 @@ export const travelerPhotos: TravelerPhoto[] = [
   },
   {
     id: "traveler-12",
-    src: "/images/travelers/traveler-12.jpeg",
+    src: "/images/travelers/traveler-12.webp",
     alt: "Family visiting Coconut Tree Hill in Mirissa overlooking the turquoise ocean",
     isLandscape: false,
     title: "Coconut Tree Hill Promontory",
@@ -152,7 +152,7 @@ export const travelerPhotos: TravelerPhoto[] = [
   },
   {
     id: "traveler-13",
-    src: "/images/travelers/traveler-13.jpeg",
+    src: "/images/travelers/traveler-13.webp",
     alt: "Family enjoying botanical walks at Hakgala Gardens in Nuwara Eliya",
     isLandscape: false,
     title: "Hakgala Botanical Gardens",
@@ -163,7 +163,7 @@ export const travelerPhotos: TravelerPhoto[] = [
   },
   {
     id: "traveler-14",
-    src: "/images/travelers/traveler-14.jpeg",
+    src: "/images/travelers/traveler-14.webp",
     alt: "Guests exploring the Royal Palace ruins of King Parakramabahu in Polonnaruwa",
     isLandscape: false,
     title: "King Parakramabahu Royal Palace",
@@ -174,7 +174,7 @@ export const travelerPhotos: TravelerPhoto[] = [
   },
   {
     id: "traveler-15",
-    src: "/images/travelers/traveler-15.jpeg",
+    src: "/images/travelers/traveler-15.webp",
     alt: "Family with young children enjoying panoramic views overlooking Kandy Lake and hills",
     isLandscape: false,
     title: "Family Journey in Kandy",
@@ -185,7 +185,7 @@ export const travelerPhotos: TravelerPhoto[] = [
   },
   {
     id: "traveler-16",
-    src: "/images/travelers/traveler-16.jpeg",
+    src: "/images/travelers/traveler-16.webp",
     alt: "Multi-generation family enjoying electric cart tour along Royal Palm Avenue in Peradeniya",
     isLandscape: false,
     title: "Royal Palm Avenue Cart Tour",
@@ -196,7 +196,7 @@ export const travelerPhotos: TravelerPhoto[] = [
   },
   {
     id: "traveler-17",
-    src: "/images/travelers/traveler-17.jpeg",
+    src: "/images/travelers/traveler-17.webp",
     alt: "Happy family group enjoying a private botanical garden tour in Kandy",
     isLandscape: true,
     title: "Peradeniya Botanical Expedition",
@@ -207,7 +207,7 @@ export const travelerPhotos: TravelerPhoto[] = [
   },
   {
     id: "traveler-18",
-    src: "/images/travelers/traveler-18.jpeg",
+    src: "/images/travelers/traveler-18.webp",
     alt: "Couple standing before the ancient Vatadage and carved moonstone in Polonnaruwa",
     isLandscape: false,
     title: "Polonnaruwa Vatadage Moonstone",
@@ -218,7 +218,7 @@ export const travelerPhotos: TravelerPhoto[] = [
   },
   {
     id: "traveler-19",
-    src: "/images/travelers/traveler-19.jpeg",
+    src: "/images/travelers/traveler-19.webp",
     alt: "Mr. Adrien and Ms. Benedetta receiving their personalized Ravi Tours airport greeting with flower garlands",
     isLandscape: false,
     title: "Adrien & Benedetta Airport Greeting",
