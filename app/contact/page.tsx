@@ -1,7 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { siteConfig } from "@/data/siteConfig";
+import { tours } from "@/data/tours";
 import {
   Phone,
   Mail,
@@ -9,12 +11,19 @@ import {
   Clock,
   Send,
   CheckCircle2,
+  AlertCircle,
+  Loader2,
+  RefreshCw,
 } from "lucide-react";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { useLanguage } from "@/context/LanguageContext";
 
-export default function ContactPage() {
+function ContactPageContent() {
   const { t } = useLanguage();
+  const searchParams = useSearchParams();
+
+  const tourParam = searchParams.get("tour") || searchParams.get("service") || "";
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,26 +34,89 @@ export default function ContactPage() {
     message: "",
   });
 
+  const [honeypot, setHoneypot] = useState("");
+  const [renderedAt, setRenderedAt] = useState<number>(0);
   const [minDate, setMinDate] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     // Prevent selecting past dates (formatted YYYY-MM-DD in local time)
     const today = new Date().toLocaleDateString("en-CA");
     setMinDate(today);
+    setRenderedAt(Date.now());
   }, []);
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  // Pre-fill tour if directed from tour detail or services view
+  useEffect(() => {
+    if (tourParam) {
+      setFormData((prev) => ({
+        ...prev,
+        interestedTour: tourParam,
+      }));
+    }
+  }, [tourParam]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
+
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          travelDate: formData.travelDate,
+          travelers: formData.travelers,
+          interestedTour: formData.interestedTour,
+          message: formData.message,
+          _gotcha: honeypot,
+          _renderedAt: renderedAt,
+        }),
+      });
+
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok || !result?.success) {
+        throw new Error(
+          result?.error ||
+            "Unable to deliver your message. Please try again or reach out directly via WhatsApp."
+        );
+      }
+
+      setIsSubmitted(true);
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error
+          ? err.message
+          : "An unexpected error occurred while sending your inquiry. Please try again.";
+      setSubmitError(message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const directWhatsAppUrl = `https://wa.me/${siteConfig.contact.whatsapp.replace(
     /[^0-9]/g,
     ""
   )}?text=${encodeURIComponent(
-    `Hello Ravi Tours & Travels! My name is ${formData.name || "Traveler"}. I am inquiring about travel on ${formData.travelDate || "upcoming dates"} for ${formData.travelers}. Message: ${formData.message || "Please provide package details."}`
+    `Hello Ravi Tours & Travels! My name is ${
+      formData.name || "Traveler"
+    }. I am inquiring about ${
+      formData.interestedTour ? `"${formData.interestedTour}" ` : ""
+    }travel on ${formData.travelDate || "upcoming dates"} for ${
+      formData.travelers
+    }. Message: ${formData.message || "Please provide package details."}`
   )}`;
 
   return (
@@ -195,6 +267,29 @@ export default function ContactPage() {
                 <p className="text-slate-600 text-sm leading-relaxed">
                   {t.contactPage.successMessage}
                 </p>
+
+                <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 text-left text-xs space-y-1.5 text-slate-600">
+                  <div className="font-semibold text-slate-800 mb-1">
+                    Submitted Details:
+                  </div>
+                  <div>
+                    <span className="font-medium text-slate-700">Traveler:</span>{" "}
+                    {formData.name} ({formData.email})
+                  </div>
+                  {formData.interestedTour && (
+                    <div>
+                      <span className="font-medium text-slate-700">Interest:</span>{" "}
+                      {formData.interestedTour}
+                    </div>
+                  )}
+                  {formData.travelDate && (
+                    <div>
+                      <span className="font-medium text-slate-700">Date:</span>{" "}
+                      {formData.travelDate} ({formData.travelers})
+                    </div>
+                  )}
+                </div>
+
                 <div className="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
                   <a
                     href={directWhatsAppUrl}
@@ -217,6 +312,7 @@ export default function ContactPage() {
                         interestedTour: "",
                         message: "",
                       });
+                      setSubmitError(null);
                     }}
                     className="px-6 py-3 rounded-xl bg-slate-100 text-slate-700 font-semibold text-sm hover:bg-slate-200 transition-all cursor-pointer"
                   >
@@ -229,11 +325,71 @@ export default function ContactPage() {
                 <h2 className="text-2xl font-bold text-[#07345A] mb-2">
                   {t.contactPage.formTitle}
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-500 mb-8">
+                <p className="text-xs sm:text-sm text-slate-500 mb-6">
                   {t.contactPage.formSubtitle}
                 </p>
 
+                {/* Error Banner with Retry and WhatsApp Alternative */}
+                {submitError && (
+                  <div className="mb-6 p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-sm flex items-start gap-3">
+                    <AlertCircle className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
+                    <div className="flex-1 space-y-2">
+                      <p className="font-semibold text-rose-900">
+                        Submission Error
+                      </p>
+                      <p className="text-xs text-rose-700 leading-relaxed">
+                        {submitError}
+                      </p>
+                      <div className="flex items-center gap-3 pt-1">
+                        <button
+                          type="button"
+                          onClick={handleSubmit}
+                          disabled={isSubmitting}
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-rose-800 underline hover:text-rose-950 cursor-pointer"
+                        >
+                          <RefreshCw className="w-3.5 h-3.5" />
+                          Retry Submission
+                        </button>
+                        <span className="text-rose-300">&bull;</span>
+                        <a
+                          href={directWhatsAppUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800"
+                        >
+                          <WhatsAppIcon className="w-3.5 h-3.5 text-emerald-600" />
+                          Contact via WhatsApp
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 <form onSubmit={handleSubmit} className="space-y-5">
+                  {/* Honeypot field for bot spam prevention (invisible to humans) */}
+                  <div
+                    aria-hidden="true"
+                    style={{
+                      position: "absolute",
+                      left: "-9999px",
+                      opacity: 0,
+                      pointerEvents: "none",
+                      height: 0,
+                      overflow: "hidden",
+                    }}
+                  >
+                    <label htmlFor="company_hp">Leave this field blank</label>
+                    <input
+                      id="company_hp"
+                      type="text"
+                      name="_gotcha"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     {/* Name */}
                     <div>
@@ -243,12 +399,13 @@ export default function ContactPage() {
                       <input
                         type="text"
                         required
+                        disabled={isSubmitting}
                         placeholder={t.contactPage.namePlaceholder}
                         value={formData.name}
                         onChange={(e) =>
                           setFormData({ ...formData, name: e.target.value })
                         }
-                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A]"
+                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A] disabled:opacity-60 disabled:cursor-not-allowed"
                       />
                     </div>
 
@@ -260,12 +417,13 @@ export default function ContactPage() {
                       <input
                         type="email"
                         required
+                        disabled={isSubmitting}
                         placeholder={t.contactPage.emailPlaceholder}
                         value={formData.email}
                         onChange={(e) =>
                           setFormData({ ...formData, email: e.target.value })
                         }
-                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A]"
+                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A] disabled:opacity-60 disabled:cursor-not-allowed"
                       />
                     </div>
                   </div>
@@ -278,12 +436,13 @@ export default function ContactPage() {
                       </label>
                       <input
                         type="tel"
+                        disabled={isSubmitting}
                         placeholder={t.contactPage.phonePlaceholder}
                         value={formData.phone}
                         onChange={(e) =>
                           setFormData({ ...formData, phone: e.target.value })
                         }
-                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A]"
+                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A] disabled:opacity-60 disabled:cursor-not-allowed"
                       />
                     </div>
 
@@ -295,6 +454,7 @@ export default function ContactPage() {
                       <input
                         type="date"
                         min={minDate}
+                        disabled={isSubmitting}
                         value={formData.travelDate}
                         onChange={(e) => {
                           const val = e.target.value;
@@ -303,7 +463,7 @@ export default function ContactPage() {
                           }
                           setFormData({ ...formData, travelDate: val });
                         }}
-                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A]"
+                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A] disabled:opacity-60 disabled:cursor-not-allowed"
                       />
                     </div>
 
@@ -313,19 +473,58 @@ export default function ContactPage() {
                         {t.contactPage.travelersLabel}
                       </label>
                       <select
+                        disabled={isSubmitting}
                         value={formData.travelers}
                         onChange={(e) =>
                           setFormData({ ...formData, travelers: e.target.value })
                         }
-                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A]"
+                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A] disabled:opacity-60 disabled:cursor-not-allowed"
                       >
                         <option value="1 adult">{t.search.adult1}</option>
                         <option value="2 adults">{t.search.adults2}</option>
                         <option value="Family (3-4)">{t.search.family}</option>
                         <option value="Group (5-8)">{t.search.smallGroup}</option>
-                        <option value="Large Group (9+)">{t.search.largeGroup}</option>
+                        <option value="Large Group (9+)">
+                          {t.search.largeGroup}
+                        </option>
                       </select>
                     </div>
+                  </div>
+
+                  {/* Tour or Service of Interest */}
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+                      {t.contactPage.interestedTourLabel}
+                    </label>
+                    <select
+                      disabled={isSubmitting}
+                      value={formData.interestedTour}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          interestedTour: e.target.value,
+                        })
+                      }
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A] disabled:opacity-60 disabled:cursor-not-allowed"
+                    >
+                      <option value="">{t.contactPage.selectTourPlaceholder}</option>
+                      <option value="Custom / Tailor-Made Itinerary">
+                        ✨ Tailor-Made / Custom Tour
+                      </option>
+                      <option value="Private Chauffeur & Vehicle Hire">
+                        🚗 Private Chauffeur &amp; Vehicle Hire
+                      </option>
+                      <option value="Airport Transfer (Bandaranaike BIA)">
+                        ✈ Airport Transfer
+                      </option>
+                      <optgroup label="Tour Packages">
+                        {tours.map((item) => (
+                          <option key={item.id} value={item.title}>
+                            {item.title} ({item.duration})
+                          </option>
+                        ))}
+                      </optgroup>
+                    </select>
                   </div>
 
                   {/* Message */}
@@ -336,22 +535,33 @@ export default function ContactPage() {
                     <textarea
                       required
                       rows={4}
+                      disabled={isSubmitting}
                       placeholder={t.contactPage.messagePlaceholder}
                       value={formData.message}
                       onChange={(e) =>
                         setFormData({ ...formData, message: e.target.value })
                       }
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A]"
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A] disabled:opacity-60 disabled:cursor-not-allowed"
                     />
                   </div>
 
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#07345A] hover:bg-[#032743] text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all cursor-pointer"
+                    disabled={isSubmitting}
+                    className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#07345A] hover:bg-[#032743] text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    <Send className="w-4 h-4 text-[#F6A623] rtl-flip" />
-                    <span>{t.contactPage.submitBtn}</span>
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 text-[#F6A623] animate-spin" />
+                        <span>Sending Inquiry...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 text-[#F6A623] rtl-flip" />
+                        <span>{t.contactPage.submitBtn}</span>
+                      </>
+                    )}
                   </button>
                 </form>
               </div>
@@ -360,5 +570,22 @@ export default function ContactPage() {
         </div>
       </section>
     </div>
+  );
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="pt-24 min-h-screen bg-slate-50/50 flex items-center justify-center py-20">
+          <div className="flex items-center gap-3 text-slate-500 text-sm">
+            <Loader2 className="w-5 h-5 animate-spin text-[#07345A]" />
+            <span>Loading contact form...</span>
+          </div>
+        </div>
+      }
+    >
+      <ContactPageContent />
+    </Suspense>
   );
 }
