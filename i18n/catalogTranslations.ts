@@ -180,8 +180,8 @@ export const destinationTranslations: Record<
     galle: { name: "Galle", tag: "Dutch Heritage Fort" },
     "arugam-bay": { name: "Arugam Bay", tag: "World Surfing Bay" },
     haputale: { name: "Haputale", tag: "Misty Tea Ridges" },
-    knuckles: { name: "Knuckles", tag: "UNESCO Cloud Forest" },
     jaffna: { name: "Jaffna", tag: "Northern Cultural Heritage" },
+    trincomalee: { name: "Trincomalee", tag: "Beaches & Marine Park" },
   },
   ar: {
     sigiriya: { name: "سيغيريا", tag: "قلعة الصخرة القديمة" },
@@ -193,8 +193,8 @@ export const destinationTranslations: Record<
     galle: { name: "غالي", tag: "حصن التراث الهولندي" },
     "arugam-bay": { name: "خليج أروغام", tag: "جنة ركوب الأمواج العالمية" },
     haputale: { name: "هابوتالي", tag: "مرتفعات الشاي الضبابية" },
-    knuckles: { name: "ناكلز", tag: "غابات وسلسلة جبال اليونسكو" },
     jaffna: { name: "جافنا", tag: "التراث الثقافي الشمالي" },
+    trincomalee: { name: "ترينكومالي", tag: "الشواطئ والحديقة البحرية" },
   },
   de: {
     sigiriya: { name: "Sigiriya", tag: "Antike Felsenfestung" },
@@ -206,8 +206,8 @@ export const destinationTranslations: Record<
     galle: { name: "Galle", tag: "Holländisches Kolonialfort" },
     "arugam-bay": { name: "Arugam Bay", tag: "Weltbekannter Surfspot" },
     haputale: { name: "Haputale", tag: "Nebelverhangene Teegipfel" },
-    knuckles: { name: "Knuckles", tag: "UNESCO-Nebelwald & Bergkette" },
     jaffna: { name: "Jaffna", tag: "Nordisches Kulturerbe" },
+    trincomalee: { name: "Trincomalee", tag: "Strände & Meeresnationalpark" },
   },
   fr: {
     sigiriya: { name: "Sigiriya", tag: "Forteresse Royale du Rocher" },
@@ -219,7 +219,7 @@ export const destinationTranslations: Record<
     galle: { name: "Galle", tag: "Fort Colonial Hollandais" },
     "arugam-bay": { name: "Arugam Bay", tag: "Paradis Mondial du Surf" },
     haputale: { name: "Haputale", tag: "Crêtes Brumeuses du Thé" },
-    knuckles: { name: "Knuckles", tag: "Forêt Tropicale de l'UNESCO" },
     jaffna: { name: "Jaffna", tag: "Héritage Culturel du Nord" },
+    trincomalee: { name: "Trincomalee", tag: "Plages & Parc Marin" },
   },
 };

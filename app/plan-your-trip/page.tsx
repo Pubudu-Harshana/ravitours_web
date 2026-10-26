@@ -37,7 +37,7 @@ const TOP_12_DESTINATIONS: PlannerDestination[] = [
   { id: "arugam-bay", name: "Arugam Bay", tag: "Surf Paradise", image: "/images/destinations/arugam-bay.jpg", visitorsPercentage: "28.5%" },
   { id: "haputale", name: "Haputale", tag: "Misty Tea Ridges", image: "/images/destinations/haputale.jpg", visitorsPercentage: "26.2%" },
   { id: "negombo", name: "Negombo", tag: "Coastal Lagoon", image: "/images/destinations/negombo.jpg", visitorsPercentage: "25.7%" },
-  { id: "knuckles", name: "Knuckles", tag: "UNESCO Cloud Forest", image: "/images/destinations/knuckles.jpg", visitorsPercentage: "23.4%" },
+  { id: "trincomalee", name: "Trincomalee", tag: "Beaches & Marine Park", image: "/images/destinations/trincomalee.jpg", visitorsPercentage: "23.4%" },
   { id: "jaffna", name: "Jaffna", tag: "Northern Heritage", image: "/images/destinations/jaffna.jpg", visitorsPercentage: "20.1%" },
   { id: "hikkaduwa", name: "Hikkaduwa", tag: "Coral Reef & Surf", image: "/images/destinations/hikkaduwa.jpg", visitorsPercentage: "18.9%" },
   { id: "udawalawe", name: "Udawalawe", tag: "Elephant Sanctuary", image: "/images/destinations/udawalawe.jpg", visitorsPercentage: "17.6%" },

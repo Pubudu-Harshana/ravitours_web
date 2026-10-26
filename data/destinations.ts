@@ -595,46 +595,6 @@ export const destinations: Destination[] = [
     ],
   },
   {
-    id: "knuckles",
-    slug: "knuckles",
-    name: "Knuckles",
-    tag: "UNESCO Cloud Forest",
-    shortDescription: "A pristine UNESCO World Heritage mountain range featuring rugged peaks, hidden waterfalls, and wilderness trekking.",
-    image: "/images/destinations/knuckles.jpg",
-    featured: true,
-    region: "Central Province / Matale & Kandy",
-    bestTimeToVisit: "June to September & December to March",
-    intro:
-      "Named after its resemblance to the folded knuckles of a clenched fist, the Knuckles Conservation Forest is a biodiversity hotspot and hiker's dream. Clothed in cloud forests, cascading streams, and secluded highland hamlets, it represents Sri Lanka's wildest mountain escape.",
-    whyVisit: [
-      "Trek through UNESCO World Heritage cloud forests and pygmy montane trees",
-      "Encounter rare endemic flora, reptiles, orchids, and colorful highland birds",
-      "Swim in crystal-clear natural rock pools fed by mountain jungle waterfalls",
-      "Experience timeless rural traditions in isolated village settlements like Meemure",
-    ],
-    thingsToDo: [
-      {
-        title: "Guided Wilderness Peak Trekking",
-        description: "Embark on full-day guided hikes across high-altitude grassy plateaus and misty mountain ridges.",
-      },
-      {
-        title: "Hidden Waterfall Chasing",
-        description: "Discover secluded cascades like Sera Ella, Jodu Ella, and secluded plunge pools surrounded by pristine jungle.",
-      },
-      {
-        title: "Explore Historic Meemure Village",
-        description: "Journey to one of Sri Lanka's most isolated villages preserved in the shadow of Lakegala rock.",
-      },
-      {
-        title: "High-Altitude Bird Watching",
-        description: "Spot endemic mountain species such as the yellow-eared bulbul, Sri Lanka whistling thrush, and mountain hawk-eagle.",
-      },
-    ],
-    gallery: [
-      "/images/destinations/knuckles.jpg",
-    ],
-  },
-  {
     id: "jaffna",
     slug: "jaffna",
     name: "Jaffna",
@@ -672,6 +632,46 @@ export const destinations: Destination[] = [
     ],
     gallery: [
       "/images/destinations/jaffna.jpg",
+    ],
+  },
+  {
+    id: "trincomalee",
+    slug: "trincomalee",
+    name: "Trincomalee",
+    tag: "Beaches & Marine Park",
+    shortDescription: "A legendary east coast natural harbor port with white sand beaches at Nilaveli, cliffside Koneswaram Temple, and Pigeon Island marine life.",
+    image: "/images/destinations/trincomalee.jpg",
+    featured: true,
+    region: "Eastern Province",
+    bestTimeToVisit: "March to October",
+    intro:
+      "Blessed with one of the finest natural deep-water harbors in the world, Trincomalee is a tranquil tropical jewel on Sri Lanka's east coast. Here, crystal-clear turquoise waters lap against powdery white shores at Nilaveli and Uppuveli, while the ancient Koneswaram Temple sits majestically atop Swami Rock high above the Indian Ocean.",
+    whyVisit: [
+      "Snorkel with blacktip reef sharks, sea turtles, and colorful corals at Pigeon Island National Park",
+      "Visit the revered cliffside Koneswaram Kovil perched high above the ocean on Swami Rock",
+      "Relax on powdery white sands and swim in calm turquoise waters along Nilaveli Beach",
+      "Embark on seasonal whale and dolphin watching excursions in Trincomalee deep-sea trench",
+    ],
+    thingsToDo: [
+      {
+        title: "Snorkeling at Pigeon Island Marine Park",
+        description: "Take a 15-minute boat ride to Pigeon Island to swim amongst live coral reefs, sea turtles, and docile reef sharks.",
+      },
+      {
+        title: "Explore Koneswaram Temple & Swami Rock",
+        description: "Marvel at ancient Dravidian architecture, sacred ocean cliff viewpoints, and Lovers' Leap high above the crashing waves.",
+      },
+      {
+        title: "Nilaveli Beach Relaxation & Fresh Seafood",
+        description: "Spend sun-soaked days enjoying calm turquoise swimming waters, beachfront cafes, and fresh grilled lobster.",
+      },
+      {
+        title: "Visit Historic Fort Frederick",
+        description: "Walk through the 17th-century Portuguese and Dutch fortress grounds where friendly spotted deer roam freely in the shade.",
+      },
+    ],
+    gallery: [
+      "/images/destinations/trincomalee.jpg",
     ],
   },
 ];
