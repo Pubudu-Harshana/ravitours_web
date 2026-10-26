@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Compass } from "lucide-react";
 
 /**
  * app/loading.tsx — Next.js App Router route-level loading UI.
@@ -28,12 +27,12 @@ export default function Loading() {
       </div>
 
       {/* Centerpiece Modern Travel Card */}
-      <div className="relative flex flex-col items-center px-6 py-7 rounded-3xl bg-[#021627]/90 border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.4)] max-w-[280px] w-full text-center">
+      <div className="relative flex flex-col items-center px-6 py-6 rounded-3xl bg-[#021627]/90 border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.4)] max-w-[240px] w-full text-center">
         {/* Ambient badge glow */}
         <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#087EA4]/20 via-[#F6A623]/25 to-[#0FA3A3]/20 blur-xl -z-10" />
 
         {/* Brand Emblem with Spinning Golden Halo */}
-        <div className="relative w-16 h-16 mb-4 flex items-center justify-center">
+        <div className="relative w-16 h-16 mb-3 flex items-center justify-center">
           {/* Rotating dashed ring */}
           <div
             className="absolute inset-0 rounded-full border-2 border-dashed border-[#F6A623]/60 animate-spin"
@@ -53,20 +52,14 @@ export default function Loading() {
           </div>
         </div>
 
-        {/* Brand Title */}
-        <div className="flex items-center gap-1.5 justify-center mb-1">
-          <span className="font-extrabold text-base tracking-wider text-white">
-            RAVI
+        {/* Brand Title (Minimal & Clean) */}
+        <div className="flex flex-col items-center space-y-0.5">
+          <span className="font-extrabold text-sm tracking-[0.25em] text-white">
+            RAVI TOURS
           </span>
-          <span className="text-sm font-light text-[#F6A623] tracking-wider">
-            TOURS
+          <span className="text-[9px] tracking-[0.35em] uppercase text-[#F6A623] font-semibold">
+            Sri Lanka
           </span>
-        </div>
-
-        {/* Loading status indicator */}
-        <div className="flex items-center gap-1.5 text-xs text-sky-200/90 font-medium tracking-wide">
-          <Compass className="w-3.5 h-3.5 text-[#F6A623] animate-spin" style={{ animationDuration: "4s" }} />
-          <span>Discovering Sri Lanka...</span>
         </div>
       </div>
 

@@ -2,19 +2,16 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Sparkles, Compass } from "lucide-react";
 
 /**
- * PageLoader — A clean, ultra-modern, luxury travel loading screen
- * designed specifically for Ravi Tours & Travels.
+ * PageLoader — A clean, ultra-modern luxury travel loading screen
+ * for Ravi Tours & Travels.
  *
- * Visual highlights:
- * - Deep royal navy canvas with ambient golden/teal luminescence.
- * - Rotating orbital compass rings around an illuminated gold emblem.
- * - Official Ravi Tours brand badge with shimmering highlight.
- * - Dynamic Sri Lanka milestone status ("Discovering Ceylon Horizons", etc.).
- * - Fluid high-precision progress bar with percentage readout.
- * - Graceful silk exit animation that reveals the page seamlessly.
+ * Minimalist design:
+ * - Stunning orbital compass animation revolving around the official brand emblem.
+ * - Reduced, clean typography focusing purely on brand identity.
+ * - Sleek, luminous micro-progress bar.
+ * - Smooth silk fade-out upon completion.
  */
 export default function PageLoader() {
   const [progress, setProgress] = useState(15);
@@ -40,14 +37,14 @@ export default function PageLoader() {
     const interval = setInterval(() => {
       if (!isComplete) {
         if (currentProgress < 75) {
-          currentProgress += Math.random() * 12 + 6;
-        } else if (currentProgress < 90) {
-          currentProgress += Math.random() * 5 + 2;
+          currentProgress += Math.random() * 14 + 8;
+        } else if (currentProgress < 92) {
+          currentProgress += Math.random() * 6 + 2;
         }
-        if (currentProgress > 92) currentProgress = 92;
-        setProgress(Math.min(92, Math.round(currentProgress)));
+        if (currentProgress > 94) currentProgress = 94;
+        setProgress(Math.min(94, Math.round(currentProgress)));
       }
-    }, 85);
+    }, 80);
 
     const finishLoading = () => {
       isComplete = true;
@@ -59,19 +56,18 @@ export default function PageLoader() {
         setIsFading(true);
         setTimeout(() => {
           setIsVisible(false);
-        }, 550); // Matches the CSS opacity/transform transition duration
-      }, 260);
+        }, 500); // Matches the CSS transition duration
+      }, 220);
     };
 
     if (document.readyState === "complete") {
-      // Allow user to appreciate the clean branding briefly (~600ms)
-      setTimeout(finishLoading, 600);
+      setTimeout(finishLoading, 550);
     } else {
       const handleLoad = () => finishLoading();
       window.addEventListener("load", handleLoad);
 
-      // Fallback safety timeout so it never remains indefinitely
-      const safetyTimer = setTimeout(finishLoading, 2200);
+      // Safety timeout so it never remains indefinitely
+      const safetyTimer = setTimeout(finishLoading, 2000);
 
       return () => {
         clearInterval(interval);
@@ -89,14 +85,6 @@ export default function PageLoader() {
 
   if (!isVisible) return null;
 
-  // Dynamic milestone message based on progress percentage
-  const getStatusText = (val: number) => {
-    if (val < 35) return "Connecting to Ceylon Horizons...";
-    if (val < 70) return "Preparing Private Chauffeur Route...";
-    if (val < 95) return "Curating Authentic Sri Lankan Moments...";
-    return "Welcome to Ravi Tours & Travels!";
-  };
-
   return (
     <div
       role="status"
@@ -104,7 +92,7 @@ export default function PageLoader() {
       aria-live="polite"
       className={`fixed inset-0 z-[99999] flex flex-col items-center justify-center select-none overflow-hidden transition-all duration-500 ease-out ${
         isFading
-          ? "opacity-0 scale-[1.03] pointer-events-none"
+          ? "opacity-0 scale-[1.02] pointer-events-none"
           : "opacity-100 scale-100 pointer-events-auto"
       }`}
       style={{
@@ -113,35 +101,35 @@ export default function PageLoader() {
       }}
     >
       {/* ── Ambient Glow Elements ────────────────────────────── */}
-      <div className="absolute w-[500px] h-[500px] rounded-full bg-[#087EA4]/15 blur-3xl pointer-events-none -top-20 -left-20 animate-pulse" />
-      <div className="absolute w-[450px] h-[450px] rounded-full bg-[#F6A623]/10 blur-3xl pointer-events-none -bottom-20 -right-20 animate-pulse" />
+      <div className="absolute w-[450px] h-[450px] rounded-full bg-[#087EA4]/15 blur-3xl pointer-events-none -top-16 -left-16" />
+      <div className="absolute w-[400px] h-[400px] rounded-full bg-[#F6A623]/10 blur-3xl pointer-events-none -bottom-16 -right-16" />
 
       {/* ── Centerpiece Container ────────────────────────────── */}
-      <div className="relative z-10 flex flex-col items-center px-6 max-w-sm w-full text-center">
+      <div className="relative z-10 flex flex-col items-center px-6 max-w-xs w-full text-center">
         {/* Orbital Badge Container with Rotating Rings */}
-        <div className="relative flex items-center justify-center w-28 h-28 sm:w-32 sm:h-32 mb-7">
+        <div className="relative flex items-center justify-center w-28 h-28 sm:w-32 sm:h-32 mb-6">
           {/* Outer compass orbital dashed ring */}
           <div
-            className="absolute inset-0 rounded-full border border-dashed border-[#F6A623]/30 animate-spin"
-            style={{ animationDuration: "20s" }}
+            className="absolute inset-0 rounded-full border border-dashed border-[#F6A623]/35 animate-spin"
+            style={{ animationDuration: "18s" }}
           />
 
           {/* Inner counter-rotating thin ring */}
           <div
             className="absolute inset-2 rounded-full border border-white/10 animate-spin"
-            style={{ animationDirection: "reverse", animationDuration: "14s" }}
+            style={{ animationDirection: "reverse", animationDuration: "12s" }}
           />
 
-          {/* Traveling celestial orbital dot */}
+          {/* Traveling celestial orbital beacon dot */}
           <div
             className="absolute inset-0 rounded-full animate-spin pointer-events-none"
-            style={{ animationDuration: "3.5s" }}
+            style={{ animationDuration: "3.2s" }}
           >
-            <span className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#F6A623] shadow-[0_0_10px_#F6A623]" />
+            <span className="absolute -top-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#F6A623] shadow-[0_0_12px_#F6A623]" />
           </div>
 
           {/* Glowing central emblem badge */}
-          <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-b from-[#07345A] to-[#021d36] p-1 shadow-[0_0_35px_rgba(246,166,35,0.35)] border-2 border-[#F6A623]/70 flex items-center justify-center overflow-hidden group">
+          <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-b from-[#07345A] to-[#021d36] p-1 shadow-[0_0_35px_rgba(246,166,35,0.4)] border-2 border-[#F6A623]/70 flex items-center justify-center overflow-hidden">
             {/* Soft inner radial shimmer */}
             <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none" />
 
@@ -158,51 +146,30 @@ export default function PageLoader() {
           </div>
         </div>
 
-        {/* ── Brand Typography ─────────────────────────────────── */}
-        <div className="flex flex-col items-center space-y-1 mb-6">
-          <div className="flex items-center gap-2">
-            <span className="font-extrabold text-2xl sm:text-3xl tracking-widest text-white drop-shadow-sm font-['Plus_Jakarta_Sans',sans-serif]">
-              RAVI
-            </span>
-            <span className="text-xl sm:text-2xl font-light text-[#F6A623] tracking-wider">
-              TOURS
-            </span>
-          </div>
-
-          <div className="flex items-center gap-1.5 text-[11px] font-semibold tracking-[0.3em] uppercase text-sky-200/80">
-            <Sparkles className="w-3 h-3 text-[#F6A623] shrink-0" />
-            <span>Sri Lanka Travel Specialist</span>
-          </div>
+        {/* ── Minimal Brand Typography (Reduced & Elegant) ─────── */}
+        <div className="flex flex-col items-center mb-6 space-y-1">
+          <span className="font-extrabold text-xl sm:text-2xl tracking-[0.25em] text-white font-['Plus_Jakarta_Sans',sans-serif]">
+            RAVI TOURS
+          </span>
+          <span className="text-[10px] tracking-[0.4em] uppercase font-semibold text-[#F6A623]">
+            Sri Lanka
+          </span>
         </div>
 
-        {/* ── Modern Progress Track ────────────────────────────── */}
-        <div className="w-full max-w-[240px] flex flex-col items-center space-y-2.5">
-          {/* Progress Bar Container */}
-          <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden p-[1px] shadow-inner backdrop-blur-sm relative">
+        {/* ── Minimalist Progress Bar ──────────────────────────── */}
+        <div className="w-full max-w-[200px] flex flex-col items-center space-y-2">
+          {/* Sleek Progress Track */}
+          <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden p-[0.5px] shadow-inner backdrop-blur-sm relative">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-[#087EA4] via-[#0FA3A3] via-[#F6A623] to-[#FFD166] transition-all duration-150 ease-out shadow-[0_0_12px_rgba(246,166,35,0.7)] relative"
+              className="h-full rounded-full bg-gradient-to-r from-[#087EA4] via-[#0FA3A3] via-[#F6A623] to-[#FFD166] transition-all duration-150 ease-out shadow-[0_0_10px_rgba(246,166,35,0.6)]"
               style={{ width: `${progress}%` }}
-            >
-              {/* Animated gleam moving forward */}
-              <div className="absolute top-0 bottom-0 right-0 w-6 bg-gradient-to-r from-transparent to-white/70 rounded-full animate-pulse" />
-            </div>
+            />
           </div>
 
-          {/* Status Text & Percentage Bar */}
-          <div className="w-full flex items-center justify-between text-[11.5px] font-medium text-slate-300/90 pt-1">
-            <span className="truncate max-w-[190px] text-left text-sky-100/90 tracking-wide font-normal">
-              {getStatusText(progress)}
-            </span>
-            <span className="font-mono font-bold text-amber-400 text-xs shrink-0 pl-2">
-              {progress}%
-            </span>
-          </div>
-        </div>
-
-        {/* ── Subtitle Footer Badge ─────────────────────────────── */}
-        <div className="mt-8 flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm text-[10px] text-slate-300 tracking-wider">
-          <Compass className="w-3.5 h-3.5 text-[#F6A623] animate-spin" style={{ animationDuration: "12s" }} />
-          <span>Tailor-Made Private Chauffeur Tours</span>
+          {/* Minimal Percentage Readout */}
+          <span className="font-mono text-[11px] font-semibold text-slate-300/80 tracking-widest">
+            {progress}%
+          </span>
         </div>
       </div>
     </div>
