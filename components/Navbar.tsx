@@ -192,7 +192,7 @@ export default function Navbar() {
           {/* Mobile Language Switcher Quick Bar */}
           <div className="pb-3 mb-3 border-b border-slate-100 flex items-center justify-between">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
-              Language / භාෂාව / اللغة
+              {t.nav.language}
             </span>
             <LanguageSelector showSolidNav={true} align="left" />
           </div>

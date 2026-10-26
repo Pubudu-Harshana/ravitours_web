@@ -10,6 +10,7 @@ export interface TranslationDictionary {
     contact: string;
     planYourTrip: string;
     chatWhatsApp: string;
+    language: string;
   };
   hero: {
     eyebrow: string;
@@ -209,6 +210,7 @@ export const translations: Record<Language, TranslationDictionary> = {
       contact: "Contact",
       planYourTrip: "Plan Your Trip",
       chatWhatsApp: "Chat on WhatsApp",
+      language: "Language",
     },
     hero: {
       eyebrow: "RAVI TOURS & TRAVELS",
@@ -415,6 +417,7 @@ export const translations: Record<Language, TranslationDictionary> = {
       contact: "اتصل بنا",
       planYourTrip: "خطط لرحلتك",
       chatWhatsApp: "محادثة عبر واتساب",
+      language: "اللغة",
     },
     hero: {
       eyebrow: "رافي تورز آند ترافيلز",
@@ -620,6 +623,7 @@ export const translations: Record<Language, TranslationDictionary> = {
       contact: "Kontakt",
       planYourTrip: "Reise planen",
       chatWhatsApp: "WhatsApp Chat",
+      language: "Sprache",
     },
     hero: {
       eyebrow: "RAVI TOURS & TRAVELS",
@@ -825,6 +829,7 @@ export const translations: Record<Language, TranslationDictionary> = {
       contact: "Contact",
       planYourTrip: "Planifier votre voyage",
       chatWhatsApp: "Discuter sur WhatsApp",
+      language: "Langue",
     },
     hero: {
       eyebrow: "RAVI TOURS & TRAVELS",
