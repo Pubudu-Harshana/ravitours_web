@@ -1,61 +1,91 @@
+import Image from "next/image";
+import { Compass } from "lucide-react";
+
 /**
  * app/loading.tsx — Next.js App Router route-level loading UI.
  *
- * Automatically used by Next.js as a React Suspense fallback while a route
- * segment is streaming in. Displays a fine, luxury travel beam at the top
- * of the viewport, preserving page context and user control.
+ * Automatically rendered by Next.js as a React Suspense boundary while a
+ * page or route segment is loading. Provides a clean, modern, luxury travel
+ * transition experience consistent with the Ravi Tours & Travels identity.
  *
  * This is a Server Component.
  */
 export default function Loading() {
   return (
-    <>
-      {/* Slim travel trajectory line at top of viewport */}
-      <div
-        role="status"
-        aria-label="Loading page content"
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 99998,
-          height: "2px",
-          background: "rgba(3, 39, 67, 0.15)",
-          pointerEvents: "none",
-        }}
-      >
+    <div
+      role="status"
+      aria-label="Loading page content"
+      className="fixed inset-0 z-[99990] flex flex-col items-center justify-center bg-[#07345A]/75 backdrop-blur-md select-none pointer-events-auto transition-opacity"
+    >
+      {/* Slim luminous travel trajectory line at the very top of the viewport */}
+      <div className="fixed top-0 left-0 right-0 h-1 bg-white/10 z-[99999] overflow-hidden">
         <div
+          className="h-full bg-gradient-to-r from-transparent via-[#F6A623] to-[#FFD166] shadow-[0_0_10px_#F6A623]"
           style={{
-            position: "absolute",
-            top: 0,
-            bottom: 0,
-            background:
-              "linear-gradient(90deg, transparent 0%, rgba(246, 166, 35, 0.4) 30%, #F6A623 85%, #FFFFFF 100%)",
-            boxShadow: "0 0 8px rgba(246, 166, 35, 0.5)",
-            animation: "rt-route-glide 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite",
+            animation: "rt-route-glide 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite",
           }}
         />
       </div>
 
-      {/* Inline keyframes */}
-      {/* eslint-disable-next-line react/no-unknown-property */}
+      {/* Centerpiece Modern Travel Card */}
+      <div className="relative flex flex-col items-center px-6 py-7 rounded-3xl bg-[#021627]/90 border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.4)] max-w-[280px] w-full text-center">
+        {/* Ambient badge glow */}
+        <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#087EA4]/20 via-[#F6A623]/25 to-[#0FA3A3]/20 blur-xl -z-10" />
+
+        {/* Brand Emblem with Spinning Golden Halo */}
+        <div className="relative w-16 h-16 mb-4 flex items-center justify-center">
+          {/* Rotating dashed ring */}
+          <div
+            className="absolute inset-0 rounded-full border-2 border-dashed border-[#F6A623]/60 animate-spin"
+            style={{ animationDuration: "10s" }}
+          />
+
+          {/* Central logo circle */}
+          <div className="relative w-12 h-12 rounded-full overflow-hidden bg-white shadow-md flex items-center justify-center border border-[#F6A623]/40">
+            <Image
+              src="/ravilogo.svg"
+              alt="Ravi Tours logo"
+              width={48}
+              height={48}
+              className="w-full h-full object-cover"
+              priority
+            />
+          </div>
+        </div>
+
+        {/* Brand Title */}
+        <div className="flex items-center gap-1.5 justify-center mb-1">
+          <span className="font-extrabold text-base tracking-wider text-white">
+            RAVI
+          </span>
+          <span className="text-sm font-light text-[#F6A623] tracking-wider">
+            TOURS
+          </span>
+        </div>
+
+        {/* Loading status indicator */}
+        <div className="flex items-center gap-1.5 text-xs text-sky-200/90 font-medium tracking-wide">
+          <Compass className="w-3.5 h-3.5 text-[#F6A623] animate-spin" style={{ animationDuration: "4s" }} />
+          <span>Discovering Sri Lanka...</span>
+        </div>
+      </div>
+
+      {/* Keyframe animation for the top trajectory beam */}
       <style>{`
         @keyframes rt-route-glide {
           0% {
-            left: -35%;
-            width: 30%;
+            transform: translateX(-100%);
+            width: 35%;
           }
           50% {
-            left: 20%;
-            width: 55%;
+            width: 65%;
           }
           100% {
-            left: 100%;
-            width: 30%;
+            transform: translateX(350%);
+            width: 35%;
           }
         }
       `}</style>
-    </>
+    </div>
   );
 }
