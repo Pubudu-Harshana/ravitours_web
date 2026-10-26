@@ -49,7 +49,7 @@ export default function PlanYourTripPage() {
   const [duration, setDuration] = useState("7 Days / 6 Nights");
   const [travelGroup, setTravelGroup] = useState("Couple (2 Adults)");
   const [travelStyle, setTravelStyle] = useState("Balanced (Comfort & Exploration)");
-  const [vehicle, setVehicle] = useState("Luxury Van — Ideal for families and travellers with luggage");
+  const [vehicle, setVehicle] = useState("Premium Sedan — Enhanced comfort for couples and business travellers");
   const [interests, setInterests] = useState<string[]>([
     "Beaches & Coast",
     "Scenic Train Ride",
@@ -272,13 +272,13 @@ export default function PlanYourTripPage() {
                   <button
                     type="button"
                     onClick={() => {
-                      const el = document.getElementById("step-04-contact");
+                      const el = document.getElementById("step-02-duration");
                       el?.scrollIntoView({ behavior: "smooth", block: "start" });
                     }}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#087EA4] hover:text-[#07345A] bg-[#087EA4]/10 hover:bg-[#087EA4]/20 px-3 py-1 rounded-full transition-colors"
-                    title="Skip straight to Contact Form"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#087EA4] hover:text-[#07345A] bg-[#087EA4]/10 hover:bg-[#087EA4]/20 px-3 py-1 rounded-full transition-colors cursor-pointer"
+                    title="Continue to Step 02 (Duration & Vehicle)"
                   >
-                    <span>Skip to Step 04</span>
+                    <span>Next: Duration &amp; Vehicle</span>
                     <ArrowRight className="w-3 h-3" />
                   </button>
                 </div>
@@ -331,7 +331,7 @@ export default function PlanYourTripPage() {
                   <span>Have other specific places in mind? (Optional)</span>
                 </div>
                 <p className="text-xs text-slate-500">
-                  Want to visit somewhere outside these 12 places (e.g. Jaffna, Trincomalee, Kitulgala, Horton Plains, Anuradhapura, Wilpattu)? Enter them here:
+                  Want to visit somewhere outside these places (e.g. Trincomalee, Kitulgala, Horton Plains, Anuradhapura, Polonnaruwa, Wilpattu)? Enter them here:
                 </p>
                 <input
                   type="text"
@@ -350,19 +350,19 @@ export default function PlanYourTripPage() {
                 <button
                   type="button"
                   onClick={() => {
-                    const el = document.getElementById("step-04-contact");
+                    const el = document.getElementById("step-02-duration");
                     el?.scrollIntoView({ behavior: "smooth", block: "start" });
                   }}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#087EA4] hover:text-[#07345A] transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#087EA4] hover:text-[#07345A] transition-colors cursor-pointer"
                 >
-                  <span>Already have an itinerary? Skip to Step 04</span>
+                  <span>Already have an itinerary? Continue to Step 02</span>
                   <ArrowRight className="w-3 h-3" />
                 </button>
               </div>
             </div>
 
             {/* Step 2: Duration & Travel Group */}
-            <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-100 space-y-6">
+            <div id="step-02-duration" className="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-100 space-y-6 scroll-mt-24">
               <span className="text-xs font-bold uppercase tracking-widest text-[#087EA4] block mb-1">
                 STEP 02
               </span>
