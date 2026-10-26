@@ -554,4 +554,124 @@ export const destinations: Destination[] = [
       "/images/destinations/udawalawe.jpg",
     ],
   },
+  {
+    id: "haputale",
+    slug: "haputale",
+    name: "Haputale",
+    tag: "Misty Tea Ridges",
+    shortDescription: "A breathtaking highland town perched on a southern mountain ridge, celebrated for Lipton's Seat and endless emerald tea estates.",
+    image: "/images/destinations/haputale.jpg",
+    featured: true,
+    region: "Uva Province / Central Highlands",
+    bestTimeToVisit: "November to May",
+    intro:
+      "Perched on the southern edge of the central highlands, Haputale commands some of Sri Lanka's most exhilarating panoramic views. On clear mornings, you can gaze from high cliff-edge tea plantations across rolling plains all the way to the southern coastline.",
+    whyVisit: [
+      "Stand at Lipton's Seat where Sir Thomas Lipton surveyed his vast tea empire",
+      "Witness misty sunrises over terraced tea gardens and deep mountain gorges",
+      "Visit the historic Dambatenne Tea Factory, built in 1890",
+      "Hike to Bambarakanda and Diyaluma Falls, Sri Lanka's highest cascades",
+    ],
+    thingsToDo: [
+      {
+        title: "Dawn Trek to Lipton's Seat",
+        description: "Take an early morning scenic tuk-tuk or guided hike through tea estates to catch dawn mist parting over five southern provinces.",
+      },
+      {
+        title: "Tour Dambatenne Historic Tea Factory",
+        description: "Learn traditional black tea processing in the historic factory established by Sir Thomas Lipton himself.",
+      },
+      {
+        title: "Excursion to Diyaluma Falls",
+        description: "Hike to the upper pools of Diyaluma Falls for natural infinity pool swimming with dramatic drop-off views.",
+      },
+      {
+        title: "Stroll Through Idalgashinna Ridge",
+        description: "Walk the narrow railway ridge between mountain valleys shrouded in rolling mist.",
+      },
+    ],
+    gallery: [
+      "/images/destinations/haputale.jpg",
+    ],
+  },
+  {
+    id: "knuckles",
+    slug: "knuckles",
+    name: "Knuckles",
+    tag: "UNESCO Cloud Forest",
+    shortDescription: "A pristine UNESCO World Heritage mountain range featuring rugged peaks, hidden waterfalls, and wilderness trekking.",
+    image: "/images/destinations/knuckles.jpg",
+    featured: true,
+    region: "Central Province / Matale & Kandy",
+    bestTimeToVisit: "June to September & December to March",
+    intro:
+      "Named after its resemblance to the folded knuckles of a clenched fist, the Knuckles Conservation Forest is a biodiversity hotspot and hiker's dream. Clothed in cloud forests, cascading streams, and secluded highland hamlets, it represents Sri Lanka's wildest mountain escape.",
+    whyVisit: [
+      "Trek through UNESCO World Heritage cloud forests and pygmy montane trees",
+      "Encounter rare endemic flora, reptiles, orchids, and colorful highland birds",
+      "Swim in crystal-clear natural rock pools fed by mountain jungle waterfalls",
+      "Experience timeless rural traditions in isolated village settlements like Meemure",
+    ],
+    thingsToDo: [
+      {
+        title: "Guided Wilderness Peak Trekking",
+        description: "Embark on full-day guided hikes across high-altitude grassy plateaus and misty mountain ridges.",
+      },
+      {
+        title: "Hidden Waterfall Chasing",
+        description: "Discover secluded cascades like Sera Ella, Jodu Ella, and secluded plunge pools surrounded by pristine jungle.",
+      },
+      {
+        title: "Explore Historic Meemure Village",
+        description: "Journey to one of Sri Lanka's most isolated villages preserved in the shadow of Lakegala rock.",
+      },
+      {
+        title: "High-Altitude Bird Watching",
+        description: "Spot endemic mountain species such as the yellow-eared bulbul, Sri Lanka whistling thrush, and mountain hawk-eagle.",
+      },
+    ],
+    gallery: [
+      "/images/destinations/knuckles.jpg",
+    ],
+  },
+  {
+    id: "jaffna",
+    slug: "jaffna",
+    name: "Jaffna",
+    tag: "Northern Cultural Heritage",
+    shortDescription: "The vibrant cultural capital of the north, renowned for golden Hindu kovils, Dutch colonial fortifications, and palmyra-lined islands.",
+    image: "/images/destinations/jaffna.jpg",
+    featured: true,
+    region: "Northern Province",
+    bestTimeToVisit: "December to April",
+    intro:
+      "Distinctive in culture, cuisine, and history, Jaffna in the far north offers an authentic experience unlike anywhere else in Sri Lanka. From the towering golden gopuram of Nallur Kandaswamy Kovil to centuries-old coastal fortresses and island ferry journeys, the northern peninsula is rich in soul and hospitality.",
+    whyVisit: [
+      "Witness grand evening pujas at the magnificent Nallur Kandaswamy Kovil",
+      "Explore the vast 17th-century star-shaped Jaffna Dutch Fort overlooking the lagoon",
+      "Savor authentic Jaffna crab curry, fiery sambols, and sweet Rio Ice Cream",
+      "Ferry across to Delft Island to see wild horses, baobab trees, and coral stone walls",
+    ],
+    thingsToDo: [
+      {
+        title: "Visit Nallur Kandaswamy Kovil",
+        description: "Experience the sacred bells, vibrant devotion, and intricate Dravidian architecture of Sri Lanka's most revered Hindu temple.",
+      },
+      {
+        title: "Walk the Ramparts of Jaffna Fort",
+        description: "Stroll along the historic moats and limestone ramparts with sweeping views across Jaffna Lagoon.",
+      },
+      {
+        title: "Day Trip to Delft Island (Neduntheevu)",
+        description: "Take the morning naval ferry to explore wild descendants of Dutch ponies, coral houses, and giant baobab trees.",
+      },
+      {
+        title: "Culinary Walking Tour",
+        description: "Taste traditional northern delicacies, fresh palmyra fruit, Jaffna spiced curries, and tropical market treats.",
+      },
+    ],
+    gallery: [
+      "/images/destinations/jaffna.jpg",
+    ],
+  },
 ];

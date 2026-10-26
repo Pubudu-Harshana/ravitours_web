@@ -24,6 +24,7 @@ export default function TripPlanner() {
     whatsapp: "",
   });
   const [showContactModal, setShowContactModal] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -70,10 +71,38 @@ export default function TripPlanner() {
     setShowContactModal(true);
   };
 
-  const handleFinalSubmit = (e: React.FormEvent) => {
+  const handleFinalSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setShowContactModal(false);
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+
+    const messageContent = [
+      `TRIP PLANNER QUICK INQUIRY:`,
+      `• Preferred Destination: ${destination || "Open / Any"}`,
+      `• Duration: ${duration}`,
+      `• Key Interests: ${selectedInterests.join(", ") || "General Sightseeing"}`,
+    ].join("\n");
+
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: contactInfo.name,
+          email: contactInfo.email,
+          phone: contactInfo.whatsapp,
+          interestedTour: `Quick Planner: ${destination || "Sri Lanka Custom Tour"} (${duration})`,
+          message: messageContent,
+        }),
+      });
+    } catch (err) {
+      console.warn("Trip planner email error:", err);
+    } finally {
+      setIsSubmitting(false);
+      setSubmitted(true);
+      setShowContactModal(false);
+    }
   };
 
   const sendDirectWhatsApp = () => {
@@ -380,9 +409,17 @@ Name: ${contactInfo.name || "Traveler"}`;
                       </button>
                       <button
                         type="submit"
-                        className="flex-1 py-2.5 rounded-xl bg-[#07345A] text-white text-sm font-bold hover:bg-[#032743] shadow cursor-pointer"
+                        disabled={isSubmitting}
+                        className="flex-1 py-2.5 rounded-xl bg-[#07345A] text-white text-sm font-bold hover:bg-[#032743] shadow cursor-pointer disabled:opacity-60 flex items-center justify-center gap-2"
                       >
-                        {t.planner.sendRequestBtn}
+                        {isSubmitting ? (
+                          <>
+                            <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                            <span>Sending...</span>
+                          </>
+                        ) : (
+                          t.planner.sendRequestBtn
+                        )}
                       </button>
                     </div>
                   </form>
