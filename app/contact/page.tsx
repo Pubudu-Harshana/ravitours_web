@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { siteConfig } from "@/data/siteConfig";
 import { tours } from "@/data/tours";
@@ -14,6 +14,7 @@ import {
   AlertCircle,
   Loader2,
   RefreshCw,
+  Calendar,
 } from "lucide-react";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { useLanguage } from "@/context/LanguageContext";
@@ -60,6 +61,23 @@ function ContactPageContent() {
       }));
     }
   }, [tourParam]);
+
+  // Calculate auto trip duration in Days and Nights (e.g. 2026/10/10 to 2026/10/15 -> 6D / 5N)
+  const tripDuration = useMemo(() => {
+    if (!formData.arrivalDate || !formData.departureDate) return null;
+    const arr = new Date(`${formData.arrivalDate}T00:00:00`);
+    const dep = new Date(`${formData.departureDate}T00:00:00`);
+    const diffTime = dep.getTime() - arr.getTime();
+    if (isNaN(diffTime) || diffTime < 0) return null;
+    const nights = Math.round(diffTime / (1000 * 60 * 60 * 24));
+    const days = nights + 1;
+    return {
+      days,
+      nights,
+      code: `${days}D / ${nights}N`,
+      fullLabel: `${days} ${days === 1 ? "Day" : "Days"} / ${nights} ${nights === 1 ? "Night" : "Nights"}`,
+    };
+  }, [formData.arrivalDate, formData.departureDate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -123,7 +141,7 @@ function ContactPageContent() {
       formData.interestedTour ? `"${formData.interestedTour}" ` : ""
     }travel from ${formData.arrivalDate || "Arrival"} to ${
       formData.departureDate || "Departure"
-    } for ${formData.travelers} with a ${formData.guidingService} (${formData.guideLanguage} guide). Message: ${formData.message || "Please provide package details."}`
+    }${tripDuration ? ` (${tripDuration.code})` : ""} for ${formData.travelers} with a ${formData.guidingService} (${formData.guideLanguage} guide). Message: ${formData.message || "Please provide package details."}`
   )}`;
 
   return (
@@ -291,10 +309,11 @@ function ContactPageContent() {
                   )}
                   {(formData.arrivalDate || formData.departureDate) && (
                     <div>
-                      <span className="font-medium text-slate-700">Dates:</span>{" "}
+                      <span className="font-medium text-slate-700">Dates & Duration:</span>{" "}
                       {formData.arrivalDate ? `Arrival: ${formData.arrivalDate}` : ""}
                       {formData.arrivalDate && formData.departureDate ? " — " : ""}
                       {formData.departureDate ? `Departure: ${formData.departureDate}` : ""}{" "}
+                      {tripDuration ? `• ${tripDuration.code} (${tripDuration.fullLabel})` : ""}{" "}
                       ({formData.travelers})
                     </div>
                   )}
@@ -545,9 +564,35 @@ function ContactPageContent() {
 
                   {/* Tour or Service of Interest */}
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
-                      {t.contactPage.interestedTourLabel}
-                    </label>
+                    <div className="flex items-center justify-between mb-1.5 flex-wrap gap-2">
+                      <label className="text-[11px] font-semibold text-slate-600 uppercase tracking-wider">
+                        {t.contactPage.interestedTourLabel}
+                      </label>
+
+                      {/* Auto Trip Duration Block */}
+                      {tripDuration ? (
+                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs font-bold shadow-xs animate-in fade-in duration-200">
+                          <Calendar className="w-3.5 h-3.5 text-emerald-600" />
+                          <span className="text-[11px] font-semibold text-emerald-700 uppercase tracking-wider">
+                            Trip Duration:
+                          </span>
+                          <span className="px-1.5 py-0.5 rounded bg-emerald-600 text-white font-extrabold text-xs tracking-wider">
+                            {tripDuration.code}
+                          </span>
+                          <span className="text-emerald-700 font-semibold text-[11px] hidden xs:inline">
+                            ({tripDuration.fullLabel})
+                          </span>
+                        </div>
+                      ) : formData.arrivalDate && !formData.departureDate ? (
+                        <span className="text-[11px] font-medium text-amber-600">
+                          Select departure date to calculate duration
+                        </span>
+                      ) : (
+                        <span className="text-[11px] font-normal text-slate-400">
+                          Auto duration calculated from dates
+                        </span>
+                      )}
+                    </div>
                     <select
                       disabled={isSubmitting}
                       value={formData.interestedTour}
