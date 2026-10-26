@@ -30,6 +30,29 @@ interface TourRouteMapProps {
   className?: string;
 }
 
+// Helpers for formatted stop labels across map, badges, and table
+function getMapPinLabel(stop: RouteStop): string {
+  if (stop.isAirport) return "Colombo Airport (CMB)";
+  if (stop.name.toLowerCase().includes("nuwara eliya")) return "Nuwara Eliya";
+  return stop.name.split(" ")[0];
+}
+
+function getStopBadgeLabel(stop: RouteStop, index: number, totalStops: number): string {
+  if (stop.isAirport) {
+    if (index === 0) return "Airport (CMB)";
+    if (index === totalStops - 1) return "Airport Return";
+    return "Airport (CMB)";
+  }
+  if (stop.name.toLowerCase().includes("nuwara eliya")) return "Nuwara Eliya";
+  return stop.name.split(" ")[0];
+}
+
+function getTableStopName(stop: RouteStop): string {
+  if (stop.isAirport) return "Colombo Airport (CMB)";
+  if (stop.name.toLowerCase().includes("nuwara eliya")) return "Nuwara Eliya";
+  return stop.name.split(" ")[0];
+}
+
 export default function TourRouteMap({
   slug,
   tourTitle,
@@ -394,6 +417,14 @@ export default function TourRouteMap({
               {stops.map((stop, index) => {
                 const isActive = index === activeStopIndex;
                 const isStart = index === 0;
+                const isDuplicateStartCoords =
+                  index > 0 && stop.x === stops[0].x && stop.y === stops[0].y;
+
+                // When closed-loop return stop shares coordinates with start pin,
+                // don't render duplicate inactive pin over start pin
+                if (isDuplicateStartCoords && !isActive) {
+                  return null;
+                }
 
                 return (
                   <g
@@ -425,7 +456,7 @@ export default function TourRouteMap({
                     />
 
                     {/* Inner Center Dot / Number */}
-                    {isStart ? (
+                    {isStart && !isDuplicateStartCoords ? (
                       <circle cx={stop.x} cy={stop.y} r="4" fill="#FFFFFF" />
                     ) : (
                       <text
@@ -443,15 +474,15 @@ export default function TourRouteMap({
 
                     {/* Stop Name Label on Map */}
                     <text
-                      x={stop.x}
-                      y={stop.y - 14}
+                      x={stop.isAirport ? stop.x - 14 : stop.x}
+                      y={stop.isAirport ? stop.y + 3.5 : stop.y - 14}
                       fill={isActive ? "#F6A623" : "#FFFFFF"}
                       fontSize={isActive ? "11" : "9.5"}
                       fontWeight={isActive ? "800" : "600"}
-                      textAnchor="middle"
+                      textAnchor={stop.isAirport ? "end" : "middle"}
                       className="pointer-events-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]"
                     >
-                      {stop.name.split(" ")[0]}
+                      {getMapPinLabel(stop)}
                     </text>
                   </g>
                 );
@@ -638,7 +669,7 @@ export default function TourRouteMap({
                         : "bg-slate-100 hover:bg-slate-200 text-slate-600"
                     }`}
                   >
-                    {idx + 1}. {s.name.split(" ")[0]}
+                    {idx + 1}. {getStopBadgeLabel(s, idx, stops.length)}
                   </button>
                 );
               })}
@@ -678,7 +709,10 @@ export default function TourRouteMap({
               </thead>
               <tbody className="divide-y divide-slate-100 bg-white">
                 {stops.map((stop, i) => {
-                  const prevName = i === 0 ? "Airport Arrival" : stops[i - 1].name.split(" ")[0];
+                  const prevName =
+                    i === 0
+                      ? "Airport Arrival"
+                      : getTableStopName(stops[i - 1]);
                   return (
                     <tr
                       key={stop.id}

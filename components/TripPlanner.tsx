@@ -1,14 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
-import { ArrowRight, CheckCircle2, MapPin, Calendar } from "lucide-react";
+import { ArrowRight, CheckCircle2, MapPin, Calendar, X } from "lucide-react";
 import { destinations } from "@/data/destinations";
 import { siteConfig } from "@/data/siteConfig";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function TripPlanner() {
   const { t, getDestinationText } = useLanguage();
+  const [mounted, setMounted] = useState(false);
   const [destination, setDestination] = useState("");
   const [duration, setDuration] = useState("6 - 8 days");
   const [selectedInterests, setSelectedInterests] = useState<string[]>([
@@ -22,6 +24,31 @@ export default function TripPlanner() {
     whatsapp: "",
   });
   const [showContactModal, setShowContactModal] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Lock body scroll and handle Escape key when modal is open
+  useEffect(() => {
+    if (!showContactModal) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setShowContactModal(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [showContactModal]);
 
   const interestOptions = [
     { key: "Beaches", label: t.planner.beach },
@@ -260,89 +287,109 @@ Name: ${contactInfo.name || "Traveler"}`;
           )}
 
           {/* Quick Contact Modal for Inquiry */}
-          {showContactModal && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fadeIn">
-              <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative">
-                <h3 className="text-xl font-bold text-[#07345A]">
-                  {t.planner.modalTitle}
-                </h3>
-                <p className="text-xs text-slate-500 mt-1 mb-5">
-                  {t.planner.modalSubtitle}
-                </p>
+          {showContactModal &&
+            mounted &&
+            createPortal(
+              <div
+                className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/75 backdrop-blur-md p-4 animate-fadeIn"
+                onClick={(e) => {
+                  if (e.target === e.currentTarget) {
+                    setShowContactModal(false);
+                  }
+                }}
+              >
+                <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative border border-slate-100 z-10">
+                  {/* Close button */}
+                  <button
+                    type="button"
+                    onClick={() => setShowContactModal(false)}
+                    className="absolute top-5 right-5 p-2 rounded-full text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors cursor-pointer"
+                    aria-label="Close"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
 
-                <form onSubmit={handleFinalSubmit} className="space-y-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-600 mb-1">
-                      {t.planner.fullNameLabel}
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder={t.planner.fullNamePlaceholder}
-                      value={contactInfo.name}
-                      onChange={(e) =>
-                        setContactInfo({ ...contactInfo, name: e.target.value })
-                      }
-                      className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A]"
-                    />
-                  </div>
+                  <h3 className="text-xl font-bold text-[#07345A] pr-8">
+                    {t.planner.modalTitle}
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-1 mb-5">
+                    {t.planner.modalSubtitle}
+                  </p>
 
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-600 mb-1">
-                      {t.planner.emailLabel}
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      placeholder={t.planner.emailPlaceholder}
-                      value={contactInfo.email}
-                      onChange={(e) =>
-                        setContactInfo({
-                          ...contactInfo,
-                          email: e.target.value,
-                        })
-                      }
-                      className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A]"
-                    />
-                  </div>
+                  <form onSubmit={handleFinalSubmit} className="space-y-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-600 mb-1">
+                        {t.planner.fullNameLabel}
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder={t.planner.fullNamePlaceholder}
+                        value={contactInfo.name}
+                        onChange={(e) =>
+                          setContactInfo({ ...contactInfo, name: e.target.value })
+                        }
+                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A]"
+                      />
+                    </div>
 
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-600 mb-1">
-                      {t.planner.phoneLabel}
-                    </label>
-                    <input
-                      type="tel"
-                      placeholder={t.planner.phonePlaceholder}
-                      value={contactInfo.whatsapp}
-                      onChange={(e) =>
-                        setContactInfo({
-                          ...contactInfo,
-                          whatsapp: e.target.value,
-                        })
-                      }
-                      className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A]"
-                    />
-                  </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-600 mb-1">
+                        {t.planner.emailLabel}
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        placeholder={t.planner.emailPlaceholder}
+                        value={contactInfo.email}
+                        onChange={(e) =>
+                          setContactInfo({
+                            ...contactInfo,
+                            email: e.target.value,
+                          })
+                        }
+                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A]"
+                      />
+                    </div>
 
-                  <div className="pt-2 flex gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setShowContactModal(false)}
-                      className="flex-1 py-2.5 rounded-xl border border-slate-200 text-slate-600 text-sm font-semibold hover:bg-slate-50 cursor-pointer"
-                    >
-                      {t.planner.cancelBtn}
-                    </button>
-                    <button
-                      type="submit"
-                      className="flex-1 py-2.5 rounded-xl bg-[#07345A] text-white text-sm font-bold hover:bg-[#032743] shadow cursor-pointer"
-                    >
-                      {t.planner.sendRequestBtn}
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          )}
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-600 mb-1">
+                        {t.planner.phoneLabel}
+                      </label>
+                      <input
+                        type="tel"
+                        placeholder={t.planner.phonePlaceholder}
+                        value={contactInfo.whatsapp}
+                        onChange={(e) =>
+                          setContactInfo({
+                            ...contactInfo,
+                            whatsapp: e.target.value,
+                          })
+                        }
+                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A]"
+                      />
+                    </div>
+
+                    <div className="pt-2 flex gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setShowContactModal(false)}
+                        className="flex-1 py-2.5 rounded-xl border border-slate-200 text-slate-600 text-sm font-semibold hover:bg-slate-50 cursor-pointer"
+                      >
+                        {t.planner.cancelBtn}
+                      </button>
+                      <button
+                        type="submit"
+                        className="flex-1 py-2.5 rounded-xl bg-[#07345A] text-white text-sm font-bold hover:bg-[#032743] shadow cursor-pointer"
+                      >
+                        {t.planner.sendRequestBtn}
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>,
+              document.body
+            )}
         </div>
       </div>
     </section>

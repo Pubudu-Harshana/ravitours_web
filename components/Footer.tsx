@@ -86,7 +86,7 @@ export default function Footer() {
           {/* Quick Links */}
           <div className="lg:col-span-2 space-y-4">
             <h3 className="text-xs font-bold uppercase tracking-widest text-[#F6A623]">
-              {t.footer.quickLinks}
+              Quick Links
             </h3>
             <ul className="space-y-2.5 text-sm">
               <li>
@@ -94,7 +94,7 @@ export default function Footer() {
                   href="/"
                   className="text-slate-300 hover:text-white transition-colors"
                 >
-                  {t.nav.home}
+                  Home
                 </Link>
               </li>
               <li>
@@ -102,7 +102,7 @@ export default function Footer() {
                   href="/tours"
                   className="text-slate-300 hover:text-white transition-colors"
                 >
-                  {t.nav.tours}
+                  Tours
                 </Link>
               </li>
               <li>
@@ -110,7 +110,7 @@ export default function Footer() {
                   href="/destinations"
                   className="text-slate-300 hover:text-white transition-colors"
                 >
-                  {t.nav.destinations}
+                  Destinations
                 </Link>
               </li>
               <li>
@@ -118,7 +118,7 @@ export default function Footer() {
                   href="/services"
                   className="text-slate-300 hover:text-white transition-colors"
                 >
-                  {t.nav.services}
+                  Services
                 </Link>
               </li>
               <li>
@@ -126,7 +126,7 @@ export default function Footer() {
                   href="/about"
                   className="text-slate-300 hover:text-white transition-colors"
                 >
-                  {t.nav.about}
+                  About Us
                 </Link>
               </li>
               <li>
@@ -134,24 +134,24 @@ export default function Footer() {
                   href="/contact"
                   className="text-slate-300 hover:text-white transition-colors"
                 >
-                  {t.nav.contact}
+                  Contact Us
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Services Column */}
+          {/* Travel Services Column */}
           <div className="lg:col-span-3 space-y-4">
             <h3 className="text-xs font-bold uppercase tracking-widest text-[#F6A623]">
-              {t.footer.ourServices}
+              Travel Services
             </h3>
             <ul className="space-y-2.5 text-sm text-slate-300">
               <li>
                 <Link
-                  href="/services"
+                  href="/tours"
                   className="hover:text-white transition-colors"
                 >
-                  {t.footer.serviceTours}
+                  Private Sri Lanka Tours
                 </Link>
               </li>
               <li>
@@ -159,7 +159,7 @@ export default function Footer() {
                   href="/services"
                   className="hover:text-white transition-colors"
                 >
-                  {t.footer.serviceTransfers}
+                  Airport Transfers (CMB)
                 </Link>
               </li>
               <li>
@@ -167,7 +167,7 @@ export default function Footer() {
                   href="/services"
                   className="hover:text-white transition-colors"
                 >
-                  {t.footer.serviceHotels}
+                  Private Chauffeur Services
                 </Link>
               </li>
               <li>
@@ -175,7 +175,7 @@ export default function Footer() {
                   href="/services"
                   className="hover:text-white transition-colors"
                 >
-                  {t.footer.serviceChauffeur}
+                  Hotel &amp; Villa Bookings
                 </Link>
               </li>
               <li>
@@ -183,29 +183,29 @@ export default function Footer() {
                   href="/plan-your-trip"
                   className="hover:text-white transition-colors"
                 >
-                  {t.footer.serviceItineraries}
+                  Customized Tour Itineraries
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Contact Column */}
+          {/* Get In Touch Column */}
           <div className="lg:col-span-3 space-y-4">
             <h3 className="text-xs font-bold uppercase tracking-widest text-[#F6A623]">
-              {t.footer.contactUs}
+              Get In Touch
             </h3>
             <ul className="space-y-3 text-sm text-slate-300">
-              <li className="flex items-start gap-2.5">
-                <Phone className="w-4 h-4 text-[#087EA4] mt-0.5 shrink-0 rtl-flip" />
+              <li className="flex items-center gap-2.5">
+                <Phone className="w-4 h-4 text-[#087EA4] shrink-0 rtl-flip" />
                 <a
                   href={`tel:${siteConfig.contact.phone.replace(/[^0-9+]/g, "")}`}
                   className="hover:text-white transition-colors"
                 >
-                  {siteConfig.contact.phoneDisplay}
+                  <span className="text-slate-400">Phone:</span> {siteConfig.contact.phoneDisplay}
                 </a>
               </li>
-              <li className="flex items-start gap-2.5">
-                <WhatsAppIcon className="w-4 h-4 text-[#25D366] mt-0.5 shrink-0" />
+              <li className="flex items-center gap-2.5">
+                <WhatsAppIcon className="w-4 h-4 text-[#25D366] shrink-0" />
                 <a
                   href={`https://wa.me/${siteConfig.contact.whatsapp.replace(
                     /[^0-9]/g,
@@ -215,30 +215,30 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"
                 >
-                  {siteConfig.contact.whatsappDisplay} (WhatsApp)
+                  <span className="text-slate-400">WhatsApp:</span> {siteConfig.contact.whatsappDisplay}
                 </a>
               </li>
-              <li className="flex items-start gap-2.5">
-                <Mail className="w-4 h-4 text-[#087EA4] mt-0.5 shrink-0" />
+              <li className="flex items-center gap-2.5">
+                <Mail className="w-4 h-4 text-[#087EA4] shrink-0" />
                 <a
                   href={`mailto:${siteConfig.contact.email}`}
                   className="hover:text-white transition-colors"
                 >
-                  {siteConfig.contact.email}
+                  <span className="text-slate-400">Email:</span> {siteConfig.contact.email}
                 </a>
               </li>
-              <li className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#087EA4] mt-0.5 shrink-0" />
-                <span>{siteConfig.contact.address}</span>
+              <li className="flex items-center gap-2.5">
+                <MapPin className="w-4 h-4 text-[#087EA4] shrink-0" />
+                <span>Colombo, Sri Lanka</span>
               </li>
             </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <p>
-            © {currentYear} Ravi Tours &amp; Travels. {t.footer.rightsReserved} | Developed by{" "}
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400 border-t border-slate-800/60 mt-2">
+          <p className="text-center md:text-left">
+            © {currentYear} Ravi Tours &amp; Travels. All rights reserved. | Developed by{" "}
             <a
               href="https://www.infavour.tech"
               target="_blank"
@@ -248,8 +248,32 @@ export default function Footer() {
               Infavour Solutions
             </a>
           </p>
-          <div className="font-accent text-lg text-slate-300 tracking-wider">
-            {t.footer.tagline}
+
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-slate-400">
+            <Link
+              href="/privacy-policy"
+              className="hover:text-white transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <span className="text-slate-700">|</span>
+            <Link
+              href="/terms"
+              className="hover:text-white transition-colors"
+            >
+              Terms &amp; Conditions
+            </Link>
+            <span className="text-slate-700">|</span>
+            <Link
+              href="/cancellation-policy"
+              className="hover:text-white transition-colors"
+            >
+              Cancellation Policy
+            </Link>
+          </div>
+
+          <div className="font-accent text-base text-slate-300 tracking-wider">
+            Explore · Experience · Discover
           </div>
         </div>
       </div>

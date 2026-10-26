@@ -354,4 +354,204 @@ export const destinations: Destination[] = [
       "/images/destinations/arugam-bay-sunset.jpg",
     ],
   },
+  {
+    id: "colombo",
+    slug: "colombo",
+    name: "Colombo",
+    tag: "Oceanfront Capital",
+    shortDescription: "Sri Lanka's vibrant commercial capital blending colonial heritage, modern skyscrapers, and sunset street food.",
+    image: "/images/destinations/colombo.jpg",
+    featured: true,
+    region: "Western Province",
+    bestTimeToVisit: "November to April",
+    intro:
+      "A dynamic coastal metropolis where century-old Dutch and British architecture sits beside shimmering modern towers like the Lotus Tower. Colombo offers world-class dining, bustling street markets in Pettah, and sea breezes along Galle Face Green.",
+    whyVisit: [
+      "Stroll the Galle Face Green promenade at sunset with local street food",
+      "Admire the iconic Colombo Lotus Tower illuminated above Beira Lake",
+      "Explore the bustling sensory alleys of Pettah Bazaar and Red Mosque",
+      "Visit Gangaramaya Temple with its tranquil lake pavilion Seema Malaka",
+    ],
+    thingsToDo: [
+      {
+        title: "Sunset Walk along Galle Face Green",
+        description: "Join locals and travelers eating crispy isso wade (prawn cakes) while the sun sinks into the Indian Ocean.",
+      },
+      {
+        title: "Gangaramaya Temple & Seema Malaka",
+        description: "Discover an eclectic collection of sacred Buddhist artifacts and Geoffrey Bawa's floating temple on Beira Lake.",
+      },
+      {
+        title: "Pettah Market & Jami Ul-Alfar (Red Mosque)",
+        description: "Photograph the candy-striped architectural gem and browse spice and textile stalls.",
+      },
+      {
+        title: "Colonial Dutch Hospital Precinct",
+        description: "Dine at renowned seafood restaurants and boutique cafes housed in restored 17th-century brick arcades.",
+      },
+    ],
+    gallery: [
+      "/images/destinations/colombo.jpg",
+    ],
+  },
+  {
+    id: "dambulla",
+    slug: "dambulla",
+    name: "Dambulla",
+    tag: "Golden Cave Temple",
+    shortDescription: "A UNESCO World Heritage complex of ancient rock-cut cave temples filled with 150+ Buddha statues and murals.",
+    image: "/images/destinations/dambulla.jpg",
+    featured: true,
+    region: "Central Province / Cultural Triangle",
+    bestTimeToVisit: "December to April",
+    intro:
+      "Perched on a mammoth granite outcrop, Dambulla is South Asia's best-preserved cave temple complex. For over 22 centuries, monks and Sinhalese kings sanctified these five dramatic caverns, adorning them with over 2,000 square meters of painted Buddhist murals and exquisite golden statues.",
+    whyVisit: [
+      "Marvel at South Asia's largest and best-preserved rock-cut temple sanctuaries",
+      "Witness over 150 gilded Buddha statues dating from the 1st century BC",
+      "Admire ceiling murals narrating the life of Buddha and ancient Sinhalese history",
+      "Enjoy panoramic views across the Cultural Triangle including Sigiriya Lion Rock",
+    ],
+    thingsToDo: [
+      {
+        title: "Explore the Five Royal Rock Caves",
+        description: "Walk barefoot through cool granite floors admiring the 14-meter reclining Buddha carved directly into living stone.",
+      },
+      {
+        title: "Visit Golden Temple & Museum",
+        description: "Admire the giant 30-meter golden statue of Buddha seated majestically atop the entrance pavilion.",
+      },
+      {
+        title: "Dambulla Dedicated Economic Center",
+        description: "Experience Sri Lanka's largest wholesale vegetable distribution hub alive with farmers and colorful fresh produce.",
+      },
+      {
+        title: "Popham's Arboretum Nature Walk",
+        description: "Spot slender lorises and rare dry-zone birds in Sri Lanka's only protected dry-zone arboretum.",
+      },
+    ],
+    gallery: [
+      "/images/destinations/dambulla.jpg",
+    ],
+  },
+  {
+    id: "negombo",
+    slug: "negombo",
+    name: "Negombo",
+    tag: "Coastal Lagoon",
+    shortDescription: "A charming coastal gateway famous for golden beaches, traditional outrigger boats, and fresh lagoon seafood.",
+    image: "/images/destinations/negombo.jpg",
+    featured: false,
+    region: "Western Province",
+    bestTimeToVisit: "December to April",
+    intro:
+      "Located just 15 minutes from Bandaranaike International Airport (CMB), Negombo is the ideal first or final stop on your Sri Lanka adventure. Known affectionately as 'Little Rome' for its grand Catholic churches, it boasts a vibrant lagoon fishing heritage and relaxing beach resorts.",
+    whyVisit: [
+      "Convenient 15-minute private chauffeur transfer from CMB Airport",
+      "Watch traditional oruwa outrigger sailing boats return with the day's catch",
+      "Browse the bustling Lellama open-air coastal fish market",
+      "Boat safari along the Dutch Canal and Muthurajawela mangrove wetlands",
+    ],
+    thingsToDo: [
+      {
+        title: "Muthurajawela Mangrove Boat Safari",
+        description: "Cruise coastal wetlands to spot water monitor lizards, kingfishers, and migratory herons.",
+      },
+      {
+        title: "Negombo Lagoon & Fish Market (Lellama)",
+        description: "Witness fishermen drying silver fish on expansive seaside mats and auctioning fresh tuna and prawns.",
+      },
+      {
+        title: "St. Mary's Church & Dutch Fort Ruins",
+        description: "Admire neoclassical colonial architecture and ceiling paintings in historic church sanctuaries.",
+      },
+      {
+        title: "Beachside Seafood Dining at Sunset",
+        description: "Savor grilled lagoon jumbo prawns and deviled calamari with your feet in the sand.",
+      },
+    ],
+    gallery: [
+      "/images/destinations/negombo.jpg",
+    ],
+  },
+  {
+    id: "hikkaduwa",
+    slug: "hikkaduwa",
+    name: "Hikkaduwa",
+    tag: "Coral Reef & Surf",
+    shortDescription: "A lively southern coast beach town renowned for coral reef marine sanctuaries, surf breaks, and giant sea turtles.",
+    image: "/images/destinations/hikkaduwa.jpg",
+    featured: false,
+    region: "Southern Coast",
+    bestTimeToVisit: "November to April",
+    intro:
+      "Hikkaduwa is where Sri Lanka's surf and beach culture first gained international fame in the 1970s. Famous for its shallow coral reef national park where wild green sea turtles swim right up to the shore, it combines energetic water sports with relaxed beachfront cafes.",
+    whyVisit: [
+      "Feed and swim alongside gentle wild green sea turtles in knee-deep waters",
+      "Snorkel the Hikkaduwa Coral Sanctuary teeming with multi-colored tropical fish",
+      "Surf consistent reef and beach breaks suitable for beginners to pros",
+      "Visit sea turtle conservation hatcheries in nearby Kosgoda and Pereliya",
+    ],
+    thingsToDo: [
+      {
+        title: "Swim with Wild Sea Turtles",
+        description: "Stand along the coral shallows in the morning as gentle, protected green turtles swim up to feed on seaweed.",
+      },
+      {
+        title: "Glass-Bottom Boat & Coral Snorkeling",
+        description: "Float over the shallow marine national park admiring brain corals, angel fish, and sea anemones.",
+      },
+      {
+        title: "Surfing at Bennys & Main Reef",
+        description: "Rent surfboards or take private lessons from licensed local instructors on golden wave-lapped shores.",
+      },
+      {
+        title: "Sunset Beach Lounging & Seafood",
+        description: "Enjoy chilled king coconuts or cocktails with fresh grilled fish as the sun sets over the ocean.",
+      },
+    ],
+    gallery: [
+      "/images/destinations/hikkaduwa.jpg",
+    ],
+  },
+  {
+    id: "udawalawe",
+    slug: "udawalawe",
+    name: "Udawalawe",
+    tag: "Elephant Sanctuary",
+    shortDescription: "Sri Lanka's premier elephant park, home to hundreds of free-roaming wild Asian elephants and the Elephant Transit Home.",
+    image: "/images/destinations/udawalawe.jpg",
+    featured: true,
+    region: "Sabaragamuwa / Southern Province",
+    bestTimeToVisit: "Year-round (Best: October to April)",
+    intro:
+      "Surrounding the vast Udawalawe reservoir with misty mountain peaks rising in the background, this national park offers virtually guaranteed sightings of wild elephant herds in open grasslands reminiscent of East African savannahs.",
+    whyVisit: [
+      "Nearly 100% guaranteed year-round sightings of wild elephant herds and playful calves",
+      "Visit the famous Elephant Transit Home (ETH) milk-feeding rehabilitation program",
+      "Open-canopy 4x4 safari through scenic savannah landscapes and reservoir shores",
+      "Spot water buffaloes, spotted deer, mugger crocodiles, and white-bellied sea eagles",
+    ],
+    thingsToDo: [
+      {
+        title: "4x4 Open-Top Elephant Safari",
+        description: "Roam open grasslands and reservoir banks watching large family herds bathing and feeding in the wild.",
+      },
+      {
+        title: "Elephant Transit Home (ETH) Feeding Time",
+        description: "Watch orphaned baby elephants rush out playfully for their scheduled milk-formula feeding from a respectful viewing platform.",
+      },
+      {
+        title: "Udawalawe Reservoir Dam Walk",
+        description: "Take in expansive panoramic vistas of the reservoir framed against the backdrop of the central highlands.",
+      },
+      {
+        title: "Bird Watching across Wetland Marshes",
+        description: "Spot over 180 bird species including crested serpent eagles, painted storks, and kingfishers.",
+      },
+    ],
+    gallery: [
+      "/images/destinations/udawalawe.jpg",
+    ],
+  },
 ];

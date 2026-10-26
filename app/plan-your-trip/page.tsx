@@ -16,22 +16,44 @@ import {
   Sparkles,
 } from "lucide-react";
 
+interface PlannerDestination {
+  id: string;
+  name: string;
+  tag: string;
+  image: string;
+  visitorsPercentage?: string;
+}
+
+const TOP_12_DESTINATIONS: PlannerDestination[] = [
+  { id: "galle", name: "Galle Fort", tag: "Colonial Charm", image: "/images/destinations/galle.jpg", visitorsPercentage: "54.0%" },
+  { id: "ella", name: "Ella", tag: "Scenic Mountains", image: "/images/destinations/ella.jpg", visitorsPercentage: "53.1%" },
+  { id: "sigiriya", name: "Sigiriya", tag: "Ancient Marvel", image: "/images/destinations/sigiriya.jpg", visitorsPercentage: "53.1%" },
+  { id: "kandy", name: "Kandy", tag: "Sacred City", image: "/images/destinations/kandy.jpg", visitorsPercentage: "51.3%" },
+  { id: "colombo", name: "Colombo", tag: "Oceanfront Capital", image: "/images/destinations/colombo.jpg", visitorsPercentage: "46.2%" },
+  { id: "nuwara-eliya", name: "Nuwara Eliya", tag: "Tea Country", image: "/images/destinations/nuwara-eliya.jpg", visitorsPercentage: "36.4%" },
+  { id: "dambulla", name: "Dambulla", tag: "Cave Temples", image: "/images/destinations/dambulla.jpg", visitorsPercentage: "34.6%" },
+  { id: "mirissa", name: "Mirissa", tag: "Golden Beaches", image: "/images/destinations/mirissa.jpg", visitorsPercentage: "34.4%" },
+  { id: "yala", name: "Yala", tag: "Wildlife Safari", image: "/images/destinations/yala.jpg", visitorsPercentage: "32.8%" },
+  { id: "negombo", name: "Negombo", tag: "Coastal Lagoon", image: "/images/destinations/negombo.jpg", visitorsPercentage: "25.7%" },
+  { id: "hikkaduwa", name: "Hikkaduwa", tag: "Coral Reef & Surf", image: "/images/destinations/hikkaduwa.jpg", visitorsPercentage: "18.9%" },
+  { id: "udawalawe", name: "Udawalawe", tag: "Elephant Sanctuary", image: "/images/destinations/udawalawe.jpg", visitorsPercentage: "17.6%" },
+];
+
 export default function PlanYourTripPage() {
-  const [selectedDestinations, setSelectedDestinations] = useState<string[]>([
-    "Sigiriya",
-    "Ella",
-    "Mirissa",
-  ]);
+  const [selectedDestinations, setSelectedDestinations] = useState<string[]>([]);
+  const [customPlaces, setCustomPlaces] = useState<string>("");
   const [duration, setDuration] = useState("7 Days / 6 Nights");
   const [travelGroup, setTravelGroup] = useState("Couple (2 Adults)");
   const [travelStyle, setTravelStyle] = useState("Balanced (Comfort & Exploration)");
-  const [vehicle, setVehicle] = useState("Spacious Luxury Van (Toyota KDH)");
+  const [vehicle, setVehicle] = useState("Luxury Van — Ideal for families and travellers with luggage");
   const [interests, setInterests] = useState<string[]>([
     "Beaches & Coast",
     "Scenic Train Ride",
     "Wildlife Safari",
   ]);
 
+  const [guidingService, setGuidingService] = useState("Professional Driver-Guide");
+  const [guideLanguage, setGuideLanguage] = useState("English");
   const [contactName, setContactName] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [contactPhone, setContactPhone] = useState("");
@@ -40,9 +62,7 @@ export default function PlanYourTripPage() {
 
   const toggleDestination = (name: string) => {
     if (selectedDestinations.includes(name)) {
-      if (selectedDestinations.length > 1) {
-        setSelectedDestinations(selectedDestinations.filter((d) => d !== name));
-      }
+      setSelectedDestinations(selectedDestinations.filter((d) => d !== name));
     } else {
       setSelectedDestinations([...selectedDestinations, name]);
     }
@@ -61,17 +81,30 @@ export default function PlanYourTripPage() {
     setIsSuccess(true);
   };
 
+  const getDestinationsSummary = () => {
+    const list: string[] = [];
+    if (selectedDestinations.length > 0) {
+      list.push(selectedDestinations.join(", "));
+    }
+    if (customPlaces.trim()) {
+      list.push(`Custom Places: ${customPlaces.trim()}`);
+    }
+    return list.length > 0 ? list.join(" + ") : "Open / Suggest complete route for me";
+  };
+
   const whatsappPlanUrl = `https://wa.me/${siteConfig.contact.whatsapp.replace(
     /[^0-9]/g,
     ""
   )}?text=${encodeURIComponent(
     `Hello Ravi Tours & Travels! I just planned my custom Sri Lanka trip on your website:
-• Destinations: ${selectedDestinations.join(", ")}
+• Destinations: ${getDestinationsSummary()}
 • Duration: ${duration}
 • Party: ${travelGroup}
 • Vehicle: ${vehicle}
+• Guiding Service: ${guidingService}
+• Guide Language: ${guideLanguage}
 • Interests: ${interests.join(", ")}
-• Name: ${contactName || "Traveler"}`
+• Name: ${contactName || "Traveler"}${notes.trim() ? `\n• Notes / Requests: ${notes.trim()}` : ""}`
   )}`;
 
   return (
@@ -82,15 +115,13 @@ export default function PlanYourTripPage() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
           <div className="max-w-3xl">
             <span className="text-xs font-bold uppercase tracking-widest text-[#F6A623] block mb-2">
-              CUSTOM JOURNEY BUILDER
+              CUSTOM TOUR PLANNER
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
-              Plan Your Dream Sri Lanka Itinerary
+              Create Your Perfect Sri Lanka Journey
             </h1>
             <p className="text-slate-200 text-sm sm:text-base md:text-lg mt-3 font-light leading-relaxed">
-              Select your must-see destinations and travel style. Our local Sri Lankan
-              experts will construct a private chauffeur-driven proposal tailored to
-              your schedule.
+              Choose your favourite destinations, travel preferences, and experiences. Our local Sri Lankan team will design a personalized private tour tailored to your interests, schedule, and budget.
             </p>
           </div>
         </div>
@@ -108,12 +139,33 @@ export default function PlanYourTripPage() {
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
               Thank you, <span className="font-semibold">{contactName}</span>! Our
-              travel planners are designing your custom route across{" "}
-              <span className="font-semibold text-[#07345A]">
-                {selectedDestinations.join(", ")}
-              </span>{" "}
+              travel planners are designing your custom route{" "}
+              {selectedDestinations.length > 0 ? (
+                <>
+                  across{" "}
+                  <span className="font-semibold text-[#07345A]">
+                    {selectedDestinations.join(", ")}
+                    {customPlaces.trim() ? ` & ${customPlaces.trim()}` : ""}
+                  </span>{" "}
+                </>
+              ) : customPlaces.trim() ? (
+                <>
+                  featuring{" "}
+                  <span className="font-semibold text-[#07345A]">
+                    {customPlaces.trim()}
+                  </span>{" "}
+                </>
+              ) : (
+                "with an optimized circuit "
+              )}
               for <span className="font-semibold text-[#07345A]">{duration}</span>.
             </p>
+
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 text-xs font-semibold text-slate-700">
+              <span>{guidingService}</span>
+              <span>•</span>
+              <span>{guideLanguage} Guide</span>
+            </div>
 
             <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
               <a
@@ -137,22 +189,53 @@ export default function PlanYourTripPage() {
           <form onSubmit={handlePlanSubmit} className="space-y-12">
             {/* Step 1: Choose Destinations */}
             <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-100 space-y-6">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-slate-100">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#087EA4] block mb-1">
-                    STEP 01
-                  </span>
-                  <h2 className="text-xl sm:text-2xl font-bold text-[#07345A]">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold uppercase tracking-widest text-[#087EA4]">
+                      STEP 01
+                    </span>
+                    <span className="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">
+                      Optional
+                    </span>
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-bold text-[#07345A] mt-0.5">
                     Select Your Preferred Destinations
                   </h2>
+                  <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                    Pick any places you would love to visit, or skip if you want Ravi to suggest an ideal custom route.
+                  </p>
                 </div>
-                <span className="text-xs font-bold text-[#087EA4] bg-[#F0F6FA] px-3 py-1 rounded-full">
-                  {selectedDestinations.length} Selected
-                </span>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  <span className={`text-xs font-bold px-3 py-1 rounded-full transition-colors ${
+                    selectedDestinations.length > 0
+                      ? "text-[#087EA4] bg-[#F0F6FA]"
+                      : "text-slate-400 bg-slate-100"
+                  }`}>
+                    {selectedDestinations.length > 0
+                      ? `✓ ${selectedDestinations.length} Selected`
+                      : "0 Selected"}
+                  </span>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const el = document.getElementById("step-04-contact");
+                      el?.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }}
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#087EA4] hover:text-[#07345A] bg-[#087EA4]/10 hover:bg-[#087EA4]/20 px-3 py-1 rounded-full transition-colors"
+                    title="Skip straight to Contact Form"
+                  >
+                    <span>Skip to Step 04</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </button>
+                </div>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                {destinations.map((d) => {
+              {/* 12 Destination Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                {TOP_12_DESTINATIONS.map((d) => {
                   const isSelected = selectedDestinations.includes(d.name);
                   return (
                     <button
@@ -188,6 +271,42 @@ export default function PlanYourTripPage() {
                     </button>
                   );
                 })}
+              </div>
+
+              {/* Custom / Other Places Input */}
+              <div className="p-4 sm:p-5 rounded-2xl border border-dashed border-slate-300 bg-slate-50/70 hover:bg-slate-50 transition-colors space-y-2">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#07345A]">
+                  <Sparkles className="w-4 h-4 text-[#F6A623]" />
+                  <span>Have other specific places in mind? (Optional)</span>
+                </div>
+                <p className="text-xs text-slate-500">
+                  Want to visit somewhere outside these 12 places (e.g. Jaffna, Trincomalee, Kitulgala, Horton Plains, Anuradhapura, Wilpattu)? Enter them here:
+                </p>
+                <input
+                  type="text"
+                  value={customPlaces}
+                  onChange={(e) => setCustomPlaces(e.target.value)}
+                  placeholder="e.g. Trincomalee beaches, Horton Plains World's End, Kitulgala white-water rafting..."
+                  className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm font-medium focus:ring-2 focus:ring-[#07345A] placeholder:text-slate-400"
+                />
+              </div>
+
+              {/* Quick Skip Footer */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2">
+                <p className="text-xs text-slate-400">
+                  Tip: No places selected? No problem — we will craft an optimal route based on your duration.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const el = document.getElementById("step-04-contact");
+                    el?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }}
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#087EA4] hover:text-[#07345A] transition-colors"
+                >
+                  <span>Already have an itinerary? Skip to Step 04</span>
+                  <ArrowRight className="w-3 h-3" />
+                </button>
               </div>
             </div>
 
@@ -288,32 +407,133 @@ export default function PlanYourTripPage() {
                 <select
                   value={vehicle}
                   onChange={(e) => setVehicle(e.target.value)}
-                  className="w-full sm:w-1/2 px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-[#07345A]"
+                  className="w-full sm:w-3/4 px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-[#07345A] text-slate-800"
                 >
-                  <option value="Comfortable AC Sedan (Toyota Axio/Prius)">
-                    Comfortable AC Sedan (Toyota Axio/Prius) - Ideal for 1-2 travelers
+                  <option value="Standard Sedan — Ideal for 1–2 travellers">
+                    Standard Sedan — Ideal for 1–2 travellers
                   </option>
-                  <option value="Spacious Luxury Van (Toyota KDH)">
-                    Spacious Luxury Van (Toyota KDH) - Ideal for families &amp; luggage
+                  <option value="Premium Sedan — Enhanced comfort for couples and business travellers">
+                    Premium Sedan — Enhanced comfort for couples and business travellers
                   </option>
-                  <option value="Executive SUV / Premium 4x4">
-                    Executive SUV / Premium 4x4
+                  <option value="Luxury Van — Ideal for families and travellers with luggage">
+                    Luxury Van — Ideal for families and travellers with luggage
                   </option>
-                  <option value="Mini-Coach (15-20 seats)">
-                    Mini-Coach (for groups)
+                  <option value="Premium SUV / 4×4 — Extra comfort for scenic journeys and selected off-road routes">
+                    Premium SUV / 4×4 — Extra comfort for scenic journeys and selected off-road routes
+                  </option>
+                  <option value="Minibus — Ideal for small groups and group excursions">
+                    Minibus — Ideal for small groups and group excursions
+                  </option>
+                  <option value="Luxury Coach — Ideal for large groups and corporate travel">
+                    Luxury Coach — Ideal for large groups and corporate travel
                   </option>
                 </select>
               </div>
             </div>
 
-            {/* Step 4: Contact & Submission */}
-            <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-100 space-y-6">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#087EA4] block mb-1">
-                STEP 04
-              </span>
-              <h2 className="text-xl sm:text-2xl font-bold text-[#07345A]">
-                Your Contact Information
-              </h2>
+            {/* Step 4: Guiding Service & Contact Submission */}
+            <div id="step-04-contact" className="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-100 space-y-8 scroll-mt-24">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-widest text-[#087EA4] block mb-1">
+                  STEP 04
+                </span>
+                <h2 className="text-xl sm:text-2xl font-bold text-[#07345A]">
+                  Guiding Preferences &amp; Contact Details
+                </h2>
+                <p className="text-slate-500 text-xs sm:text-sm mt-1">
+                  Select your preferred guide service setup and language, then provide your contact details.
+                </p>
+              </div>
+
+              {/* Guiding Service & Language Selection Section */}
+              <div className="p-5 sm:p-6 rounded-2xl bg-slate-50/80 border border-slate-200/80 space-y-6">
+                {/* 1. Preferred Guiding Service */}
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[#07345A] mb-1.5">
+                    1. Preferred Guiding Service *
+                  </label>
+                  <p className="text-xs text-slate-500 mb-3">
+                    Select your preferred service:
+                  </p>
+                  <div className="space-y-2.5">
+                    {[
+                      {
+                        title: "Professional Driver-Guide",
+                        badge: "Suggested / Popular",
+                        desc: "1 licensed professional who drives and provides expert island guiding.",
+                      },
+                      {
+                        title: "Private Chauffeur + Professional Driver",
+                        badge: "Separate Chauffeur & Guide",
+                        desc: "Dedicated chauffeur driver plus a separate dedicated licensed guide.",
+                      },
+                      {
+                        title: "Not Sure — Recommend the Best Option",
+                        badge: "We'll Advise",
+                        desc: "Our travel specialists will evaluate and advise the optimal arrangement for your route.",
+                      },
+                    ].map((opt) => (
+                      <label
+                        key={opt.title}
+                        className={`flex items-start gap-3 p-3.5 rounded-xl border-2 cursor-pointer transition-all ${
+                          guidingService === opt.title
+                            ? "bg-white border-[#07345A] shadow-xs"
+                            : "bg-white/60 border-slate-200 hover:border-slate-300 hover:bg-white"
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          name="guidingService"
+                          value={opt.title}
+                          checked={guidingService === opt.title}
+                          onChange={() => setGuidingService(opt.title)}
+                          className="mt-1 w-4 h-4 text-[#07345A] focus:ring-[#07345A]"
+                        />
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="text-sm font-bold text-[#07345A]">
+                              {opt.title}
+                            </span>
+                            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#087EA4]/10 text-[#087EA4]">
+                              {opt.badge}
+                            </span>
+                          </div>
+                          <p className="text-xs text-slate-500 mt-0.5">
+                            {opt.desc}
+                          </p>
+                        </div>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 2. Preferred Tour Guide Language */}
+                <div className="pt-4 border-t border-slate-200/80">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[#07345A] mb-1.5">
+                    2. Preferred Tour Guide Language *
+                  </label>
+                  <p className="text-xs text-slate-500 mb-2">
+                    Select your preferred language
+                  </p>
+                  <div className="max-w-md">
+                    <select
+                      value={guideLanguage}
+                      onChange={(e) => setGuideLanguage(e.target.value)}
+                      className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm font-semibold text-[#07345A] focus:ring-2 focus:ring-[#07345A]"
+                    >
+                      <option value="English">English</option>
+                      <option value="German">German</option>
+                      <option value="French">French</option>
+                      <option value="Spanish">Spanish</option>
+                      <option value="Italian">Italian</option>
+                      <option value="Chinese (Mandarin)">Chinese (Mandarin)</option>
+                      <option value="Japanese">Japanese</option>
+                      <option value="Russian">Russian</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
                 <div>
@@ -360,11 +580,11 @@ export default function PlanYourTripPage() {
 
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                  Any additional notes or flight dates?
+                  Additional Notes or Special Requests
                 </label>
                 <textarea
                   rows={3}
-                  placeholder="e.g. Arriving on Nov 14 at 8am, looking for 4-star boutique hotels and kid-friendly excursions..."
+                  placeholder="Preferred destinations, travel dates, approximate budget, accommodation preferences, flight details, or any special requests..."
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-[#07345A]"

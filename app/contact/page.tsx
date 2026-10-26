@@ -28,8 +28,11 @@ function ContactPageContent() {
     name: "",
     email: "",
     phone: "",
-    travelDate: "",
+    arrivalDate: "",
+    departureDate: "",
     travelers: "2 adults",
+    guidingService: "Professional Driver-Guide",
+    guideLanguage: "English",
     interestedTour: "",
     message: "",
   });
@@ -76,8 +79,12 @@ function ContactPageContent() {
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          travelDate: formData.travelDate,
+          arrivalDate: formData.arrivalDate,
+          departureDate: formData.departureDate,
+          travelDate: formData.arrivalDate,
           travelers: formData.travelers,
+          guidingService: formData.guidingService,
+          guideLanguage: formData.guideLanguage,
           interestedTour: formData.interestedTour,
           message: formData.message,
           _gotcha: honeypot,
@@ -114,9 +121,9 @@ function ContactPageContent() {
       formData.name || "Traveler"
     }. I am inquiring about ${
       formData.interestedTour ? `"${formData.interestedTour}" ` : ""
-    }travel on ${formData.travelDate || "upcoming dates"} for ${
-      formData.travelers
-    }. Message: ${formData.message || "Please provide package details."}`
+    }travel from ${formData.arrivalDate || "Arrival"} to ${
+      formData.departureDate || "Departure"
+    } for ${formData.travelers} with a ${formData.guidingService} (${formData.guideLanguage} guide). Message: ${formData.message || "Please provide package details."}`
   )}`;
 
   return (
@@ -282,12 +289,19 @@ function ContactPageContent() {
                       {formData.interestedTour}
                     </div>
                   )}
-                  {formData.travelDate && (
+                  {(formData.arrivalDate || formData.departureDate) && (
                     <div>
-                      <span className="font-medium text-slate-700">Date:</span>{" "}
-                      {formData.travelDate} ({formData.travelers})
+                      <span className="font-medium text-slate-700">Dates:</span>{" "}
+                      {formData.arrivalDate ? `Arrival: ${formData.arrivalDate}` : ""}
+                      {formData.arrivalDate && formData.departureDate ? " — " : ""}
+                      {formData.departureDate ? `Departure: ${formData.departureDate}` : ""}{" "}
+                      ({formData.travelers})
                     </div>
                   )}
+                  <div>
+                    <span className="font-medium text-slate-700">Guide Service:</span>{" "}
+                    {formData.guidingService} ({formData.guideLanguage} guide)
+                  </div>
                 </div>
 
                 <div className="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
@@ -307,8 +321,11 @@ function ContactPageContent() {
                         name: "",
                         email: "",
                         phone: "",
-                        travelDate: "",
+                        arrivalDate: "",
+                        departureDate: "",
                         travelers: "2 adults",
+                        guidingService: "Professional Driver-Guide",
+                        guideLanguage: "English",
                         interestedTour: "",
                         message: "",
                       });
@@ -428,7 +445,8 @@ function ContactPageContent() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                  {/* Phone & Travelers Row */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     {/* Phone/WhatsApp */}
                     <div>
                       <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
@@ -442,27 +460,6 @@ function ContactPageContent() {
                         onChange={(e) =>
                           setFormData({ ...formData, phone: e.target.value })
                         }
-                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A] disabled:opacity-60 disabled:cursor-not-allowed"
-                      />
-                    </div>
-
-                    {/* Travel Date */}
-                    <div>
-                      <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
-                        {t.contactPage.dateLabel}
-                      </label>
-                      <input
-                        type="date"
-                        min={minDate}
-                        disabled={isSubmitting}
-                        value={formData.travelDate}
-                        onChange={(e) => {
-                          const val = e.target.value;
-                          if (minDate && val && val < minDate) {
-                            return;
-                          }
-                          setFormData({ ...formData, travelDate: val });
-                        }}
                         className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A] disabled:opacity-60 disabled:cursor-not-allowed"
                       />
                     </div>
@@ -488,6 +485,61 @@ function ContactPageContent() {
                           {t.search.largeGroup}
                         </option>
                       </select>
+                    </div>
+                  </div>
+
+                  {/* Arrival Date & Departure Date Row */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    {/* Arrival Date */}
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center justify-between">
+                        <span>{t.contactPage.arrivalDateLabel}</span>
+                        <span className="text-[11px] font-normal text-slate-400">Flight In</span>
+                      </label>
+                      <input
+                        type="date"
+                        min={minDate}
+                        disabled={isSubmitting}
+                        value={formData.arrivalDate}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          if (minDate && val && val < minDate) {
+                            return;
+                          }
+                          setFormData((prev) => ({
+                            ...prev,
+                            arrivalDate: val,
+                            departureDate:
+                              prev.departureDate && val && prev.departureDate < val
+                                ? val
+                                : prev.departureDate,
+                          }));
+                        }}
+                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A] disabled:opacity-60 disabled:cursor-not-allowed"
+                      />
+                    </div>
+
+                    {/* Departure Date */}
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center justify-between">
+                        <span>{t.contactPage.departureDateLabel}</span>
+                        <span className="text-[11px] font-normal text-slate-400">Flight Out</span>
+                      </label>
+                      <input
+                        type="date"
+                        min={formData.arrivalDate || minDate}
+                        disabled={isSubmitting}
+                        value={formData.departureDate}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          const effectiveMin = formData.arrivalDate || minDate;
+                          if (effectiveMin && val && val < effectiveMin) {
+                            return;
+                          }
+                          setFormData({ ...formData, departureDate: val });
+                        }}
+                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A] disabled:opacity-60 disabled:cursor-not-allowed"
+                      />
                     </div>
                   </div>
 
@@ -527,6 +579,65 @@ function ContactPageContent() {
                     </select>
                   </div>
 
+                  {/* Preferred Guiding Service & Language Row */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    {/* Preferred Guiding Service */}
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center justify-between">
+                        <span>Preferred Guiding Service *</span>
+                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#087EA4]/10 text-[#087EA4]">
+                          Option 1 Default
+                        </span>
+                      </label>
+                      <select
+                        disabled={isSubmitting}
+                        value={formData.guidingService}
+                        onChange={(e) =>
+                          setFormData({ ...formData, guidingService: e.target.value })
+                        }
+                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#07345A] disabled:opacity-60 disabled:cursor-not-allowed"
+                      >
+                        <option value="Professional Driver-Guide">
+                          Professional Driver-Guide (Suggested)
+                        </option>
+                        <option value="Private Chauffeur + Professional Driver">
+                          Private Chauffeur + Professional Driver (Separate)
+                        </option>
+                        <option value="Not Sure — Recommend the Best Option">
+                          Not Sure — Recommend the Best Option
+                        </option>
+                      </select>
+                    </div>
+
+                    {/* Preferred Tour Guide Language */}
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center justify-between">
+                        <span>Preferred Guide Language *</span>
+                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#087EA4]/10 text-[#087EA4]">
+                          English Default
+                        </span>
+                      </label>
+                      <select
+                        disabled={isSubmitting}
+                        value={formData.guideLanguage}
+                        onChange={(e) =>
+                          setFormData({ ...formData, guideLanguage: e.target.value })
+                        }
+                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#07345A] disabled:opacity-60 disabled:cursor-not-allowed"
+                      >
+                        <option value="English">English</option>
+                        <option value="German">German</option>
+                        <option value="French">French</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="Italian">Italian</option>
+                        <option value="Chinese (Mandarin)">Chinese (Mandarin)</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Russian">Russian</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+
                   {/* Message */}
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
@@ -545,24 +656,45 @@ function ContactPageContent() {
                     />
                   </div>
 
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#07345A] hover:bg-[#032743] text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="w-4 h-4 text-[#F6A623] animate-spin" />
-                        <span>Sending Inquiry...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4 text-[#F6A623] rtl-flip" />
-                        <span>{t.contactPage.submitBtn}</span>
-                      </>
-                    )}
-                  </button>
+                  {/* 3D Interactive Submit Button */}
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className={`relative group overflow-hidden w-full sm:w-auto min-w-[220px] px-8 py-4 rounded-2xl font-bold text-sm sm:text-base flex items-center justify-center gap-3 transition-all duration-300 cursor-pointer disabled:cursor-not-allowed select-none ${
+                        isSubmitting
+                          ? "bg-gradient-to-r from-[#07345A] via-[#087EA4] to-[#07345A] text-white shadow-xl scale-98 animate-button-3d"
+                          : "bg-[#07345A] hover:bg-[#032743] text-white shadow-md hover:shadow-2xl hover:-translate-y-1 active:translate-y-0.5 active:shadow-md"
+                      }`}
+                      style={{
+                        transformStyle: "preserve-3d",
+                        perspective: "1000px",
+                      }}
+                    >
+                      {/* Subtle glossy 3D top shine */}
+                      <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/15 to-transparent rounded-t-2xl pointer-events-none" />
+
+                      {isSubmitting ? (
+                        <>
+                          {/* 3D Paper Plane Launching */}
+                          <div className="relative flex items-center justify-center w-6 h-6">
+                            <div className="absolute -left-3 top-1/2 -translate-y-1/2 h-[2px] bg-gradient-to-l from-[#F6A623] to-transparent rounded-full animate-[vaporTrail_1.5s_infinite]" />
+                            <Send className="w-5 h-5 text-[#F6A623] animate-plane-3d filter drop-shadow-[0_4px_6px_rgba(0,0,0,0.4)]" />
+                          </div>
+                          <span className="tracking-wide">
+                            Dispatching Your Plan...
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <div className="relative flex items-center justify-center w-5 h-5 transition-transform duration-300 group-hover:scale-115 group-hover:rotate-12 group-hover:translate-x-0.5">
+                            <Send className="w-4 h-4 text-[#F6A623] rtl-flip filter drop-shadow" />
+                          </div>
+                          <span>{t.contactPage.submitBtn}</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </form>
               </div>
             )}

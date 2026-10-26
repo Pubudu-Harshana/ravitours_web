@@ -3,6 +3,10 @@ export interface InquiryEmailData {
   email: string;
   phone?: string;
   travelDate?: string;
+  arrivalDate?: string;
+  departureDate?: string;
+  guidingService?: string;
+  guideLanguage?: string;
   travelers?: string;
   interestedTour?: string;
   message: string;
@@ -28,7 +32,18 @@ export function renderInquiryEmailHtml(data: InquiryEmailData): string {
   const safeName = escapeHtml(data.name);
   const safeEmail = escapeHtml(data.email);
   const safePhone = data.phone ? escapeHtml(data.phone) : "Not provided";
-  const safeDate = data.travelDate ? escapeHtml(data.travelDate) : "Flexible / Not specified";
+  const safeArrival = data.arrivalDate
+    ? escapeHtml(data.arrivalDate)
+    : data.travelDate
+    ? escapeHtml(data.travelDate)
+    : "Flexible / Not specified";
+  const safeDeparture = data.departureDate
+    ? escapeHtml(data.departureDate)
+    : "Flexible / Not specified";
+  const safeGuiding = data.guidingService
+    ? escapeHtml(data.guidingService)
+    : "Professional Driver-Guide";
+  const safeLanguage = data.guideLanguage ? escapeHtml(data.guideLanguage) : "English";
   const safeTravelers = data.travelers ? escapeHtml(data.travelers) : "Not specified";
   const safeTour = data.interestedTour ? escapeHtml(data.interestedTour) : "General Inquiry / Tailor-Made";
   const safeMessage = escapeHtml(data.message).replace(/\n/g, "<br/>");
@@ -147,10 +162,18 @@ export function renderInquiryEmailHtml(data: InquiryEmailData): string {
                 </tr>
                 <tr>
                   <td width="35%" style="padding: 12px 16px; font-size: 13px; color: #64748b; border-bottom: 1px solid #f1f5f9;">
-                    Travel Date:
+                    Arrival Date:
                   </td>
                   <td width="65%" style="padding: 12px 16px; font-size: 14px; font-weight: 600; color: #0f172a; border-bottom: 1px solid #f1f5f9;">
-                    ${safeDate}
+                    ${safeArrival}
+                  </td>
+                </tr>
+                <tr>
+                  <td width="35%" style="padding: 12px 16px; font-size: 13px; color: #64748b; border-bottom: 1px solid #f1f5f9;">
+                    Departure Date:
+                  </td>
+                  <td width="65%" style="padding: 12px 16px; font-size: 14px; font-weight: 600; color: #0f172a; border-bottom: 1px solid #f1f5f9;">
+                    ${safeDeparture}
                   </td>
                 </tr>
                 <tr>
@@ -162,11 +185,19 @@ export function renderInquiryEmailHtml(data: InquiryEmailData): string {
                   </td>
                 </tr>
                 <tr>
-                  <td style="padding: 12px 16px; font-size: 13px; color: #64748b;">
+                  <td style="padding: 12px 16px; font-size: 13px; color: #64748b; border-bottom: 1px solid #f1f5f9;">
                     Interest / Package:
                   </td>
-                  <td style="padding: 12px 16px; font-size: 14px; font-weight: 600; color: #07345A;">
+                  <td style="padding: 12px 16px; font-size: 14px; font-weight: 600; color: #07345A; border-bottom: 1px solid #f1f5f9;">
                     ${safeTour}
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px 16px; font-size: 13px; color: #64748b;">
+                    Guiding Service:
+                  </td>
+                  <td style="padding: 12px 16px; font-size: 14px; font-weight: 600; color: #0f172a;">
+                    ${safeGuiding} (${safeLanguage} guide)
                   </td>
                 </tr>
               </table>
@@ -252,7 +283,9 @@ TRAVELER DETAILS:
 - Phone/WhatsApp: ${data.phone || "Not provided"}
 
 TRIP DETAILS:
-- Approximate Travel Date: ${data.travelDate || "Flexible / Not specified"}
+- Arrival Date: ${data.arrivalDate || data.travelDate || "Flexible / Not specified"}
+- Departure Date: ${data.departureDate || "Flexible / Not specified"}
+- Guiding Service: ${data.guidingService || "Professional Driver-Guide"} (${data.guideLanguage || "English"} guide)
 - Group Size: ${data.travelers || "Not specified"}
 - Tour / Service: ${data.interestedTour || "General Inquiry / Tailor-Made"}
 

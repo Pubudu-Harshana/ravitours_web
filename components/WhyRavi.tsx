@@ -60,7 +60,7 @@ export default function WhyRavi() {
               </span>
             </h2>
             <p className="text-sm text-slate-300 font-light leading-relaxed max-w-md pt-1">
-              Your safety, comfort, and authentic Sri Lankan memories are our top priority from airport touchdown to farewell.
+              {t.whyRavi.description}
             </p>
           </div>
 
@@ -71,9 +71,9 @@ export default function WhyRavi() {
               return (
                 <div
                   key={idx}
-                  className="bg-white/95 backdrop-blur-md rounded-2xl p-5 shadow-lg border border-white/30 hover:bg-white hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group"
+                  className="bg-white/95 backdrop-blur-md rounded-2xl p-5 shadow-lg border border-white/30 hover:bg-white hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-start"
                 >
-                  <div className="w-11 h-11 rounded-xl bg-[#087EA4]/15 text-[#087EA4] flex items-center justify-center mb-3.5 group-hover:bg-[#F6A623] group-hover:text-[#07345A] transition-colors duration-200">
+                  <div className="w-11 h-11 rounded-xl bg-[#087EA4]/15 text-[#087EA4] flex items-center justify-center mb-3.5 group-hover:bg-[#F6A623] group-hover:text-[#07345A] transition-colors duration-200 shrink-0">
                     <Icon className="w-5 h-5" />
                   </div>
                   <h3 className="text-sm font-bold text-[#07345A] mb-1.5 leading-snug">

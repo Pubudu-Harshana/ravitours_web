@@ -49,6 +49,7 @@ export interface TranslationDictionary {
     badge: string;
     titleMain: string;
     titleAccent: string;
+    description: string;
     card1Title: string;
     card1Desc: string;
     card2Title: string;
@@ -168,6 +169,8 @@ export interface TranslationDictionary {
     phoneLabel: string;
     phonePlaceholder: string;
     dateLabel: string;
+    arrivalDateLabel: string;
+    departureDateLabel: string;
     travelersLabel: string;
     interestedTourLabel: string;
     selectTourPlaceholder: string;
@@ -247,14 +250,16 @@ export const translations: Record<Language, TranslationDictionary> = {
       badge: "WHY TRAVEL WITH RAVI?",
       titleMain: "More Than a Trip.",
       titleAccent: "It's Your Sri Lankan Experience.",
+      description:
+        "Your comfort, safety, and satisfaction come first. From airport arrival to your final departure, we’re dedicated to making every moment of your Sri Lankan journey comfortable, memorable, and stress-free.",
       card1Title: "Personalized Tours",
-      card1Desc: "Trips designed around your interests, time and budget.",
-      card2Title: "Private Transportation",
-      card2Desc: "Comfortable vehicles and experienced local drivers.",
-      card3Title: "Authentic Experiences",
-      card3Desc: "Discover Sri Lanka beyond the usual tourist routes.",
-      card4Title: "Local Support",
-      card4Desc: "From arrival to departure, we're here to help.",
+      card1Desc: "Every journey is tailored to your interests, travel style, schedule, and budget.",
+      card2Title: "Private Chauffeur Services",
+      card2Desc: "Travel comfortably with reliable private transportation and experienced local drivers.",
+      card3Title: "Authentic Local Experiences",
+      card3Desc: "Discover Sri Lanka’s iconic destinations, hidden gems, rich culture, and local traditions.",
+      card4Title: "Dedicated Customer Support",
+      card4Desc: "Enjoy friendly, attentive assistance throughout your journey, from arrival to departure.",
     },
     tours: {
       badge: "POPULAR TOUR PACKAGES",
@@ -336,17 +341,17 @@ export const translations: Record<Language, TranslationDictionary> = {
     },
     footer: {
       brandDesc:
-        "Discover Sri Lanka with a trusted local travel partner. Personalized private tours, experienced drivers, and authentic journeys across the island.",
+        "Discover the beauty of Sri Lanka with personalized private tours, reliable chauffeur services, and unforgettable local experiences.",
       quickLinks: "Quick Links",
-      ourServices: "Our Services",
-      contactUs: "Contact Us",
+      ourServices: "Travel Services",
+      contactUs: "Get In Touch",
       rightsReserved: "All rights reserved.",
-      tagline: "Explore • Experience • Repeat",
-      serviceTours: "Sri Lanka Tours",
+      tagline: "Explore · Experience · Discover",
+      serviceTours: "Private Sri Lanka Tours",
       serviceTransfers: "Airport Transfers (CMB)",
       serviceHotels: "Hotel & Villa Bookings",
-      serviceChauffeur: "Private Chauffeur Transport",
-      serviceItineraries: "Custom Tailored Itineraries",
+      serviceChauffeur: "Private Chauffeur Services",
+      serviceItineraries: "Customized Tour Itineraries",
     },
     contactPage: {
       badge: "GET IN TOUCH",
@@ -371,6 +376,8 @@ export const translations: Record<Language, TranslationDictionary> = {
       phoneLabel: "Phone / WhatsApp",
       phonePlaceholder: "e.g. +44 7911 123456",
       dateLabel: "Approximate Travel Date",
+      arrivalDateLabel: "Arrival Date",
+      departureDateLabel: "Departure Date",
       travelersLabel: "Travelers",
       interestedTourLabel: "Tour of Interest (Optional)",
       selectTourPlaceholder: "Select a package or custom itinerary",
@@ -393,8 +400,8 @@ export const translations: Record<Language, TranslationDictionary> = {
       title: "Sri Lanka Travel Experts Who Care",
       subtitle: "Born from a genuine passion for showcasing Sri Lanka's breathtaking nature, timeless heritage, and warm island hospitality.",
       whyUsBadge: "OUR CORE VALUES",
-      whyUsTitle: "Why Travelers Trust Ravi Tours",
-      whyUsSubtitle: "Every journey is crafted with safety, integrity, and authentic local discovery.",
+      whyUsTitle: "Why Travelers Trust Ravi Tours & Travels",
+      whyUsSubtitle: "Your comfort, safety, and satisfaction guide every journey we create.",
     },
   },
 
@@ -449,14 +456,16 @@ export const translations: Record<Language, TranslationDictionary> = {
       badge: "لماذا تختار رافي تورز؟",
       titleMain: "أكثر من مجرد رحلة.",
       titleAccent: "إنها تجربة سريلانكية متكاملة.",
-      card1Title: "جولات مخصصة لك",
-      card1Desc: "رحلات مصممة خصيصاً وفق اهتماماتك وميزانيتك ووقتك.",
-      card2Title: "مواصلات خاصة مريحة",
-      card2Desc: "سيارات حديثة ومريحة مع سائقين محليين ذوي خبرة.",
+      description:
+        "راحتك وسلامتك ورضاك هي أولويتنا الأولى. من وصولك إلى المطار وحتى مغادرتك، نحن ملتزمون بجعل كل لحظة من رحلتك مريحة ولا تُنسى وخالية من التوتر.",
+      card1Title: "جولات سياحية مخصصة",
+      card1Desc: "رحلات مصممة بعناية لتناسب اهتماماتك وأسلوب سفرك وجدولك وميزانيتك.",
+      card2Title: "خدمات السائق الخاص",
+      card2Desc: "سافر براحة تامة مع وسائل نقل خاصة موثوقة وسائقين محليين ذوي خبرة.",
       card3Title: "تجارب محلية أصيلة",
-      card3Desc: "اكتشف سريلانكا الحقيقية بعيداً عن المسارات التقليدية.",
-      card4Title: "دعم متواصل 24/7",
-      card4Desc: "نحن معك خطوة بخطوة من لحظة وصولك وحتى مغادرتك.",
+      card3Desc: "اكتشف معالم سريلانكا الشهيرة، وجواهرها الخفية، وثقافتها العريقة وتقاليدها.",
+      card4Title: "دعم مخصص للعملاء",
+      card4Desc: "استمتع بمساعدة ودية واهتمام متواصل طوال رحلتك، من لحظة الوصول حتى المغادرة.",
     },
     tours: {
       badge: "باقات الجولات الأكثر طلباً",
@@ -572,6 +581,8 @@ export const translations: Record<Language, TranslationDictionary> = {
       phoneLabel: "الهاتف / الواتساب",
       phonePlaceholder: "مثال: +966 50 123 4567",
       dateLabel: "تاريخ السفر التقريبي",
+      arrivalDateLabel: "تاريخ الوصول",
+      departureDateLabel: "تاريخ المغادرة",
       travelersLabel: "عدد المسافرين",
       interestedTourLabel: "الجولة المطلوبة (اختياري)",
       selectTourPlaceholder: "اختر باقة أو برنامجاً مخصصاً",
@@ -594,8 +605,8 @@ export const translations: Record<Language, TranslationDictionary> = {
       title: "خبراء سفر سريلانكيون يهتمون بكل التفاصيل",
       subtitle: "شغفنا هو مشاركة جمال سريلانكا الطبيعي وتراثها العريق وحسن ضيافتها مع زوارنا الكرام.",
       whyUsBadge: "قيمنا الأساسية",
-      whyUsTitle: "لماذا يثق المسافرون في رافي تورز؟",
-      whyUsSubtitle: "كل رحلة نصنعها تقوم على الأمان والشفافية والتجربة المحلية الأصيلة.",
+      whyUsTitle: "لماذا يثق المسافرون في رافي تورز آند ترافيلز؟",
+      whyUsSubtitle: "راحتكم وأمانكم ورضاكم هي دليلنا في كل رحلة نصنعها.",
     },
   },
 
@@ -650,14 +661,16 @@ export const translations: Record<Language, TranslationDictionary> = {
       badge: "WARUM MIT RAVI REISEN?",
       titleMain: "Mehr als eine Reise.",
       titleAccent: "Ihr ganz persönliches Sri Lanka Erlebnis.",
+      description:
+        "Ihr Komfort, Ihre Sicherheit und Ihre Zufriedenheit stehen an erster Stelle. Von der Ankunft am Flughafen bis zu Ihrer Abreise sorgen wir für eine unvergessliche und stressfreie Reise.",
       card1Title: "Individuelle Touren",
-      card1Desc: "Maßgeschneidert nach Ihren Interessen, Ihrer Zeit und Ihrem Budget.",
-      card2Title: "Privater Transport",
-      card2Desc: "Komfortable Fahrzeuge und erfahrene einheimische Fahrer.",
+      card1Desc: "Jede Reise wird auf Ihre Interessen, Ihren Reisestil, Zeitplan und Ihr Budget abgestimmt.",
+      card2Title: "Privater Chauffeur-Service",
+      card2Desc: "Reisen Sie bequem mit zuverlässigem privatem Transport und erfahrenen lokalen Fahrern.",
       card3Title: "Authentische Erlebnisse",
-      card3Desc: "Sri Lanka abseits der typischen Touristenpfade erleben.",
-      card4Title: "Lokaler Support",
-      card4Desc: "Von Ihrer Ankunft bis zur Abreise stehen wir Ihnen zur Seite.",
+      card3Desc: "Entdecken Sie Sri Lankas berühmteste Ziele, Geheimtipps, reiche Kultur und lokale Traditionen.",
+      card4Title: "Engagierter Kundenservice",
+      card4Desc: "Genießen Sie freundliche, aufmerksame Betreuung während Ihrer gesamten Reise von Ankunft bis Abflug.",
     },
     tours: {
       badge: "BELIEBTE TOUR-PAKETE",
@@ -773,6 +786,8 @@ export const translations: Record<Language, TranslationDictionary> = {
       phoneLabel: "Telefon / WhatsApp",
       phonePlaceholder: "z.B. +49 170 1234567",
       dateLabel: "Ungefähres Reisedatum",
+      arrivalDateLabel: "Anreisedatum",
+      departureDateLabel: "Abreisedatum",
       travelersLabel: "Anzahl Reisende",
       interestedTourLabel: "Gewünschte Tour (optional)",
       selectTourPlaceholder: "Paket oder individuelle Route wählen",
@@ -795,8 +810,8 @@ export const translations: Record<Language, TranslationDictionary> = {
       title: "Sri Lanka Reise-Experten mit Herz",
       subtitle: "Aus wahrer Leidenschaft entstanden, die atemberaubende Natur, reiche Kultur und herzliche Gastfreundschaft Sri Lankas zu teilen.",
       whyUsBadge: "UNSERE WERTE",
-      whyUsTitle: "Warum Reisende Ravi Tours vertrauen",
-      whyUsSubtitle: "Jede Reise basiert auf Sicherheit, Transparenz und authentischen Begegnungen.",
+      whyUsTitle: "Warum Reisende Ravi Tours & Travels vertrauen",
+      whyUsSubtitle: "Ihr Komfort, Ihre Sicherheit und Ihre Zufriedenheit leiten jede Reise, die wir gestalten.",
     },
   },
 
@@ -851,14 +866,16 @@ export const translations: Record<Language, TranslationDictionary> = {
       badge: "POURQUOI VOYAGER AVEC RAVI ?",
       titleMain: "Bien plus qu'un voyage.",
       titleAccent: "Votre expérience sri-lankaise sur mesure.",
+      description:
+        "Votre confort, votre sécurité et votre satisfaction passent avant tout. De votre arrivée à l'aéroport à votre départ, nous veillons à ce que votre voyage soit confortable, mémorable et sans stress.",
       card1Title: "Circuits Personnalisés",
-      card1Desc: "Voyages conçus selon vos envies, votre rythme et votre budget.",
-      card2Title: "Transport Privé",
-      card2Desc: "Véhicules grand confort et chauffeurs locaux expérimentés.",
-      card3Title: "Expériences Authentiques",
-      card3Desc: "Découvrez le vrai Sri Lanka hors des sentiers battus.",
-      card4Title: "Assistance Locale",
-      card4Desc: "De votre arrivée à votre départ, nous sommes toujours à vos côtés.",
+      card1Desc: "Chaque voyage est conçu sur mesure selon vos envies, votre style, votre calendrier et votre budget.",
+      card2Title: "Services de Chauffeur Privé",
+      card2Desc: "Voyagez confortablement avec un transport privé fiable et des chauffeurs locaux expérimentés.",
+      card3Title: "Expériences Locales Authentiques",
+      card3Desc: "Découvrez les destinations incontournables, les trésors cachés, la culture et les traditions du Sri Lanka.",
+      card4Title: "Assistance Client Dédiée",
+      card4Desc: "Bénéficiez d'une assistance attentionnée et chaleureuse du début à la fin de votre séjour.",
     },
     tours: {
       badge: "CIRCUITS POPULAIRES",
@@ -974,6 +991,8 @@ export const translations: Record<Language, TranslationDictionary> = {
       phoneLabel: "Téléphone / WhatsApp",
       phonePlaceholder: "ex: +33 6 12 34 56 78",
       dateLabel: "Date de voyage approximative",
+      arrivalDateLabel: "Date d'arrivée",
+      departureDateLabel: "Date de départ",
       travelersLabel: "Nombre de voyageurs",
       interestedTourLabel: "Circuit souhaité (optionnel)",
       selectTourPlaceholder: "Sélectionnez un circuit ou sur mesure",
@@ -996,8 +1015,8 @@ export const translations: Record<Language, TranslationDictionary> = {
       title: "Des spécialistes passionnés du Sri Lanka",
       subtitle: "Nés d'une véritable passion pour faire découvrir la nature généreuse, le patrimoine et l'accueil chaleureux de notre île.",
       whyUsBadge: "NOS VALEURS FONDAMENTALES",
-      whyUsTitle: "Pourquoi les voyageurs nous font confiance",
-      whyUsSubtitle: "Chaque périple est conçu autour de la sécurité, de la transparence et de l'authenticité.",
+      whyUsTitle: "Pourquoi les voyageurs font confiance à Ravi Tours & Travels",
+      whyUsSubtitle: "Votre confort, votre sécurité et votre satisfaction guident chaque voyage que nous créons.",
     },
   },
 };

@@ -399,7 +399,7 @@ export default async function TourDetailPage({ params }: Props) {
                 <div className="flex items-center justify-between">
                   <span className="text-slate-500">Guide</span>
                   <span className="font-semibold text-slate-900">
-                    English Chauffeur Guide
+                    Professional Driver/Guide
                   </span>
                 </div>
                 <div className="flex items-center justify-between">

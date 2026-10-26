@@ -156,6 +156,38 @@ export default function TravelerGallery({
         : language === "fr"
         ? "100% Photos Réelles"
         : "100% Verified Guests",
+    pillar1:
+      language === "ar"
+        ? "تجارب حقيقية للضيوف"
+        : language === "de"
+        ? "Echte Gästeerlebnisse"
+        : language === "fr"
+        ? "Expériences Réelles"
+        : "Real Guest Experiences",
+    pillar2:
+      language === "ar"
+        ? "جولات مع سائق خاص"
+        : language === "de"
+        ? "Private Chauffeur-Touren"
+        : language === "fr"
+        ? "Circuits Chauffeur Privé"
+        : "Private Chauffeur Tours",
+    pillar3:
+      language === "ar"
+        ? "برامج مصممة خصيصاً"
+        : language === "de"
+        ? "Maßgeschneiderte Routen"
+        : language === "fr"
+        ? "Itinéraires Sur Mesure"
+        : "Tailor-Made Itineraries",
+    pillar4:
+      language === "ar"
+        ? "خدمة عملاء مخصصة"
+        : language === "de"
+        ? "Engagierte Gästebetreuung"
+        : language === "fr"
+        ? "Service Client Dédié"
+        : "Dedicated Customer Care",
     categories: {
       all:
         language === "ar"
@@ -200,12 +232,12 @@ export default function TravelerGallery({
     },
     showAllBtn:
       language === "ar"
-        ? `استكشف جميع الصور (${filteredPhotos.length})`
+        ? "استكشف جميع الصور"
         : language === "de"
-        ? `Alle ${filteredPhotos.length} Momente entdecken`
+        ? "Alle Momente entdecken"
         : language === "fr"
-        ? `Voir toutes les ${filteredPhotos.length} photos`
-        : `Explore All ${filteredPhotos.length} Moments`,
+        ? "Voir tous les moments"
+        : "Explore All Moments",
     showLessBtn:
       language === "ar"
         ? "عرض أقل"
@@ -248,16 +280,7 @@ export default function TravelerGallery({
         : "Plan Your Tailored Trip",
   };
 
-  // Category counts
-  const categoryCounts = useMemo(() => {
-    return {
-      all: travelerPhotos.length,
-      welcomes: travelerPhotos.filter((p) => p.category === "welcomes").length,
-      heritage: travelerPhotos.filter((p) => p.category === "heritage").length,
-      highlands: travelerPhotos.filter((p) => p.category === "highlands").length,
-      coastal: travelerPhotos.filter((p) => p.category === "coastal").length,
-    };
-  }, []);
+
 
   const categories: { key: GalleryCategory; label: string; icon: any }[] = [
     { key: "all", label: labels.categories.all, icon: Sparkles },
@@ -303,29 +326,29 @@ export default function TravelerGallery({
           </p>
 
           {/* Key Social Proof Pillars Bar */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 mt-8 max-w-2xl mx-auto text-left">
-            <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3.5 py-2 rounded-xl border border-slate-200/80 shadow-xs">
-              <ShieldCheck className="w-4 h-4 text-[#087EA4] shrink-0" />
-              <span className="text-xs font-semibold text-slate-800">
-                100% Unedited
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 mt-8 max-w-3xl sm:max-w-4xl mx-auto text-left">
+            <div className="flex items-center gap-2 bg-white/95 backdrop-blur-sm px-3.5 py-2.5 rounded-xl border border-slate-200/90 shadow-xs hover:border-[#087EA4]/40 hover:shadow-sm transition-all">
+              <Camera className="w-4 h-4 text-[#087EA4] shrink-0" />
+              <span className="text-xs font-semibold text-slate-800 leading-tight">
+                {labels.pillar1}
               </span>
             </div>
-            <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3.5 py-2 rounded-xl border border-slate-200/80 shadow-xs">
+            <div className="flex items-center gap-2 bg-white/95 backdrop-blur-sm px-3.5 py-2.5 rounded-xl border border-slate-200/90 shadow-xs hover:border-[#F6A623]/40 hover:shadow-sm transition-all">
               <Users className="w-4 h-4 text-[#F6A623] shrink-0" />
-              <span className="text-xs font-semibold text-slate-800">
-                Chauffeur Guided
+              <span className="text-xs font-semibold text-slate-800 leading-tight">
+                {labels.pillar2}
               </span>
             </div>
-            <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3.5 py-2 rounded-xl border border-slate-200/80 shadow-xs">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span className="text-xs font-semibold text-slate-800">
-                500+ Happy Guests
+            <div className="flex items-center gap-2 bg-white/95 backdrop-blur-sm px-3.5 py-2.5 rounded-xl border border-slate-200/90 shadow-xs hover:border-emerald-500/40 hover:shadow-sm transition-all">
+              <Compass className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span className="text-xs font-semibold text-slate-800 leading-tight">
+                {labels.pillar3}
               </span>
             </div>
-            <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-3.5 py-2 rounded-xl border border-slate-200/80 shadow-xs">
-              <MapPin className="w-4 h-4 text-[#087EA4] shrink-0" />
-              <span className="text-xs font-semibold text-slate-800">
-                Island-Wide Stops
+            <div className="flex items-center gap-2 bg-white/95 backdrop-blur-sm px-3.5 py-2.5 rounded-xl border border-slate-200/90 shadow-xs hover:border-[#07345A]/40 hover:shadow-sm transition-all">
+              <ShieldCheck className="w-4 h-4 text-[#07345A] shrink-0" />
+              <span className="text-xs font-semibold text-slate-800 leading-tight">
+                {labels.pillar4}
               </span>
             </div>
           </div>
@@ -336,7 +359,6 @@ export default function TravelerGallery({
           {categories.map((cat) => {
             const Icon = cat.icon;
             const isActive = selectedCategory === cat.key;
-            const count = categoryCounts[cat.key];
 
             return (
               <button
@@ -359,15 +381,6 @@ export default function TravelerGallery({
                   }`}
                 />
                 <span>{cat.label}</span>
-                <span
-                  className={`text-[10px] sm:text-xs font-semibold px-2 py-0.5 rounded-full ${
-                    isActive
-                      ? "bg-white/20 text-white"
-                      : "bg-slate-100 text-slate-500 group-hover:bg-slate-200"
-                  }`}
-                >
-                  {count}
-                </span>
               </button>
             );
           })}
@@ -462,9 +475,6 @@ export default function TravelerGallery({
             >
               <Camera className="w-4 h-4 text-[#F6A623] group-hover:scale-110 transition-transform" />
               <span>{showAll ? labels.showLessBtn : labels.showAllBtn}</span>
-              <span className="px-2 py-0.5 rounded-full bg-slate-100 text-[#07345A] text-xs font-bold group-hover:bg-white/20 group-hover:text-white transition-colors">
-                {travelerPhotos.length}
-              </span>
             </button>
           </div>
         )}

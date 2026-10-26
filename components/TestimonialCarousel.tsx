@@ -91,13 +91,6 @@ export default function TestimonialCarousel({
     }
     touchStartX.current = null;
   };
-
-  const startIdx = currentPage * itemsPerPage + 1;
-  const endIdx = Math.min(
-    (currentPage + 1) * itemsPerPage,
-    testimonials.length
-  );
-
   return (
     <div
       className="relative"
@@ -111,13 +104,8 @@ export default function TestimonialCarousel({
         <div className="flex items-center gap-2">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#07345A]/5 text-[#07345A] border border-slate-200">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            {testimonials.length} Verified Reviews
+            Verified Traveler Reviews
           </span>
-          {viewMode === "carousel" && (
-            <span className="text-xs text-slate-500 font-medium hidden sm:inline">
-              Showing {startIdx}–{endIdx} of {testimonials.length}
-            </span>
-          )}
         </div>
 
         <div className="flex items-center gap-2">

@@ -54,18 +54,18 @@ export const tours: TourPackage[] = [
       "Our 7-Day Sri Lanka Highlights tour offers the ideal introduction to this tear-shaped paradise. Designed for first-time visitors seeking a balanced mix of cultural monuments, scenic mountain landscapes, world-renowned tea estates, and relaxing coastal moments with private chauffeur-driven comfort.",
     included: [
       "Air-conditioned private modern vehicle throughout the tour",
-      "Dedicated English-speaking private driver & local guide",
+      "Professional English-speaking private driver/guide",
       "Airport pick-up and drop-off transfers",
       "Fuel, highway tolls, parking fees, and driver accommodation",
-      "Reserved 1st or 2nd class scenic train tickets (Kandy to Ella)",
       "Daily bottled mineral water during travel",
-      "Assistance with site admissions & activity scheduling",
+      "Luggage transfer & assistance with activity scheduling",
     ],
     notIncluded: [
+      "Sightseeing, monument & national park entrance tickets (can be arranged upon request)",
+      "Scenic train tickets (can be arranged upon advance request)",
       "International flights and Sri Lanka ETA visa fees",
-      "Monument and national park entrance tickets (unless pre-requested)",
-      "Personal expenses, laundry, and beverage charges",
-      "Gratuities for driver, guide, and hotel staff",
+      "Personal expenses, meals, and beverages",
+      "Gratuities for driver/guide and hotel staff",
     ],
     itinerary: [
       {
@@ -125,7 +125,7 @@ export const tours: TourPackage[] = [
       },
       {
         question: "What vehicle is provided for this tour?",
-        answer: "We provide immaculate, modern, air-conditioned private vehicles matching your party size—comfortable sedans for couples, spacious luxury vans (Toyota KDH/Commuter) for families, or mini-coaches for groups.",
+        answer: "We provide immaculate, modern, air-conditioned private vehicles matching your party size—comfortable sedans for couples, spacious luxury vans for families, or mini-coaches for groups.",
       },
       {
         question: "How do we book and what are the payment terms?",
@@ -162,17 +162,18 @@ export const tours: TourPackage[] = [
     overview:
       "A deep dive into Sri Lanka's golden age. From the ancient reservoirs and mammoth stupas of Anuradhapura to the palace carvings of Polonnaruwa, the mountain citadel of Sigiriya, and the sacred relic of Kandy.",
     included: [
-      "Dedicated air-conditioned private vehicle and personal driver-guide",
-      "Airport transfers both ways",
-      "All vehicle fuel, tolls, and driver lodging",
-      "Complimentary cold bottled water throughout tours",
+      "Air-conditioned private modern vehicle throughout the tour",
+      "Professional English-speaking private driver/guide",
+      "Airport pick-up and drop-off transfers both ways",
+      "All vehicle fuel, highway tolls, parking fees, and driver accommodation",
+      "Complimentary bottled mineral water throughout the tour",
       "Insider advice on cultural etiquette and optimal visit timings",
     ],
     notIncluded: [
-      "Cultural Triangle site entrance tickets",
-      "Airfares and personal travel insurance",
+      "Cultural Triangle, monument & site entrance tickets (can be arranged upon request)",
+      "International airfares and personal travel insurance",
       "Meals outside of booked accommodation",
-      "Driver tips & discretionary expenses",
+      "Driver/guide gratuities & discretionary personal expenses",
     ],
     itinerary: [
       {
@@ -247,16 +248,19 @@ export const tours: TourPackage[] = [
     overview:
       "Escape the tropical coastal warmth into Sri Lanka's refreshing central highlands. With cool temperatures, misty valleys, rolling tea estates, and dramatic gorges, this escape showcases the highland charm that has captivated travelers for generations.",
     included: [
-      "Air-conditioned private modern car or van with expert driver-guide",
-      "Pre-booked reserved seats for the scenic hill country train",
-      "Ceylon tea plantation and factory tour with tasting",
-      "Bottled water, vehicle fuel, parking, and toll fees",
-      "Door-to-door luggage handling while you enjoy the train journey",
+      "Air-conditioned private modern vehicle throughout the tour",
+      "Professional English-speaking private driver/guide",
+      "Airport pick-up and drop-off transfers",
+      "Vehicle fuel, highway tolls, parking fees, and driver accommodation",
+      "Door-to-door luggage handling while you enjoy the scenic train ride",
+      "Daily bottled mineral water during travel",
     ],
     notIncluded: [
-      "Accommodation (we can arrange recommended hotels or you may book your own)",
+      "Scenic train tickets (can be arranged upon advance request)",
+      "Sightseeing, botanical gardens & tea factory tickets (can be arranged upon request)",
+      "Hotel accommodations (available upon request or self-booked)",
       "Optional adventure sports (ziplining, mountain biking)",
-      "Meals and beverages not specified",
+      "Meals, beverages, and driver/guide gratuities",
     ],
     itinerary: [
       {
@@ -324,16 +328,18 @@ export const tours: TourPackage[] = [
     overview:
       "A coastal retreat along Sri Lanka's sun-blessed southern coastline. Perfect for sun seekers, couples, and ocean lovers wanting relaxation blended with marine wildlife and colonial architecture.",
     included: [
-      "Private dedicated air-conditioned vehicle with licensed driver-guide",
-      "Airport transfers (arrival and departure)",
-      "Madu River boat safari through mangrove islands & cinnamon peeling demo",
-      "Galle Fort walking tour",
+      "Air-conditioned private modern vehicle throughout the tour",
+      "Professional English-speaking private driver/guide",
+      "Airport pick-up and drop-off transfers",
+      "Vehicle fuel, highway tolls, parking fees, and driver accommodation",
+      "Daily bottled mineral water during travel",
       "Full flexibility to stop at scenic viewpoints and coastal cafes",
     ],
     notIncluded: [
-      "Mirissa whale watching boat tickets (can be arranged upon request)",
+      "Sightseeing, Madu River boat safari & whale watching tickets (can be arranged upon request)",
       "Personal water sport activities (scuba, surfing, jet skiing)",
-      "Meals and hotel stays",
+      "Hotel accommodations, meals, and beverages",
+      "Driver/guide gratuities and personal expenses",
     ],
     itinerary: [
       {
@@ -408,15 +414,18 @@ export const tours: TourPackage[] = [
     overview:
       "Created for wildlife lovers and adventure seekers, this expedition takes you through tropical rainforest rivers, open savanna plains teeming with herds of elephants, and the coastal dunes of Yala.",
     included: [
-      "Customized private transport with dedicated driver-guide",
-      "Airport arrival and departure transfers",
-      "Assistance booking private customized 4x4 safari jeeps with local trackers",
-      "Mineral water, vehicle fuel, parking, and highway tolls",
+      "Air-conditioned private modern vehicle throughout the tour",
+      "Professional English-speaking private driver/guide",
+      "Airport pick-up and drop-off transfers",
+      "Vehicle fuel, highway tolls, parking fees, and driver accommodation",
+      "Assistance organizing 4x4 safari jeeps with local trackers & park coordination",
+      "Daily bottled mineral water during travel",
     ],
     notIncluded: [
-      "National Park entry permits and safari jeep hire fees",
-      "Rafting gear & guide fees in Kitulgala",
-      "Accommodation and personal expenses",
+      "National Park entrance tickets & safari jeep hire fees (can be arranged upon request)",
+      "Sightseeing & activity admission tickets (can be arranged upon request)",
+      "Kitulgala white-water rafting gear & guide fees",
+      "Hotel accommodations, meals, beverages, and driver/guide gratuities",
     ],
     itinerary: [
       {
@@ -499,18 +508,19 @@ export const tours: TourPackage[] = [
     overview:
       "Our flagship 10-day grand journey encapsulates the heart and soul of Sri Lanka. From ancient royal dynasties to cloud forests, wild savannas, and golden coastlines, travel in luxury and complete peace of mind with your personal dedicated chauffeur.",
     included: [
-      "Modern luxury air-conditioned vehicle throughout the entire 10 days",
-      "Experienced professional English-speaking private driver-guide",
-      "Airport arrival meet & greet and departure drop-off",
-      "All vehicle fuel, highway tolls, parking, and driver expenses",
-      "Pre-reserved panoramic scenic train tickets from Kandy to Ella",
-      "Daily bottled water and dedicated local travel coordination",
+      "Air-conditioned private modern vehicle throughout the entire tour",
+      "Professional English-speaking private driver/guide",
+      "Airport pick-up and drop-off transfers",
+      "All vehicle fuel, highway tolls, parking fees, and driver accommodation",
+      "Door-to-door luggage transfer while you enjoy the scenic train ride",
+      "Daily bottled mineral water during travel",
     ],
     notIncluded: [
-      "International flights and Sri Lanka visa",
-      "National park and historical site entry tickets",
-      "Hotel accommodations (available upon package customization)",
-      "Meals, beverages, and driver gratuities",
+      "Sightseeing, monument & national park entrance tickets (can be arranged upon request)",
+      "Scenic train tickets (can be arranged upon advance request)",
+      "International flights and Sri Lanka ETA visa fees",
+      "Hotel accommodations (available upon request or self-booked)",
+      "Meals, beverages, and driver/guide gratuities",
     ],
     itinerary: [
       {

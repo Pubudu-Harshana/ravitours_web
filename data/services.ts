@@ -14,7 +14,7 @@ export const services: ServiceItem[] = [
     title: "Private Transport & Chauffeur Guides",
     shortDescription: "Immaculate air-conditioned modern vehicles with licensed, experienced English-speaking drivers.",
     fullDescription:
-      "Travel with complete freedom, safety, and luxury across Sri Lanka. Our fleet includes comfortable modern sedans, spacious luxury vans (Toyota KDH/Commuter), and executive SUVs, all driven by government-licensed, experienced chauffeur-guides with deep knowledge of Sri Lanka's geography, wildlife, and history.",
+      "Travel with complete freedom, safety, and luxury across Sri Lanka. Our fleet includes comfortable modern sedans, spacious luxury vans, and executive SUVs, all driven by government-licensed, experienced chauffeur-guides with deep knowledge of Sri Lanka's geography, wildlife, and history.",
     icon: "Car",
     features: [
       "Modern, air-conditioned, well-maintained vehicles",

@@ -14,7 +14,11 @@ export async function POST(req: NextRequest) {
       email,
       phone,
       travelDate,
+      arrivalDate,
+      departureDate,
       travelers,
+      guidingService,
+      guideLanguage,
       interestedTour,
       message,
       // Honeypot field for bot spam prevention
@@ -101,8 +105,24 @@ export async function POST(req: NextRequest) {
       email: email.trim().toLowerCase(),
       phone: phone && typeof phone === "string" ? phone.trim().slice(0, 50) : undefined,
       travelDate:
-        travelDate && typeof travelDate === "string"
-          ? travelDate.trim().slice(0, 50)
+        (arrivalDate || travelDate) && typeof (arrivalDate || travelDate) === "string"
+          ? String(arrivalDate || travelDate).trim().slice(0, 50)
+          : undefined,
+      arrivalDate:
+        arrivalDate && typeof arrivalDate === "string"
+          ? arrivalDate.trim().slice(0, 50)
+          : undefined,
+      departureDate:
+        departureDate && typeof departureDate === "string"
+          ? departureDate.trim().slice(0, 50)
+          : undefined,
+      guidingService:
+        guidingService && typeof guidingService === "string"
+          ? guidingService.trim().slice(0, 100)
+          : undefined,
+      guideLanguage:
+        guideLanguage && typeof guideLanguage === "string"
+          ? guideLanguage.trim().slice(0, 50)
           : undefined,
       travelers:
         travelers && typeof travelers === "string"
