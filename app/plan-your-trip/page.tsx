@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { destinations } from "@/data/destinations";
 import { siteConfig } from "@/data/siteConfig";
@@ -58,6 +58,9 @@ export default function PlanYourTripPage() {
 
   const [guidingService, setGuidingService] = useState("Professional Driver-Guide");
   const [guideLanguage, setGuideLanguage] = useState("English");
+  const [arrivalDate, setArrivalDate] = useState("");
+  const [departureDate, setDepartureDate] = useState("");
+  const [minDate, setMinDate] = useState("");
   const [contactName, setContactName] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [contactPhone, setContactPhone] = useState("");
@@ -65,6 +68,49 @@ export default function PlanYourTripPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  useEffect(() => {
+    const today = new Date().toISOString().split("T")[0];
+    setMinDate(today);
+  }, []);
+
+  // Calculate Days & Nights automatically based on Arrival and Departure dates
+  // Example: 2026-10-10 to 2026-10-15 -> 6 Days / 5 Nights (6D / 5N)
+  const calculateTripDuration = (arr: string, dep: string) => {
+    if (!arr || !dep) return null;
+    const d1 = new Date(arr + "T00:00:00");
+    const d2 = new Date(dep + "T00:00:00");
+    const diffMs = d2.getTime() - d1.getTime();
+    if (isNaN(diffMs) || diffMs < 0) return null;
+    const diffNights = Math.round(diffMs / (1000 * 60 * 60 * 24));
+    const diffDays = diffNights === 0 ? 1 : diffNights + 1;
+    return {
+      days: diffDays,
+      nights: diffNights,
+      shortCode: `${diffDays}D / ${diffNights}N`,
+      formatted: diffNights === 0 ? "1 Day (Day Tour)" : `${diffDays} Days / ${diffNights} Nights`,
+    };
+  };
+
+  const calculatedDuration = calculateTripDuration(arrivalDate, departureDate);
+  const activeDuration = calculatedDuration
+    ? `${calculatedDuration.formatted} (${calculatedDuration.shortCode})`
+    : duration;
+
+  const handleArrivalChange = (val: string) => {
+    setArrivalDate(val);
+    if (departureDate && val && departureDate < val) {
+      setDepartureDate(val);
+    }
+  };
+
+  const handleDepartureChange = (val: string) => {
+    const effectiveMin = arrivalDate || minDate;
+    if (effectiveMin && val && val < effectiveMin) {
+      return;
+    }
+    setDepartureDate(val);
+  };
 
   const toggleDestination = (name: string) => {
     if (selectedDestinations.includes(name)) {
@@ -92,7 +138,9 @@ export default function PlanYourTripPage() {
     const messageContent = [
       `CUSTOM ITINERARY REQUEST:`,
       `• Preferred Destinations: ${getDestinationsSummary()}`,
-      `• Tour Duration: ${duration}`,
+      arrivalDate && departureDate
+        ? `• Travel Dates: ${arrivalDate} to ${departureDate} [${activeDuration}]`
+        : `• Tour Duration: ${duration}`,
       `• Travel Party: ${travelGroup}`,
       `• Travel Style: ${travelStyle}`,
       `• Selected Vehicle: ${vehicle}`,
@@ -109,10 +157,12 @@ export default function PlanYourTripPage() {
           name: contactName,
           email: contactEmail,
           phone: contactPhone,
+          arrivalDate: arrivalDate || undefined,
+          departureDate: departureDate || undefined,
           travelers: travelGroup,
           guidingService: guidingService,
           guideLanguage: guideLanguage,
-          interestedTour: `Custom Itinerary Plan (${duration})`,
+          interestedTour: `Custom Itinerary Plan (${activeDuration})`,
           message: messageContent,
         }),
       });
@@ -143,13 +193,18 @@ export default function PlanYourTripPage() {
     return list.length > 0 ? list.join(" + ") : "Open / Suggest complete route for me";
   };
 
+  const datesLine =
+    arrivalDate && departureDate
+      ? `• Travel Dates: ${arrivalDate} to ${departureDate} (${activeDuration})`
+      : `• Duration: ${duration}`;
+
   const whatsappPlanUrl = `https://wa.me/${siteConfig.contact.whatsapp.replace(
     /[^0-9]/g,
     ""
   )}?text=${encodeURIComponent(
     `Hello Ravi Tours & Travels! I just planned my custom Sri Lanka trip on your website:
 • Destinations: ${getDestinationsSummary()}
-• Duration: ${duration}
+${datesLine}
 • Party: ${travelGroup}
 • Vehicle: ${vehicle}
 • Guiding Service: ${guidingService}
@@ -209,7 +264,12 @@ export default function PlanYourTripPage() {
               ) : (
                 "with an optimized circuit "
               )}
-              for <span className="font-semibold text-[#07345A]">{duration}</span>.
+              for <span className="font-semibold text-[#07345A]">{activeDuration}</span>
+              {arrivalDate && departureDate && (
+                <span className="text-slate-500 block text-xs mt-1">
+                  ({arrivalDate} to {departureDate})
+                </span>
+              )}.
             </p>
 
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 text-xs font-semibold text-slate-700">
@@ -583,6 +643,131 @@ export default function PlanYourTripPage() {
                       <option value="Other">Other</option>
                     </select>
                   </div>
+                </div>
+
+                {/* 3. Preferred Travel Dates & Auto-Calculated Duration */}
+                <div className="pt-5 border-t border-slate-200/80">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-3">
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-wider text-[#07345A]">
+                        3. Travel Dates &amp; Duration (Arrival &amp; Departure)
+                      </label>
+                      <p className="text-xs text-slate-500">
+                        Pick your arrival and departure dates — your tour days and nights calculate automatically.
+                      </p>
+                    </div>
+                    {calculatedDuration && (
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#07345A] text-[#F6A623] shadow-xs self-start sm:self-auto">
+                        <Sparkles className="w-3.5 h-3.5 text-[#F6A623]" />
+                        <span>Auto-Calculated</span>
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
+                    {/* Arrival Date */}
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-700 mb-1.5 flex items-center justify-between">
+                        <span>Arrival Date (Flight In)</span>
+                        <span className="text-[11px] font-normal text-slate-400">YYYY-MM-DD</span>
+                      </label>
+                      <input
+                        type="date"
+                        min={minDate}
+                        value={arrivalDate}
+                        onChange={(e) => handleArrivalChange(e.target.value)}
+                        className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#07345A] transition-all"
+                      />
+                    </div>
+
+                    {/* Departure Date */}
+                    <div>
+                      <label className="block text-xs font-semibold text-slate-700 mb-1.5 flex items-center justify-between">
+                        <span>Departure Date (Flight Out)</span>
+                        <span className="text-[11px] font-normal text-slate-400">YYYY-MM-DD</span>
+                      </label>
+                      <input
+                        type="date"
+                        min={arrivalDate || minDate}
+                        value={departureDate}
+                        onChange={(e) => handleDepartureChange(e.target.value)}
+                        className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#07345A] transition-all"
+                      />
+                    </div>
+
+                    {/* Auto-Calculated Duration Block */}
+                    <div>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <label className="block text-xs font-semibold text-slate-700">
+                          Calculated Duration
+                        </label>
+                        {calculatedDuration && (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setArrivalDate("");
+                              setDepartureDate("");
+                            }}
+                            className="text-[11px] text-slate-400 hover:text-rose-600 transition-colors cursor-pointer"
+                          >
+                            Clear
+                          </button>
+                        )}
+                      </div>
+
+                      {calculatedDuration ? (
+                        <div className="h-[48px] px-3.5 rounded-xl bg-gradient-to-r from-[#07345A] to-[#0A4B80] border-2 border-[#07345A] text-white flex items-center justify-between shadow-sm">
+                          <div className="flex items-center gap-2 min-w-0">
+                            <span className="text-base font-black tracking-wide text-[#F6A623] shrink-0">
+                              {calculatedDuration.shortCode}
+                            </span>
+                            <span className="text-xs text-white/90 font-medium truncate">
+                              ({calculatedDuration.formatted})
+                            </span>
+                          </div>
+                          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-white/20 text-[#F6A623] shrink-0">
+                            Auto
+                          </span>
+                        </div>
+                      ) : arrivalDate ? (
+                        <div className="h-[48px] px-3.5 rounded-xl bg-amber-50/90 border border-dashed border-amber-300 text-amber-800 flex items-center justify-between text-xs">
+                          <span className="font-semibold text-amber-900">
+                            Select departure date
+                          </span>
+                          <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-200/70 text-amber-900">
+                            Pending
+                          </span>
+                        </div>
+                      ) : (
+                        <div className="h-[48px] px-3.5 rounded-xl bg-slate-100/90 border border-dashed border-slate-300 text-slate-400 flex items-center justify-between text-xs">
+                          <span className="font-mono font-bold tracking-wider text-slate-500">
+                            — D / — N
+                          </span>
+                          <span className="text-[11px] text-slate-400">
+                            Auto fills on dates
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {calculatedDuration && (
+                    <div className="mt-3 flex flex-wrap items-center gap-2.5 sm:gap-4 text-xs text-slate-600 bg-white/90 p-2.5 rounded-xl border border-slate-200">
+                      <span className="inline-flex items-center gap-1.5 font-bold text-[#07345A]">
+                        <span>☀️</span>
+                        <span>{calculatedDuration.days} Days Tour</span>
+                      </span>
+                      <span className="text-slate-300">•</span>
+                      <span className="inline-flex items-center gap-1.5 font-bold text-[#07345A]">
+                        <span>🌙</span>
+                        <span>{calculatedDuration.nights} Nights Stay</span>
+                      </span>
+                      <span className="sm:ml-auto text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                        <span>Ready to build route</span>
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
 
