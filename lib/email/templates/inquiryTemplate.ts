@@ -5,6 +5,7 @@ export interface InquiryEmailData {
   travelDate?: string;
   arrivalDate?: string;
   departureDate?: string;
+  vehicle?: string;
   guidingService?: string;
   guideLanguage?: string;
   travelers?: string;
@@ -44,6 +45,7 @@ export function renderInquiryEmailHtml(data: InquiryEmailData): string {
     ? escapeHtml(data.guidingService)
     : "Professional Driver-Guide";
   const safeLanguage = data.guideLanguage ? escapeHtml(data.guideLanguage) : "English";
+  const safeVehicle = data.vehicle ? escapeHtml(data.vehicle) : null;
   const safeTravelers = data.travelers ? escapeHtml(data.travelers) : "Not specified";
   const safeTour = data.interestedTour ? escapeHtml(data.interestedTour) : "General Inquiry / Tailor-Made";
   const safeMessage = escapeHtml(data.message).replace(/\n/g, "<br/>");
@@ -193,11 +195,19 @@ export function renderInquiryEmailHtml(data: InquiryEmailData): string {
                   </td>
                 </tr>
                 <tr>
-                  <td style="padding: 12px 16px; font-size: 13px; color: #64748b;">
+                  <td style="padding: 12px 16px; font-size: 13px; color: #64748b; border-bottom: 1px solid #f1f5f9;">
                     Guiding Service:
                   </td>
-                  <td style="padding: 12px 16px; font-size: 14px; font-weight: 600; color: #0f172a;">
+                  <td style="padding: 12px 16px; font-size: 14px; font-weight: 600; color: #0f172a; border-bottom: 1px solid #f1f5f9;">
                     ${safeGuiding} (${safeLanguage} guide)
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px 16px; font-size: 13px; color: #64748b;">
+                    Vehicle Preference:
+                  </td>
+                  <td style="padding: 12px 16px; font-size: 14px; font-weight: 600; color: #07345A;">
+                    ${safeVehicle || "Not specified / Standard Sedan"}
                   </td>
                 </tr>
               </table>
@@ -286,6 +296,7 @@ TRIP DETAILS:
 - Arrival Date: ${data.arrivalDate || data.travelDate || "Flexible / Not specified"}
 - Departure Date: ${data.departureDate || "Flexible / Not specified"}
 - Guiding Service: ${data.guidingService || "Professional Driver-Guide"} (${data.guideLanguage || "English"} guide)
+- Vehicle Preference: ${data.vehicle || "Not specified / Standard Sedan"}
 - Group Size: ${data.travelers || "Not specified"}
 - Tour / Service: ${data.interestedTour || "General Inquiry / Tailor-Made"}
 

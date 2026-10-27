@@ -17,6 +17,7 @@ export async function POST(req: NextRequest) {
       arrivalDate,
       departureDate,
       travelers,
+      vehicle,
       guidingService,
       guideLanguage,
       interestedTour,
@@ -115,6 +116,10 @@ export async function POST(req: NextRequest) {
       departureDate:
         departureDate && typeof departureDate === "string"
           ? departureDate.trim().slice(0, 50)
+          : undefined,
+      vehicle:
+        vehicle && typeof vehicle === "string"
+          ? vehicle.trim().slice(0, 150)
           : undefined,
       guidingService:
         guidingService && typeof guidingService === "string"

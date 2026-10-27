@@ -15,6 +15,7 @@ import {
   Loader2,
   RefreshCw,
   Calendar,
+  Car,
 } from "lucide-react";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { useLanguage } from "@/context/LanguageContext";
@@ -32,6 +33,7 @@ function ContactPageContent() {
     arrivalDate: "",
     departureDate: "",
     travelers: "2 adults",
+    vehicle: "Standard Sedan (1–2 Passengers)",
     guidingService: "Professional Driver-Guide",
     guideLanguage: "English",
     interestedTour: "",
@@ -101,6 +103,7 @@ function ContactPageContent() {
           departureDate: formData.departureDate,
           travelDate: formData.arrivalDate,
           travelers: formData.travelers,
+          vehicle: formData.vehicle,
           guidingService: formData.guidingService,
           guideLanguage: formData.guideLanguage,
           interestedTour: formData.interestedTour,
@@ -141,7 +144,7 @@ function ContactPageContent() {
       formData.interestedTour ? `"${formData.interestedTour}" ` : ""
     }travel from ${formData.arrivalDate || "Arrival"} to ${
       formData.departureDate || "Departure"
-    }${tripDuration ? ` (${tripDuration.code})` : ""} for ${formData.travelers} with a ${formData.guidingService} (${formData.guideLanguage} guide). Message: ${formData.message || "Please provide package details."}`
+    }${tripDuration ? ` (${tripDuration.code})` : ""} for ${formData.travelers} with ${formData.vehicle} and a ${formData.guidingService} (${formData.guideLanguage} guide). Message: ${formData.message || "Please provide package details."}`
   )}`;
 
   return (
@@ -321,6 +324,10 @@ function ContactPageContent() {
                     <span className="font-medium text-slate-700">Guide Service:</span>{" "}
                     {formData.guidingService} ({formData.guideLanguage} guide)
                   </div>
+                  <div>
+                    <span className="font-medium text-slate-700">Vehicle:</span>{" "}
+                    {formData.vehicle}
+                  </div>
                 </div>
 
                 <div className="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
@@ -343,6 +350,7 @@ function ContactPageContent() {
                         arrivalDate: "",
                         departureDate: "",
                         travelers: "2 adults",
+                        vehicle: "Standard Sedan (1–2 Passengers)",
                         guidingService: "Professional Driver-Guide",
                         guideLanguage: "English",
                         interestedTour: "",
@@ -491,9 +499,20 @@ function ContactPageContent() {
                       <select
                         disabled={isSubmitting}
                         value={formData.travelers}
-                        onChange={(e) =>
-                          setFormData({ ...formData, travelers: e.target.value })
-                        }
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          setFormData((prev) => {
+                            let suggestedVehicle = prev.vehicle;
+                            if (val === "Family (3-4)" && prev.vehicle === "Standard Sedan (1–2 Passengers)") {
+                              suggestedVehicle = "Luxury Touring Van (3–7 Passengers)";
+                            } else if (val === "Group (5-8)" && (prev.vehicle === "Standard Sedan (1–2 Passengers)" || prev.vehicle === "Premium Sedan (1–3 Passengers)")) {
+                              suggestedVehicle = "Luxury Touring Van (3–7 Passengers)";
+                            } else if (val === "Large Group (9+)") {
+                              suggestedVehicle = "Minibus / Mini Coach (8–14 Passengers)";
+                            }
+                            return { ...prev, travelers: val, vehicle: suggestedVehicle };
+                          });
+                        }}
                         className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#07345A] disabled:opacity-60 disabled:cursor-not-allowed"
                       >
                         <option value="1 adult">{t.search.adult1}</option>
@@ -681,6 +700,53 @@ function ContactPageContent() {
                         <option value="Other">Other</option>
                       </select>
                     </div>
+                  </div>
+
+                  {/* Preferred Vehicle Type */}
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center justify-between">
+                      <span className="flex items-center gap-1.5">
+                        <Car className="w-3.5 h-3.5 text-[#087EA4]" />
+                        <span>{t.contactPage.vehicleLabel} *</span>
+                      </span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#087EA4]/10 text-[#087EA4]">
+                        {t.contactPage.vehicleDefaultBadge}
+                      </span>
+                    </label>
+                    <select
+                      disabled={isSubmitting}
+                      value={formData.vehicle}
+                      onChange={(e) =>
+                        setFormData({ ...formData, vehicle: e.target.value })
+                      }
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#07345A] disabled:opacity-60 disabled:cursor-not-allowed text-slate-800"
+                    >
+                      <option value="Standard Sedan (1–2 Passengers)">
+                        Standard Sedan (1–2 Passengers — Air-Conditioned Comfort)
+                      </option>
+                      <option value="Premium Sedan (1–3 Passengers)">
+                        Premium Sedan (1–3 Passengers — Extra Legroom &amp; Luxury)
+                      </option>
+                      <option value="Luxury Touring Van (3–7 Passengers)">
+                        Luxury Touring Van (3–7 Passengers — Spacious for Families &amp; Luggage)
+                      </option>
+                      <option value="Premium SUV / 4×4 (1–4 Passengers)">
+                        Premium SUV / 4×4 (1–4 Passengers — Elevated Comfort for Scenic Routes)
+                      </option>
+                      <option value="Minibus / Mini Coach (8–14 Passengers)">
+                        Minibus / Mini Coach (8–14 Passengers — Group Touring)
+                      </option>
+                      <option value="Luxury Coach (15+ Passengers)">
+                        Luxury Coach (15+ Passengers — Large Group / Corporate)
+                      </option>
+                      <option value="Not Sure — Recommend Best Option">
+                        Not Sure — Recommend the best vehicle for our party &amp; luggage
+                      </option>
+                    </select>
+                    <p className="text-[11px] text-slate-400 mt-1.5 flex items-center gap-1.5">
+                      <span className="text-emerald-600 font-bold">✓</span>
+                      <span>All vehicles are modern, air-conditioned, and include private chauffeur, fuel, and highway tolls.</span>
+                    </p>
                   </div>
 
                   {/* Message */}

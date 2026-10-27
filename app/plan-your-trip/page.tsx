@@ -160,6 +160,7 @@ export default function PlanYourTripPage() {
           arrivalDate: arrivalDate || undefined,
           departureDate: departureDate || undefined,
           travelers: travelGroup,
+          vehicle: vehicle,
           guidingService: guidingService,
           guideLanguage: guideLanguage,
           interestedTour: `Custom Itinerary Plan (${activeDuration})`,

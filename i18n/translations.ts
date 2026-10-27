@@ -173,6 +173,8 @@ export interface TranslationDictionary {
     arrivalDateLabel: string;
     departureDateLabel: string;
     travelersLabel: string;
+    vehicleLabel: string;
+    vehicleDefaultBadge: string;
     interestedTourLabel: string;
     selectTourPlaceholder: string;
     messageLabel: string;
@@ -381,6 +383,8 @@ export const translations: Record<Language, TranslationDictionary> = {
       arrivalDateLabel: "Arrival Date",
       departureDateLabel: "Departure Date",
       travelersLabel: "Travelers",
+      vehicleLabel: "Preferred Vehicle Type",
+      vehicleDefaultBadge: "Private AC Fleet",
       interestedTourLabel: "Tour of Interest (Optional)",
       selectTourPlaceholder: "Select a package or custom itinerary",
       messageLabel: "Tell Us About Your Travel Plans",
@@ -587,6 +591,8 @@ export const translations: Record<Language, TranslationDictionary> = {
       arrivalDateLabel: "تاريخ الوصول",
       departureDateLabel: "تاريخ المغادرة",
       travelersLabel: "عدد المسافرين",
+      vehicleLabel: "نوع المركبة المفضلة",
+      vehicleDefaultBadge: "أسطول سيارات مكيفة",
       interestedTourLabel: "الجولة المطلوبة (اختياري)",
       selectTourPlaceholder: "اختر باقة أو برنامجاً مخصصاً",
       messageLabel: "تفاصيل رحلتك",
@@ -793,6 +799,8 @@ export const translations: Record<Language, TranslationDictionary> = {
       arrivalDateLabel: "Anreisedatum",
       departureDateLabel: "Abreisedatum",
       travelersLabel: "Anzahl Reisende",
+      vehicleLabel: "Bevorzugter Fahrzeugtyp",
+      vehicleDefaultBadge: "Klimatisierte Fahrzeugflotte",
       interestedTourLabel: "Gewünschte Tour (optional)",
       selectTourPlaceholder: "Paket oder individuelle Route wählen",
       messageLabel: "Ihre Reisepläne & Wünsche",
@@ -999,6 +1007,8 @@ export const translations: Record<Language, TranslationDictionary> = {
       arrivalDateLabel: "Date d'arrivée",
       departureDateLabel: "Date de départ",
       travelersLabel: "Nombre de voyageurs",
+      vehicleLabel: "Type de véhicule souhaité",
+      vehicleDefaultBadge: "Flotte privée climatisée",
       interestedTourLabel: "Circuit souhaité (optionnel)",
       selectTourPlaceholder: "Sélectionnez un circuit ou sur mesure",
       messageLabel: "Votre projet de voyage",
