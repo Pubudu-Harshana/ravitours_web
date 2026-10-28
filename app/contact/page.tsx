@@ -704,14 +704,9 @@ function ContactPageContent() {
 
                   {/* Preferred Vehicle Type */}
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center justify-between">
-                      <span className="flex items-center gap-1.5">
-                        <Car className="w-3.5 h-3.5 text-[#087EA4]" />
-                        <span>{t.contactPage.vehicleLabel} *</span>
-                      </span>
-                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#087EA4]/10 text-[#087EA4]">
-                        {t.contactPage.vehicleDefaultBadge}
-                      </span>
+                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                      <Car className="w-3.5 h-3.5 text-[#087EA4]" />
+                      <span>{t.contactPage.vehicleLabel} *</span>
                     </label>
                     <select
                       disabled={isSubmitting}
@@ -743,10 +738,6 @@ function ContactPageContent() {
                         Not Sure — Recommend the best vehicle for our party &amp; luggage
                       </option>
                     </select>
-                    <p className="text-[11px] text-slate-400 mt-1.5 flex items-center gap-1.5">
-                      <span className="text-emerald-600 font-bold">✓</span>
-                      <span>All vehicles are modern, air-conditioned, and include private chauffeur, fuel, and highway tolls.</span>
-                    </p>
                   </div>
 
                   {/* Message */}

@@ -15,7 +15,8 @@ export interface SiteConfig {
   social: {
     facebook: string;
     instagram: string;
-    youtube: string;
+    tiktok: string;
+    youtube?: string;
     tripadvisor?: string;
   };
   navigation: {
@@ -41,9 +42,9 @@ export const siteConfig: SiteConfig = {
     officeHours: "24/7 Customer Support & Travel Assistance",
   },
   social: {
-    facebook: "https://facebook.com",
+    facebook: "https://www.facebook.com/share/1GcFCUBCPr/?mibextid=wwXIfr",
     instagram: "https://instagram.com",
-    youtube: "https://youtube.com",
+    tiktok: "https://www.tiktok.com/@ravi_tours_travels?_r=1&_t=ZS-9AvnOt2fhKP",
   },
   navigation: [
     { label: "Home", href: "/" },
