@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, Compass, ShieldCheck, Clock, Car } from "lucide-react";
+import { ArrowRight, Compass, ShieldCheck, Clock, Car, MapPin } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function Hero() {
@@ -90,8 +90,8 @@ export default function Hero() {
           </div>
 
           {/* Service Highlights Row - Clear & Fully Readable */}
-          <div className="pt-6 border-t border-white/15">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-w-xl">
+          <div className="pt-6 border-t border-white/15 space-y-4 max-w-xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               <div className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-100 bg-white/10 hover:bg-white/15 backdrop-blur-md px-3.5 py-2.5 rounded-xl border border-white/15 transition-colors shadow-xs">
                 <Car className="w-4 h-4 text-[#F6A623] shrink-0" />
                 <span className="font-semibold">Private Tours</span>
@@ -108,6 +108,17 @@ export default function Hero() {
                 <Clock className="w-4 h-4 text-[#F6A623] shrink-0" />
                 <span className="font-semibold">Personalized Customer Care</span>
               </div>
+            </div>
+
+            {/* Personalized Private Tours Pill & Subtitle */}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 pt-1">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-900/60 backdrop-blur-md border border-white/15 text-xs sm:text-sm font-semibold text-[#38bdf8] shadow-lg w-fit">
+                <MapPin className="w-3.5 h-3.5 text-[#F6A623] shrink-0" />
+                Personalized Private Tours Across Sri Lanka
+              </span>
+              <p className="text-xs sm:text-sm text-slate-300/90 font-medium tracking-wide">
+                Your Journey. Our Personal Care. Unforgettable Sri Lanka.
+              </p>
             </div>
           </div>
         </div>
