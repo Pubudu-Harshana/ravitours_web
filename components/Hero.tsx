@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Compass, ShieldCheck, Clock, Car, MapPin } from "lucide-react";
@@ -7,25 +8,37 @@ import { useLanguage } from "@/context/LanguageContext";
 
 export default function Hero() {
   const { t } = useLanguage();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(() => {
+        // Fallback for strict browser power-saver modes
+      });
+    }
+  }, []);
 
   return (
     <section className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center pt-24 pb-16 lg:py-24 overflow-hidden">
-      {/* Background Video with Poster Fallback */}
+      {/* Background Video with Instant-Load Poster Fallback */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
-          poster="/images/landing page image.png"
-          className="w-full h-full object-cover object-[center_40%] scale-105"
+          poster="/images/hero-video-poster.webp"
+          className="w-full h-full object-cover object-[center_40%] scale-105 brightness-[1.08] contrast-[1.05]"
         >
           <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
-        {/* Oceanic twilight gradient overlays for text legibility and rich 3D island contrast */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#020f1f]/95 via-[#032743]/80 to-[#020f1f]/55" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#020f1f]/85 via-transparent to-[#020f1f]/40" />
+        {/* Calibrated twilight gradient overlays for higher video visibility & sharp text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#020f1f]/80 via-[#032743]/50 to-[#020f1f]/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#020f1f]/75 via-transparent to-[#020f1f]/25" />
       </div>
 
       <div className="relative z-10 max-w-7xl xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 w-full">

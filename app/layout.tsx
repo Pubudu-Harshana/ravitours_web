@@ -85,6 +85,12 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
+        <link
+          rel="preload"
+          href="/images/hero-video-poster.webp"
+          as="image"
+          type="image/webp"
+        />
       </head>
       <body className="min-h-screen flex flex-col bg-[#F7FAFC] text-[#102A43] antialiased selection:bg-[#F6A623] selection:text-white">
         <LanguageProvider>
