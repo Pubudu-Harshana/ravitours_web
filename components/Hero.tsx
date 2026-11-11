@@ -10,16 +10,19 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center pt-24 pb-16 lg:py-24 overflow-hidden">
-      {/* Background Image — cinematic Sri Lanka sunrise with ocean & misty rainforest */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/landing page image.png"
-          alt="Cinematic scenic view of Sri Lanka — Ravi Tours & Travels"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[center_40%] scale-105"
-        />
+      {/* Background Video with Poster Fallback */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          poster="/images/landing page image.png"
+          className="w-full h-full object-cover object-[center_40%] scale-105"
+        >
+          <source src="/videos/hero.mp4" type="video/mp4" />
+        </video>
         {/* Oceanic twilight gradient overlays for text legibility and rich 3D island contrast */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#020f1f]/95 via-[#032743]/80 to-[#020f1f]/55" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#020f1f]/85 via-transparent to-[#020f1f]/40" />
